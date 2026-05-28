@@ -540,18 +540,23 @@ defmodule Beacon.LiveAdmin.PageEditorLive.FormComponent do
     """
   end
 
+  # Sojourner fork: use daisyUI semantic badge classes so the
+  # status pill picks up readable contrast in both light and dark
+  # mesa themes. Upstream's bare bg-lime-400 / bg-yellow-300 had no
+  # explicit text colour — text inherited base-content, which is
+  # light-grey in dark mode and unreadable on bright lime.
   defp page_status(%{status: :published} = assigns) do
     ~H"""
-    <div class="rounded-md bg-lime-400 text-sm px-4 py-1 flex items-center">
-      <div>Published</div>
+    <div class="badge badge-success badge-soft text-sm font-medium">
+      Published
     </div>
     """
   end
 
   defp page_status(assigns) do
     ~H"""
-    <div class="rounded-md bg-yellow-300 text-sm px-4 py-1 flex items-center">
-      <div>Draft</div>
+    <div class="badge badge-warning badge-soft text-sm font-medium">
+      Draft
     </div>
     """
   end

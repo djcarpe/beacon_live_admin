@@ -200,9 +200,16 @@ defmodule Beacon.LiveAdmin.CoreComponents do
   def button(%{rest: rest} = assigns) do
     variants = %{"primary" => "btn-primary", nil => "btn-primary btn-soft"}
 
+    # Sojourner fork: always include the daisyUI `btn` base class so
+    # callers can pass a single semantic colour utility like
+    # `class="btn-primary"` or `class="btn-error"` without losing the
+    # padding/font/radius/etc. that `btn` provides. Upstream's
+    # `assigns.class || ["btn", …]` form replaces the fallback list
+    # entirely when `class` is given — that's why the header action
+    # buttons rendered as bare coloured rectangles.
     assigns =
       assign_new(assigns, :computed_class, fn ->
-        [assigns.class || ["btn", Map.fetch!(variants, assigns.variant)]]
+        ["btn", assigns.class || Map.fetch!(variants, assigns.variant)]
       end)
 
     if rest[:href] || rest[:navigate] || rest[:patch] do
