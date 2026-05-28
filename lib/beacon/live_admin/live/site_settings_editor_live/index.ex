@@ -40,7 +40,7 @@ defmodule Beacon.LiveAdmin.SiteSettingsEditorLive.Index do
   def handle_event("set_template", %{"value" => template}, socket) do
     %{selected: selected, beacon_page: %{site: site}, form: form} = socket.assigns
 
-    params = Map.merge(form.params, %{"template" => template})
+    params = Map.merge(form.params, %{"value" => template})
     changeset = Content.change_site_setting(site, selected, params)
 
     socket =
@@ -54,7 +54,7 @@ defmodule Beacon.LiveAdmin.SiteSettingsEditorLive.Index do
   def handle_event("save_changes", %{"site_setting" => params}, socket) do
     %{selected: selected, beacon_page: %{site: site}} = socket.assigns
 
-    attrs = %{template: params["template"]}
+    attrs = %{value: params["value"]}
 
     socket =
       case Content.update_site_setting(site, selected, attrs) do
@@ -171,7 +171,7 @@ defmodule Beacon.LiveAdmin.SiteSettingsEditorLive.Index do
             <.form :let={f} for={@form} id="site-setting-form" class="flex items-end gap-4" phx-submit="save_changes">
               <.input label="Key" field={f[:key]} type="text" disabled readonly />
               <.input label="Format" field={f[:format]} type="text" disabled readonly />
-              <.input type="hidden" field={f[:template]} name="site_setting[template]" id="site_setting-form_template" value={Phoenix.HTML.Form.input_value(f, :template)} />
+              <.input type="hidden" field={f[:value]} name="site_setting[value]" id="site_setting-form_value" value={Phoenix.HTML.Form.input_value(f, :value)} />
 
               <.button phx-disable-with="Saving..." class="btn-primary ml-auto">Save Changes</.button>
             </.form>
@@ -181,12 +181,12 @@ defmodule Beacon.LiveAdmin.SiteSettingsEditorLive.Index do
             </div>
 
             <div class="w-full mt-6 space-y-8">
-              <%= template_error(@form[:template]) %>
+              <%= template_error(@form[:value]) %>
               <div class="py-6 rounded-[1.25rem] bg-[#0D1829] [&_.monaco-editor-background]:!bg-[#0D1829] [&_.margin]:!bg-[#0D1829]">
                 <LiveMonacoEditor.code_editor
                   path="site_setting_template"
                   class="col-span-full lg:col-span-2"
-                  value={@selected.template}
+                  value={@selected.value}
                   change="set_template"
                   opts={Map.merge(LiveMonacoEditor.default_opts(), %{"language" => editor_language(@selected)})}
                 />
