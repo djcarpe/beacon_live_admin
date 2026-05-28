@@ -26,51 +26,57 @@ defmodule Beacon.LiveAdmin.AssetsController do
       styled = File.read!(Path.join(daisyui_dir, "styled.css"))
       themes = File.read!(Path.join(daisyui_dir, "themes.css"))
 
+      # Sojourner fork: rebind Beacon Admin's daisyUI themes to the
+      # mesa / mesa-light palette so the admin chrome matches the rest
+      # of the host app. The theme names stay `beacon` / `beacon-dark`
+      # so Beacon's own theme-toggle JS keeps working; only the color
+      # values change. Source of truth: assets/css/app.css in
+      # rivianvw/sojourner.
       beacon_themes = """
       [data-theme="beacon"] {
-        --color-primary: oklch(51.06% 0.23 276.97);
-        --color-primary-content: oklch(100% 0 0);
-        --color-secondary: oklch(58.54% 0.204 277.12);
-        --color-secondary-content: oklch(100% 0 0);
-        --color-accent: oklch(60.56% 0.219 292.72);
-        --color-accent-content: oklch(100% 0 0);
-        --color-neutral: oklch(27.95% 0.037 260.03);
-        --color-neutral-content: oklch(92.88% 0.013 255.51);
-        --color-base-100: oklch(100% 0 0);
-        --color-base-200: oklch(98.42% 0.003 247.86);
-        --color-base-300: oklch(96.83% 0.007 247.9);
-        --color-base-content: oklch(20.77% 0.04 265.75);
-        --color-info: oklch(62.31% 0.188 259.81);
-        --color-info-content: oklch(100% 0 0);
-        --color-success: oklch(69.59% 0.149 162.48);
-        --color-success-content: oklch(100% 0 0);
-        --color-warning: oklch(76.86% 0.165 70.08);
-        --color-warning-content: oklch(100% 0 0);
-        --color-error: oklch(63.68% 0.208 25.33);
-        --color-error-content: oklch(100% 0 0);
+        --color-base-100: #ffffff;
+        --color-base-200: #f5f5f5;
+        --color-base-300: #e5e5e5;
+        --color-base-content: #1c1c1c;
+        --color-primary: #2a9c8e;
+        --color-primary-content: #ffffff;
+        --color-secondary: #1c4642;
+        --color-secondary-content: #ffffff;
+        --color-accent: #2b8f44;
+        --color-accent-content: #ffffff;
+        --color-neutral: #1c1c1c;
+        --color-neutral-content: #dfdfdf;
+        --color-info: #1b5af5;
+        --color-info-content: #ffffff;
+        --color-success: #2b8f44;
+        --color-success-content: #ffffff;
+        --color-warning: #e06c16;
+        --color-warning-content: #ffffff;
+        --color-error: #da3529;
+        --color-error-content: #ffffff;
         color-scheme: light;
       }
       [data-theme="beacon-dark"] {
-        --color-primary: oklch(58.54% 0.204 277.12);
-        --color-primary-content: oklch(100% 0 0);
-        --color-secondary: oklch(68.01% 0.158 276.93);
-        --color-secondary-content: oklch(100% 0 0);
-        --color-accent: oklch(70.9% 0.159 293.54);
-        --color-accent-content: oklch(100% 0 0);
-        --color-neutral: oklch(37.17% 0.039 257.29);
-        --color-neutral-content: oklch(92.88% 0.013 255.51);
-        --color-base-100: oklch(20.77% 0.04 265.75);
-        --color-base-200: oklch(12.88% 0.041 264.7);
-        --color-base-300: oklch(27.95% 0.037 260.03);
-        --color-base-content: oklch(92.88% 0.013 255.51);
-        --color-info: oklch(71.37% 0.143 254.62);
-        --color-info-content: oklch(20.77% 0.04 265.75);
-        --color-success: oklch(77.29% 0.153 163.22);
-        --color-success-content: oklch(20.77% 0.04 265.75);
-        --color-warning: oklch(83.69% 0.164 84.43);
-        --color-warning-content: oklch(20.77% 0.04 265.75);
-        --color-error: oklch(71.06% 0.166 22.22);
-        --color-error-content: oklch(20.77% 0.04 265.75);
+        --color-base-100: #050505;
+        --color-base-200: #111111;
+        --color-base-300: #1c1c1c;
+        --color-base-content: #dfdfdf;
+        --color-primary: #2a9c8e;
+        --color-primary-content: #d2f5ed;
+        --color-secondary: #37ad9e;
+        --color-secondary-content: #050505;
+        --color-accent: #b8fa65;
+        --color-accent-content: #050505;
+        --color-neutral: #232323;
+        --color-neutral-content: #dfdfdf;
+        --color-info: #337cff;
+        --color-info-content: #dfdfdf;
+        --color-success: #37a754;
+        --color-success-content: #050505;
+        --color-warning: #f08c2b;
+        --color-warning-content: #050505;
+        --color-error: #ed5246;
+        --color-error-content: #dfdfdf;
         color-scheme: dark;
       }
       """
