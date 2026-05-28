@@ -9,7 +9,12 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.Slots do
   def menu_link(_, _), do: :skip
 
   def mount(socket) do
-    {:ok, stream_configure(socket, :slot_attrs, dom_id: &"#{Ecto.UUID.generate()}-#{&1.id}")}
+    {:ok,
+     Beacon.LiveAdmin.StreamConfigure.maybe_configure(
+       socket,
+       :slot_attrs,
+       dom_id: &"#{Ecto.UUID.generate()}-#{&1.id}"
+     )}
   end
 
   # For switching between selected slots, first load has already happened

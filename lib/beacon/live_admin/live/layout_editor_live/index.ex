@@ -9,7 +9,12 @@ defmodule Beacon.LiveAdmin.LayoutEditorLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream_configure(socket, :beacon_layouts, dom_id: &"#{Ecto.UUID.generate()}-#{&1.id}")}
+    {:ok,
+     Beacon.LiveAdmin.StreamConfigure.maybe_configure(
+       socket,
+       :beacon_layouts,
+       dom_id: &"#{Ecto.UUID.generate()}-#{&1.id}"
+     )}
   end
 
   @impl true

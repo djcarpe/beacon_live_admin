@@ -14,7 +14,10 @@ defmodule Beacon.LiveAdmin.MediaLibraryLive.Index do
     {:ok,
      socket
      |> assign(:authn_context, %{mod: :media_library})
-     |> stream_configure(:assets, dom_id: &"#{Ecto.UUID.generate()}-#{&1.id}")}
+     |> Beacon.LiveAdmin.StreamConfigure.maybe_configure(
+       :assets,
+       dom_id: &"#{Ecto.UUID.generate()}-#{&1.id}"
+     )}
   end
 
   @impl true

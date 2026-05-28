@@ -9,7 +9,14 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream_configure(socket, :components, dom_id: &"#{Ecto.UUID.generate()}-#{&1.id}")}
+    # Beacon.LiveAdmin.PageLive re-invokes this mount on every live_patch
+    # between admin pages, so stream_configure must be idempotent.
+    {:ok,
+     Beacon.LiveAdmin.StreamConfigure.maybe_configure(
+       socket,
+       :components,
+       dom_id: &"#{Ecto.UUID.generate()}-#{&1.id}"
+     )}
   end
 
   @impl true
