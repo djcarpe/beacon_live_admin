@@ -953,6 +953,130 @@ html{
   --erc: 90.3652% 0 0;
 }
 
+/* ============================================================
+   Sojourner fork: admin theme normalisation
+   ------------------------------------------------------------
+   Beacon Admin templates mix daisyUI utilities (which already
+   honor [data-theme]) with hardcoded Tailwind color classes
+   (bg-white, text-gray-700, border-gray-200, bg-[#0D1829],
+   etc) that don't. The hardcoded ones make the admin look
+   half-finished in both light AND dark mesa — black buttons,
+   grey titles, white background, all stuck.
+
+   The rules below remap every hardcoded color utility used
+   by upstream Beacon Admin templates to the corresponding
+   mesa-friendly daisyUI v4 token. Scoped via [data-theme]
+   so the rest of the host app is untouched. Selectors are
+   higher specificity than the base utility, so they win
+   without !important.
+   ============================================================ */
+
+[data-theme=beacon] .bg-white,
+[data-theme=beacon-dark] .bg-white { background-color: oklch(var(--b1)); }
+[data-theme=beacon] .bg-gray-50,
+[data-theme=beacon] .bg-zinc-50,
+[data-theme=beacon-dark] .bg-gray-50,
+[data-theme=beacon-dark] .bg-zinc-50 { background-color: oklch(var(--b1)); }
+[data-theme=beacon] .bg-gray-100,
+[data-theme=beacon] .bg-zinc-100,
+[data-theme=beacon] .bg-slate-100,
+[data-theme=beacon-dark] .bg-gray-100,
+[data-theme=beacon-dark] .bg-zinc-100,
+[data-theme=beacon-dark] .bg-slate-100 { background-color: oklch(var(--b2)); }
+[data-theme=beacon] .bg-gray-200,
+[data-theme=beacon] .bg-slate-400,
+[data-theme=beacon-dark] .bg-gray-200,
+[data-theme=beacon-dark] .bg-slate-400 { background-color: oklch(var(--b3)); }
+[data-theme=beacon] .bg-slate-700,
+[data-theme=beacon] .bg-black,
+[data-theme=beacon-dark] .bg-slate-700,
+[data-theme=beacon-dark] .bg-black { background-color: oklch(var(--n)); }
+
+[data-theme=beacon] .text-white,
+[data-theme=beacon-dark] .text-white { color: oklch(var(--b1)); }
+[data-theme=beacon] .text-black,
+[data-theme=beacon] .text-gray-900,
+[data-theme=beacon] .text-gray-800,
+[data-theme=beacon] .text-gray-700,
+[data-theme=beacon] .text-zinc-900,
+[data-theme=beacon] .text-zinc-800,
+[data-theme=beacon] .text-zinc-700,
+[data-theme=beacon] .text-slate-800,
+[data-theme=beacon-dark] .text-black,
+[data-theme=beacon-dark] .text-gray-900,
+[data-theme=beacon-dark] .text-gray-800,
+[data-theme=beacon-dark] .text-gray-700,
+[data-theme=beacon-dark] .text-zinc-900,
+[data-theme=beacon-dark] .text-zinc-800,
+[data-theme=beacon-dark] .text-zinc-700,
+[data-theme=beacon-dark] .text-slate-800 { color: oklch(var(--bc)); }
+[data-theme=beacon] .text-gray-600,
+[data-theme=beacon] .text-zinc-600,
+[data-theme=beacon] .text-slate-600,
+[data-theme=beacon-dark] .text-gray-600,
+[data-theme=beacon-dark] .text-zinc-600,
+[data-theme=beacon-dark] .text-slate-600 { color: oklch(var(--bc) / 0.8); }
+[data-theme=beacon] .text-gray-500,
+[data-theme=beacon] .text-zinc-500,
+[data-theme=beacon] .text-slate-500,
+[data-theme=beacon-dark] .text-gray-500,
+[data-theme=beacon-dark] .text-zinc-500,
+[data-theme=beacon-dark] .text-slate-500 { color: oklch(var(--bc) / 0.6); }
+[data-theme=beacon] .text-gray-400,
+[data-theme=beacon] .text-zinc-400,
+[data-theme=beacon] .text-slate-400,
+[data-theme=beacon-dark] .text-gray-400,
+[data-theme=beacon-dark] .text-zinc-400,
+[data-theme=beacon-dark] .text-slate-400 { color: oklch(var(--bc) / 0.45); }
+[data-theme=beacon] .text-gray-300,
+[data-theme=beacon] .text-zinc-300,
+[data-theme=beacon-dark] .text-gray-300,
+[data-theme=beacon-dark] .text-zinc-300 { color: oklch(var(--bc) / 0.3); }
+
+[data-theme=beacon] .border-gray-100,
+[data-theme=beacon] .border-gray-200,
+[data-theme=beacon] .border-gray-300,
+[data-theme=beacon] .border-zinc-300,
+[data-theme=beacon-dark] .border-gray-100,
+[data-theme=beacon-dark] .border-gray-200,
+[data-theme=beacon-dark] .border-gray-300,
+[data-theme=beacon-dark] .border-zinc-300 { border-color: oklch(var(--b3)); }
+[data-theme=beacon] .border-gray-900,
+[data-theme=beacon-dark] .border-gray-900 { border-color: oklch(var(--bc) / 0.5); }
+
+/* Arbitrary hex utilities — used by Beacon Admin's icon button
+   states and inline error text in templates. */
+[data-theme=beacon] .text-\[\#61758A\],
+[data-theme=beacon-dark] .text-\[\#61758A\] { color: oklch(var(--bc) / 0.55); }
+[data-theme=beacon] .text-\[\#445668\],
+[data-theme=beacon-dark] .text-\[\#445668\] { color: oklch(var(--bc) / 0.7); }
+[data-theme=beacon] .text-\[\#304254\],
+[data-theme=beacon-dark] .text-\[\#304254\] { color: oklch(var(--bc) / 0.85); }
+[data-theme=beacon] .text-\[\#AE182D\],
+[data-theme=beacon] .text-\[\#F23630\],
+[data-theme=beacon-dark] .text-\[\#AE182D\],
+[data-theme=beacon-dark] .text-\[\#F23630\] { color: oklch(var(--er)); }
+
+/* Hover variants. */
+[data-theme=beacon] .hover\:bg-gray-50:hover,
+[data-theme=beacon] .hover\:bg-zinc-50:hover,
+[data-theme=beacon-dark] .hover\:bg-gray-50:hover,
+[data-theme=beacon-dark] .hover\:bg-zinc-50:hover { background-color: oklch(var(--b2)); }
+[data-theme=beacon] .hover\:bg-gray-200:hover,
+[data-theme=beacon] .hover\:bg-zinc-100:hover,
+[data-theme=beacon-dark] .hover\:bg-gray-200:hover,
+[data-theme=beacon-dark] .hover\:bg-zinc-100:hover { background-color: oklch(var(--b3)); }
+[data-theme=beacon] .hover\:text-gray-600:hover,
+[data-theme=beacon] .hover\:text-slate-600:hover,
+[data-theme=beacon] .hover\:text-zinc-600:hover,
+[data-theme=beacon] .hover\:text-zinc-700:hover,
+[data-theme=beacon-dark] .hover\:text-gray-600:hover,
+[data-theme=beacon-dark] .hover\:text-slate-600:hover,
+[data-theme=beacon-dark] .hover\:text-zinc-600:hover,
+[data-theme=beacon-dark] .hover\:text-zinc-700:hover { color: oklch(var(--bc)); }
+[data-theme=beacon] .hover\:border-gray-300:hover,
+[data-theme=beacon-dark] .hover\:border-gray-300:hover { border-color: oklch(var(--bc) / 0.4); }
+
 .container{
   width: 100%;
 }
