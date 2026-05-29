@@ -9,7 +9,8 @@
   },
   "scripts": {
     "format": "prettier --write .",
-    "format-check": "prettier --check ."
+    "format-check": "prettier --check .",
+    "build:css": "tailwindcss --minify --config=tailwind.config.js --input=css/beacon_live_admin.css --output=../priv/static/beacon_live_admin.min.css"
   },
   "dependencies": {
     "@mhsdesign/jit-browser-tailwindcss": "^0.4",
