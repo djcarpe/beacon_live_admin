@@ -75,9 +75,9 @@
 </script>
 
 <!-- Left sidebar -->
-<div class="w-64 bg-white border-slate-100 border-solid border-r" id="left-sidebar" data-testid="left-sidebar">
+<div class="w-64 bg-base-100 text-base-content border-base-300 border-solid border-r" id="left-sidebar" data-testid="left-sidebar">
   <div class="sticky top-0">
-    <div class="border-b border-slate-100 border-solid py-4 px-4" data-testid="logo">
+    <div class="border-b border-base-300 border-solid py-4 px-4" data-testid="logo">
       <h2 class="text-lg font-bold">Components</h2>
     </div>
     <ul class="py-4 h-[calc(100vh_-_61px)] overflow-y-auto" data-testid="component-tree">
@@ -89,7 +89,7 @@
         {/if}
         {#each category.items as item}
           <li
-            class="p-2 pl-6 hover:bg-slate-50 hover:cursor-pointer"
+            class="p-2 pl-6 hover:bg-base-200 hover:cursor-pointer"
             data-testid="nav-item"
             on:mouseenter={() => expandCategoryMenu(item)}
             on:mouseleave={collapseCategoryMenu}
@@ -101,7 +101,7 @@
     </ul>
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div
-      class="absolute w-96 left-0 bg-slate-50 inset-y-0 shadow-sm z-50 pt-3 pb-4 px-5 transition-transform duration-500 opacity-0 invisible overflow-y-auto min-h-screen"
+      class="absolute w-96 left-0 bg-base-200 inset-y-0 shadow-sm z-50 pt-3 pb-4 px-5 transition-transform duration-500 opacity-0 invisible overflow-y-auto min-h-screen"
       class:translate-x-[255px]={showExamples}
       class:!opacity-100={showExamples}
       class:!visible={showExamples}
@@ -138,7 +138,7 @@
 
 {#if showExamples}
   <div
-    class="bg-black/50 absolute inset-0 z-50"
+    class="bg-base-300/60 absolute inset-0 z-50"
     transition:fade={{ duration: 300 }}
     id="backdrop"
     data-testid="backdrop"

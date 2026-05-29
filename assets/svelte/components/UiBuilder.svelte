@@ -28,7 +28,7 @@
   })
 </script>
 
-<div class="flex min-h-screen bg-gray-100" id="ui-builder-app-container" data-testid="app-container">
+<div class="flex min-h-screen bg-base-200 text-base-content" id="ui-builder-app-container" data-testid="app-container">
   <Backdrop />
   <!-- Left sidebar -->
   <ComponentsSidebar {components} />

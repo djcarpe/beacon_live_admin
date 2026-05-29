@@ -24,6 +24,9 @@
       {/if}
     </svelte:element>
   {/if}
+{:else if typeof node === "string" && node.replace(/\s/g, "") === "{{inner_content}}"}
+  <!-- Beacon (post-HEEx) page-content placeholder: render the page slot here -->
+  <slot />
 {:else}
   {node}
 {/if}

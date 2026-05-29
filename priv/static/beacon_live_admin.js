@@ -13967,7 +13967,7 @@ ${indent}in ${name}`).join("")}
     "#document": { only: ["html"] }
   };
 
-  // ../deps/live_svelte/priv/static/live_svelte.esm.js
+  // ../../live_svelte/priv/static/live_svelte.esm.js
   function normalizeComponents(components) {
     if (!Array.isArray(components.default) || !Array.isArray(components.filenames)) return components;
     const normalized = {};
@@ -13978,6 +13978,10 @@ ${indent}in ${name}`).join("")}
     }
     return normalized;
   }
+  function decodeB64ToUTF8(b64) {
+    const chars = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+    return new TextDecoder().decode(chars);
+  }
   function getAttributeJson(ref, attributeName) {
     const data = ref.el.getAttribute(attributeName);
     return data ? JSON.parse(data) : {};
@@ -13987,7 +13991,7 @@ ${indent}in ${name}`).join("")}
     for (const slotName in getAttributeJson(ref, "data-slots")) {
       const base64 = getAttributeJson(ref, "data-slots")[slotName];
       const element2 = document.createElement("div");
-      element2.innerHTML = atob(base64).trim();
+      element2.innerHTML = decodeB64ToUTF8(base64).trim();
       const snippet2 = createRawSnippet((name) => {
         return { render: () => element2.outerHTML };
       });
@@ -14033,8 +14037,12 @@ ${indent}in ${name}`).join("")}
           window.addEventListener(`${liveJsonElement}_initialized`, (_event) => update_state(this), false);
           window.addEventListener(`${liveJsonElement}_patched`, (_event) => update_state(this), false);
         }
+        const target = this.el.querySelector("[data-svelte-target]");
+        if (!this.el.hasAttribute("data-ssr")) {
+          target.innerHTML = "";
+        }
         const hydrateOrMount = this.el.hasAttribute("data-ssr") ? hydrate : mount;
-        this._instance = hydrateOrMount(Component, { target: this.el, props: state2 });
+        this._instance = hydrateOrMount(Component, { target, props: state2 });
         this._instance.state = state2;
       },
       updated() {
@@ -14123,7 +14131,7 @@ ${indent}in ${name}`).join("")}
   });
   mark_module_start();
   BrowserFrame[FILENAME] = "svelte/components/BrowserFrame.svelte";
-  var root = add_locations(template(`<div class="flex-1 flex flex-col" data-testid="fake-browser"><div class="bg-gray-50 border-b border-gray-200 border-solid rounded-t-xl h-12 px-3.5 flex" data-testid="address-bar"><div class="py-2"><span class="inline-block h-2 w-2 ml-2 rounded-full bg-red-800"></span> <span class="inline-block h-2 w-2 ml-2 rounded-full bg-amber-400"></span> <span class="inline-block h-2 w-2 ml-2 rounded-full bg-lime-600"></span></div> <div class="py-3"></div></div> <!></div>`), BrowserFrame[FILENAME], [
+  var root = add_locations(template(`<div class="flex-1 flex flex-col" data-testid="fake-browser"><div class="bg-base-200 border-b border-base-300 border-solid rounded-t-xl h-12 px-3.5 flex" data-testid="address-bar"><div class="py-2"><span class="inline-block h-2 w-2 ml-2 rounded-full bg-red-800"></span> <span class="inline-block h-2 w-2 ml-2 rounded-full bg-amber-400"></span> <span class="inline-block h-2 w-2 ml-2 rounded-full bg-lime-600"></span></div> <div class="py-3"></div></div> <!></div>`), BrowserFrame[FILENAME], [
     [
       1,
       0,
@@ -14743,13 +14751,13 @@ ${indent}in ${name}`).join("")}
   mark_module_start();
   ComponentsSidebar[FILENAME] = "svelte/components/ComponentsSidebar.svelte";
   var root_2 = add_locations(template(`<li class="mb-1 px-4" data-testid="nav-item"><h3 class="text-xs font-bold uppercase"> </h3></li>`), ComponentsSidebar[FILENAME], [[76, 10, [[77, 12]]]]);
-  var root_3 = add_locations(template(`<li class="p-2 pl-6 hover:bg-slate-50 hover:cursor-pointer" data-testid="nav-item"><div> </div></li>`), ComponentsSidebar[FILENAME], [[81, 10, [[87, 12]]]]);
+  var root_3 = add_locations(template(`<li class="p-2 pl-6 hover:bg-base-200 hover:cursor-pointer" data-testid="nav-item"><div> </div></li>`), ComponentsSidebar[FILENAME], [[81, 10, [[87, 12]]]]);
   var root_12 = add_locations(template(`<!> <!>`, 1), ComponentsSidebar[FILENAME], []);
   var root_5 = add_locations(template(`<div draggable="true" class="pt-6" data-testid="component-preview-card"><p class="mb-1 text-xs font-bold uppercase tracking-wider"> </p> <img class="w-full h-auto rounded ring-offset-2 ring-blue-500 transition hover:cursor-grab hover:ring-2"></div>`), ComponentsSidebar[FILENAME], [
     [108, 10, [[115, 12], [117, 12]]]
   ]);
-  var root_6 = add_locations(template(`<div class="bg-black/50 absolute inset-0 z-50 svelte-uvq63b" id="backdrop" data-testid="backdrop"></div>`), ComponentsSidebar[FILENAME], [[130, 2]]);
-  var root3 = add_locations(template(`<div class="w-64 bg-white border-slate-100 border-solid border-r svelte-uvq63b" id="left-sidebar" data-testid="left-sidebar"><div class="sticky top-0"><div class="border-b border-slate-100 border-solid py-4 px-4" data-testid="logo"><h2 class="text-lg font-bold">Components</h2></div> <ul class="py-4 h-[calc(100vh_-_61px)] overflow-y-auto" data-testid="component-tree"></ul> <div id="component-previews" data-testid="component-previews"><h4 class="mb-4 font-bold text-2xl"> </h4> <p class="font-medium">Drag and drop an element into the page</p> <!></div></div></div> <!>`, 1), ComponentsSidebar[FILENAME], [
+  var root_6 = add_locations(template(`<div class="bg-base-300/60 absolute inset-0 z-50 svelte-uvq63b" id="backdrop" data-testid="backdrop"></div>`), ComponentsSidebar[FILENAME], [[130, 2]]);
+  var root3 = add_locations(template(`<div class="w-64 bg-base-100 text-base-content border-base-300 border-solid border-r svelte-uvq63b" id="left-sidebar" data-testid="left-sidebar"><div class="sticky top-0"><div class="border-b border-base-300 border-solid py-4 px-4" data-testid="logo"><h2 class="text-lg font-bold">Components</h2></div> <ul class="py-4 h-[calc(100vh_-_61px)] overflow-y-auto" data-testid="component-tree"></ul> <div id="component-previews" data-testid="component-previews"><h4 class="mb-4 font-bold text-2xl"> </h4> <p class="font-medium">Drag and drop an element into the page</p> <!></div></div></div> <!>`, 1), ComponentsSidebar[FILENAME], [
     [
       68,
       0,
@@ -14947,7 +14955,7 @@ ${indent}in ${name}`).join("")}
     }
     template_effect(
       ($0) => {
-        classes = set_class(div_3, 1, "absolute w-96 left-0 bg-slate-50 inset-y-0 shadow-sm z-50 pt-3 pb-4 px-5 transition-transform duration-500 opacity-0 invisible overflow-y-auto min-h-screen", null, classes, $0);
+        classes = set_class(div_3, 1, "absolute w-96 left-0 bg-base-200 inset-y-0 shadow-sm z-50 pt-3 pb-4 px-5 transition-transform duration-500 opacity-0 invisible overflow-y-auto min-h-screen", null, classes, $0);
         set_text(text_2, sectionTitles[$currentComponentCategory()?.name]);
       },
       [
@@ -15296,10 +15304,28 @@ ${indent}in ${name}`).join("")}
         }
         append($$anchor2, fragment_1);
       };
-      var alternate_5 = ($$anchor2) => {
-        var text2 = text();
-        template_effect(() => set_text(text2, node()));
-        append($$anchor2, text2);
+      var alternate_5 = ($$anchor2, $$elseif) => {
+        {
+          var consequent_7 = ($$anchor3) => {
+            var fragment_12 = comment();
+            var node_13 = first_child(fragment_12);
+            slot(node_13, $$props, "default", {}, null);
+            append($$anchor3, fragment_12);
+          };
+          var alternate_6 = ($$anchor3) => {
+            var text2 = text();
+            template_effect(() => set_text(text2, node()));
+            append($$anchor3, text2);
+          };
+          if_block(
+            $$anchor2,
+            ($$render) => {
+              if (strict_equals(typeof node(), "string") && strict_equals(node().replace(/\s/g, ""), "{{inner_content}}")) $$render(consequent_7);
+              else $$render(alternate_6, false);
+            },
+            $$elseif
+          );
+        }
       };
       if_block(node_1, ($$render) => {
         if (isAstElement(node())) $$render(consequent_6);
@@ -26875,7 +26901,7 @@ ${indent}in ${name}`).join("")}
   });
   mark_module_start();
   UiBuilder[FILENAME] = "svelte/components/UiBuilder.svelte";
-  var root11 = add_locations(template(`<div class="flex min-h-screen bg-gray-100" id="ui-builder-app-container" data-testid="app-container"><!> <!> <!> <!></div>`), UiBuilder[FILENAME], [[26, 0]]);
+  var root11 = add_locations(template(`<div class="flex min-h-screen bg-base-200 text-base-content" id="ui-builder-app-container" data-testid="app-container"><!> <!> <!> <!></div>`), UiBuilder[FILENAME], [[26, 0]]);
   function UiBuilder($$anchor, $$props) {
     check_target(new.target);
     push($$props, false, UiBuilder);
@@ -26995,7 +27021,7 @@ ${indent}in ${name}`).join("")}
   var __default = modules;
   var filenames = ["../svelte/components/Backdrop.svelte", "../svelte/components/BrowserFrame.svelte", "../svelte/components/CodeEditor.svelte", "../svelte/components/ComponentsSidebar.svelte", "../svelte/components/GoToParentButton.svelte", "../svelte/components/LayoutAstNode.svelte", "../svelte/components/PageAstNode.svelte", "../svelte/components/PagePreview.svelte", "../svelte/components/PageWrapper.svelte", "../svelte/components/Pill.svelte", "../svelte/components/ResetSelectionButton.svelte", "../svelte/components/SelectedElementFloatingMenu.svelte", "../svelte/components/SelectedElementFloatingMenu/DragMenuOption.svelte", "../svelte/components/SidebarSection.svelte", "../svelte/components/UiBuilder.svelte"];
 
-  // ../deps/live_monaco_editor/assets/js/live_monaco_editor/editor/themes.js
+  // ../../live_monaco_editor/assets/js/live_monaco_editor/editor/themes.js
   var colors = {
     background: "#282c34",
     default: "#c4cad6",
