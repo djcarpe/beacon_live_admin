@@ -116,7 +116,7 @@ defmodule Beacon.LiveAdmin.MediaLibraryLive.Index do
         <:col :let={{_, asset}} label="type"><%= asset.media_type %></:col>
         <:action :let={{_, asset}}>
           <.link aria-label="View asset" title="View asset" class="flex items-center justify-center w-10 h-10" patch={beacon_live_admin_path(@socket, @beacon_page.site, "/media_library/#{asset.id}")}>
-            <.icon name="hero-eye text-[#61758A] hover:text-[#304254]" />
+            <.icon name="hero-eye text-base-content/60 hover:text-base-content" />
           </.link>
         </:action>
 
@@ -127,7 +127,7 @@ defmodule Beacon.LiveAdmin.MediaLibraryLive.Index do
             aria-label="Edit asset"
             class="flex items-center justify-center w-10 h-10 group"
           >
-            <.icon name="hero-pencil-square text-[#61758A] hover:text-[#304254]" />
+            <.icon name="hero-pencil-square text-base-content/60 hover:text-base-content" />
           </.link>
         </:action>
 
@@ -139,7 +139,7 @@ defmodule Beacon.LiveAdmin.MediaLibraryLive.Index do
             class="flex items-center justify-center w-10 h-10"
             data-confirm="The asset will be marked as deleted but it will not be actually removed from the storage. Are you sure?"
           >
-            <.icon name="hero-trash text-[#F23630] hover:text-[#AE182D]" />
+            <.icon name="hero-trash text-error hover:text-error" />
           </.link>
         </:action>
       </.table>

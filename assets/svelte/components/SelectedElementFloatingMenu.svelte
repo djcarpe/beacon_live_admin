@@ -45,7 +45,7 @@
     {#if showMenu}
       <button
         on:click={deleteComponent}
-        class="absolute top-0 -m-3 w-6 h-6 rounded-full flex justify-center items-center bg-red-500 text-white hover:bg-red-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200 active:bg-red-800"
+        class="absolute top-0 -m-3 w-6 h-6 rounded-full flex justify-center items-center bg-error text-error-content hover:bg-error focus:outline-none focus-visible:ring-4 focus-visible:ring-primary active:bg-error"
         style={`left: ${menuPosition.width}px;`}
         aria-label="Delete component"
         data-testid="element-delete-button"

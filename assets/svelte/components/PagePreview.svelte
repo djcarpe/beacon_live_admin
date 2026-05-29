@@ -87,8 +87,8 @@
         role="document"
         style="--outlined-id: title-1"
         id="fake-browser-content"
-        class="bg-white rounded-b-xl relative overflow-hidden flex-1 {isDraggingOver &&
-          'border-dashed border-blue-500 border-2'}"
+        class="bg-base-100 rounded-b-xl relative overflow-hidden flex-1 {isDraggingOver &&
+          'border-dashed border-primary border-2'}"
         data-testid="browser-content"
       >
         <div id="page-wrapper" class="p-1 m-1" data-selected={$selectedAstElementId === "root"}>

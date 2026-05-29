@@ -92,7 +92,7 @@ defmodule Beacon.LiveAdmin.VisualEditor.PropertiesSidebarComponent do
 
   def render(assigns) do
     ~H"""
-    <div id={@id} class="mt-4 w-64 bg-white" data-testid="right-sidebar">
+    <div id={@id} class="mt-4 w-64 bg-base-100" data-testid="right-sidebar">
       <div :if={@selected_element} class="sticky top-0 h-screen">
         <div class="border-b text-lg font-medium leading-5 p-4 relative">
           <%= @selected_element["tag"] %>
@@ -130,7 +130,7 @@ defmodule Beacon.LiveAdmin.VisualEditor.PropertiesSidebarComponent do
             <button
               :if={!@editing}
               type="button"
-              class="bg-blue-500 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-2 px-4 rounded outline-2 w-full"
+              class="bg-primary hover:bg-primary/90 active:bg-primary/80 text-primary-content font-bold py-2 px-4 rounded outline-2 w-full"
               phx-click="add_attribute"
               phx-target={@myself}
             >

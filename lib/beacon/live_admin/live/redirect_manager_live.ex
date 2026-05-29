@@ -107,8 +107,8 @@ defmodule Beacon.LiveAdmin.RedirectManagerLive do
     end
   end
 
-  defp status_badge_class(code) when code in [301, 308], do: "bg-indigo-50 text-indigo-700 ring-indigo-200"
-  defp status_badge_class(_code), do: "bg-amber-50 text-amber-700 ring-amber-200"
+  defp status_badge_class(code) when code in [301, 308], do: "bg-primary/10 text-primary ring-primary/30"
+  defp status_badge_class(_code), do: "bg-warning/10 text-warning ring-warning/30"
 
   defp status_label(301), do: "301 Permanent"
   defp status_label(302), do: "302 Temporary"
@@ -134,7 +134,7 @@ defmodule Beacon.LiveAdmin.RedirectManagerLive do
           value={@search}
           placeholder="Search by path..."
           phx-debounce="300"
-          class="w-full sm:w-80 rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          class="w-full sm:w-80 rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-primary focus:ring-primary"
         />
       </.form>
     </div>
@@ -157,7 +157,7 @@ defmodule Beacon.LiveAdmin.RedirectManagerLive do
                   name="redirect[source_path]"
                   value={@form_data["source_path"]}
                   placeholder="/old-page"
-                  class="w-full pl-9 rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  class="w-full pl-9 rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-primary focus:ring-primary"
                 />
               </div>
             </div>
@@ -172,14 +172,14 @@ defmodule Beacon.LiveAdmin.RedirectManagerLive do
                   name="redirect[destination_path]"
                   value={@form_data["destination_path"]}
                   placeholder="/new-page"
-                  class="w-full pl-9 rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  class="w-full pl-9 rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-primary focus:ring-primary"
                 />
               </div>
             </div>
           </div>
           <div class="w-48">
             <label class="block text-sm font-medium text-base-content/80 mb-1.5">Status Code</label>
-            <select name="redirect[status_code]" class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+            <select name="redirect[status_code]" class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-primary focus:ring-primary">
               <option value="301" selected={@form_data["status_code"] == "301"}>301 — Permanent</option>
               <option value="302" selected={@form_data["status_code"] == "302"}>302 — Temporary</option>
               <option value="307" selected={@form_data["status_code"] == "307"}>307 — Temporary (preserve method)</option>
@@ -201,7 +201,7 @@ defmodule Beacon.LiveAdmin.RedirectManagerLive do
         </:col>
         <:col :let={redirect} label="Destination">
           <div class="flex items-center gap-1.5">
-            <.icon name="hero-arrow-long-right" class="w-4 h-4 text-zinc-300  flex-shrink-0" />
+            <.icon name="hero-arrow-long-right" class="w-4 h-4 text-base-content/40 flex-shrink-0" />
             <span class="font-mono text-base-content/70"><%= redirect.destination_path %></span>
           </div>
         </:col>
@@ -215,16 +215,16 @@ defmodule Beacon.LiveAdmin.RedirectManagerLive do
         </:col>
         <:action :let={redirect}>
           <div class="flex items-center gap-1">
-            <button phx-click="edit" phx-value-id={redirect.id} title="Edit" class="p-2 rounded-md hover:bg-zinc-100 transition-colors">
-              <.icon name="hero-pencil-square" class="w-4 h-4 text-zinc-400 hover:text-zinc-600" />
+            <button phx-click="edit" phx-value-id={redirect.id} title="Edit" class="p-2 rounded-md hover:bg-base-200 transition-colors">
+              <.icon name="hero-pencil-square" class="w-4 h-4 text-base-content/50 hover:text-base-content/70" />
             </button>
             <%= if @confirm_delete == redirect.id do %>
               <span class="text-xs text-base-content/60">Delete?</span>
-              <button phx-click="delete" phx-value-id={redirect.id} class="p-1 text-rose-600 hover:text-rose-800 text-xs font-semibold">Yes</button>
-              <button phx-click="cancel" class="p-1 text-zinc-500 hover:text-zinc-700 text-xs">No</button>
+              <button phx-click="delete" phx-value-id={redirect.id} class="p-1 text-error hover:text-error/80 text-xs font-semibold">Yes</button>
+              <button phx-click="cancel" class="p-1 text-base-content/60 hover:text-base-content/80 text-xs">No</button>
             <% else %>
-              <button phx-click="confirm_delete" phx-value-id={redirect.id} title="Delete" class="p-2 rounded-md hover:bg-rose-50 transition-colors">
-                <.icon name="hero-trash" class="w-4 h-4 text-zinc-400 hover:text-rose-500" />
+              <button phx-click="confirm_delete" phx-value-id={redirect.id} title="Delete" class="p-2 rounded-md hover:bg-error/10 transition-colors">
+                <.icon name="hero-trash" class="w-4 h-4 text-base-content/50 hover:text-error" />
               </button>
             <% end %>
           </div>

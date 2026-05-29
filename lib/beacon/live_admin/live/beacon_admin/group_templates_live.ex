@@ -185,7 +185,7 @@ defmodule Beacon.LiveAdmin.BeaconAdmin.GroupTemplatesLive do
                 name="group[name]"
                 value={@form_data["name"]}
                 placeholder="e.g. Marketing, Engineering"
-                class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-primary focus:ring-primary"
               />
             </div>
             <div>
@@ -195,7 +195,7 @@ defmodule Beacon.LiveAdmin.BeaconAdmin.GroupTemplatesLive do
                 name="group[description]"
                 value={@form_data["description"]}
                 placeholder="What this group template is for"
-                class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-primary focus:ring-primary"
               />
             </div>
           </div>
@@ -212,14 +212,14 @@ defmodule Beacon.LiveAdmin.BeaconAdmin.GroupTemplatesLive do
       <div class="px-2 py-4">
         <div class="flex items-center justify-between mb-5">
           <h2 class="text-base font-semibold text-base-content">Template Permissions</h2>
-          <button phx-click="cancel" class="text-sm text-zinc-500 hover:text-zinc-700  transition-colors">
+          <button phx-click="cancel" class="text-sm text-base-content/60 hover:text-base-content/80 transition-colors">
             <.icon name="hero-x-mark" class="w-5 h-5" />
           </button>
         </div>
         <p class="text-sm text-base-content/60 mb-6">Configure which permissions this template grants. Changes save automatically.</p>
         <div class="overflow-x-auto -mx-2">
           <table class="w-full text-sm">
-            <tbody class="divide-y divide-zinc-100">
+            <tbody class="divide-y divide-base-300">
               <%= for feature <- @features do %>
                 <tr>
                   <td class="py-3.5 pr-6 font-medium text-base-content whitespace-nowrap w-48 pl-2">
@@ -234,7 +234,7 @@ defmodule Beacon.LiveAdmin.BeaconAdmin.GroupTemplatesLive do
                           phx-click="toggle_permission"
                           phx-value-feature={feature.key}
                           phx-value-sub-feature={sf.key}
-                          class="w-4 h-4 rounded border-zinc-300 text-indigo-600 focus:ring-indigo-500 transition-colors"
+                          class="w-4 h-4 rounded border-base-300 text-primary focus:ring-primary transition-colors"
                         />
                         <span class="text-[11px] text-base-content/40 font-medium uppercase tracking-wide"><%= sf.label %></span>
                       </label>
@@ -258,26 +258,26 @@ defmodule Beacon.LiveAdmin.BeaconAdmin.GroupTemplatesLive do
           <span class="text-base-content/60"><%= template.description || "—" %></span>
         </:col>
         <:col :let={template} label="Permissions">
-          <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-100 bg-base-200 text-zinc-600 ">
+          <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-base-200 text-base-content/70">
             <.icon name="hero-key-mini" class="w-3.5 h-3.5" />
             <%= permission_count(template) %>
           </span>
         </:col>
         <:action :let={template}>
           <div class="flex items-center gap-1">
-            <button phx-click="edit" phx-value-id={template.id} title="Edit template" class="p-2 rounded-md hover:bg-zinc-100 transition-colors">
-              <.icon name="hero-pencil-square" class="w-4 h-4 text-zinc-400 hover:text-zinc-600" />
+            <button phx-click="edit" phx-value-id={template.id} title="Edit template" class="p-2 rounded-md hover:bg-base-200 transition-colors">
+              <.icon name="hero-pencil-square" class="w-4 h-4 text-base-content/50 hover:text-base-content/70" />
             </button>
-            <button phx-click="manage_permissions" phx-value-id={template.id} title="Manage permissions" class="p-2 rounded-md hover:bg-zinc-100 transition-colors">
-              <.icon name="hero-key" class="w-4 h-4 text-zinc-400 hover:text-zinc-600" />
+            <button phx-click="manage_permissions" phx-value-id={template.id} title="Manage permissions" class="p-2 rounded-md hover:bg-base-200 transition-colors">
+              <.icon name="hero-key" class="w-4 h-4 text-base-content/50 hover:text-base-content/70" />
             </button>
             <%= if @confirm_delete == template.id do %>
               <span class="text-xs text-base-content/60 ml-1">Delete?</span>
-              <button phx-click="delete" phx-value-id={template.id} class="p-1 text-rose-600 hover:text-rose-800 text-xs font-semibold">Yes</button>
-              <button phx-click="cancel" class="p-1 text-zinc-500 hover:text-zinc-700 text-xs">No</button>
+              <button phx-click="delete" phx-value-id={template.id} class="p-1 text-error hover:text-error/80 text-xs font-semibold">Yes</button>
+              <button phx-click="cancel" class="p-1 text-base-content/60 hover:text-base-content/80 text-xs">No</button>
             <% else %>
-              <button phx-click="confirm_delete" phx-value-id={template.id} title="Delete template" class="p-2 rounded-md hover:bg-rose-50 transition-colors">
-                <.icon name="hero-trash" class="w-4 h-4 text-zinc-400 hover:text-rose-500" />
+              <button phx-click="confirm_delete" phx-value-id={template.id} title="Delete template" class="p-2 rounded-md hover:bg-error/10 transition-colors">
+                <.icon name="hero-trash" class="w-4 h-4 text-base-content/50 hover:text-error" />
               </button>
             <% end %>
           </div>

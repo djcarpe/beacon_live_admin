@@ -90,7 +90,7 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.Index do
             aria-label="Edit component"
             class="flex items-center justify-center w-10 h-10"
           >
-            <.icon name="hero-pencil-square text-[#61758A] hover:text-[#304254]" />
+            <.icon name="hero-pencil-square text-base-content/60 hover:text-base-content" />
           </.link>
         </:action>
       </.table>

@@ -126,8 +126,8 @@ defmodule Beacon.LiveAdmin.CollectionManagerLive do
 
   defp scope_badge_class(tt) do
     if tt.site,
-      do: "bg-sky-50 text-sky-700 ring-sky-200",
-      else: "bg-purple-50 text-purple-700 ring-purple-200"
+      do: "bg-info/10 text-info ring-info/30",
+      else: "bg-accent/10 text-accent ring-accent/30"
   end
 
   @impl true
@@ -149,11 +149,11 @@ defmodule Beacon.LiveAdmin.CollectionManagerLive do
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-sm font-medium text-base-content/80 mb-1.5">Name</label>
-              <input type="text" name="collection[name]" value={@form_data["name"]} placeholder="Blog Post" class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+              <input type="text" name="collection[name]" value={@form_data["name"]} placeholder="Blog Post" class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-primary focus:ring-primary" />
             </div>
             <div>
               <label class="block text-sm font-medium text-base-content/80 mb-1.5">Slug</label>
-              <input type="text" name="collection[slug]" value={@form_data["slug"]} placeholder="blog-post" class="w-full rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+              <input type="text" name="collection[slug]" value={@form_data["slug"]} placeholder="blog-post" class="w-full rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-primary focus:ring-primary" />
             </div>
           </div>
 
@@ -165,14 +165,14 @@ defmodule Beacon.LiveAdmin.CollectionManagerLive do
             <textarea
               name="collection[field_definitions]"
               rows="6"
-              class="w-full rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-indigo-500 focus:ring-indigo-500 leading-relaxed"
+              class="w-full rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-primary focus:ring-primary leading-relaxed"
               placeholder='[{"name": "author_name", "type": "string", "required": true}]'
             ><%= @form_data["field_definitions"] %></textarea>
             <p class="text-xs text-base-content/40 mt-1.5">
-              Array of objects: <code class="px-1 py-0.5 bg-zinc-100 bg-base-200 rounded text-[11px]">name</code>,
-              <code class="px-1 py-0.5 bg-zinc-100 bg-base-200 rounded text-[11px]">type</code>,
-              <code class="px-1 py-0.5 bg-zinc-100 bg-base-200 rounded text-[11px]">required</code>,
-              <code class="px-1 py-0.5 bg-zinc-100 bg-base-200 rounded text-[11px]">label</code>.
+              Array of objects: <code class="px-1 py-0.5 bg-base-200 rounded text-[11px]">name</code>,
+              <code class="px-1 py-0.5 bg-base-200 rounded text-[11px]">type</code>,
+              <code class="px-1 py-0.5 bg-base-200 rounded text-[11px]">required</code>,
+              <code class="px-1 py-0.5 bg-base-200 rounded text-[11px]">label</code>.
               Types: string, text, integer, float, boolean, datetime, date, url, select, list, reference
             </p>
           </div>
@@ -185,12 +185,12 @@ defmodule Beacon.LiveAdmin.CollectionManagerLive do
             <textarea
               name="collection[json_ld_mapping]"
               rows="8"
-              class="w-full rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-indigo-500 focus:ring-indigo-500 leading-relaxed"
+              class="w-full rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-primary focus:ring-primary leading-relaxed"
               placeholder='{"@context": "https://schema.org", "@type": "Article"}'
             ><%= @form_data["json_ld_mapping"] %></textarea>
             <p class="text-xs text-base-content/40 mt-1.5">
-              Use <code class="px-1 py-0.5 bg-zinc-100 bg-base-200 rounded text-[11px]">{"{field_name}"}</code> for page fields,
-              <code class="px-1 py-0.5 bg-zinc-100 bg-base-200 rounded text-[11px]">{"{fields.X}"}</code> for collection fields
+              Use <code class="px-1 py-0.5 bg-base-200 rounded text-[11px]">{"{field_name}"}</code> for page fields,
+              <code class="px-1 py-0.5 bg-base-200 rounded text-[11px]">{"{fields.X}"}</code> for collection fields
             </p>
           </div>
 
@@ -202,11 +202,11 @@ defmodule Beacon.LiveAdmin.CollectionManagerLive do
             <textarea
               name="collection[meta_tag_mapping]"
               rows="6"
-              class="w-full rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-indigo-500 focus:ring-indigo-500 leading-relaxed"
+              class="w-full rounded-lg border-base-300 bg-base-200 text-sm font-mono shadow-sm focus:border-primary focus:ring-primary leading-relaxed"
               placeholder='[{"property": "og:type", "content": "article"}]'
             ><%= @form_data["meta_tag_mapping"] %></textarea>
             <p class="text-xs text-base-content/40 mt-1.5">
-              Array of meta tag objects. Same <code class="px-1 py-0.5 bg-zinc-100 bg-base-200 rounded text-[11px]">{"{field}"}</code> reference syntax as JSON-LD.
+              Array of meta tag objects. Same <code class="px-1 py-0.5 bg-base-200 rounded text-[11px]">{"{field}"}</code> reference syntax as JSON-LD.
             </p>
           </div>
 
@@ -236,16 +236,16 @@ defmodule Beacon.LiveAdmin.CollectionManagerLive do
         </:col>
         <:action :let={tt}>
           <div class="flex items-center gap-1">
-            <button phx-click="edit" phx-value-id={tt.id} title="Edit" class="p-2 rounded-md hover:bg-zinc-100 transition-colors">
-              <.icon name="hero-pencil-square" class="w-4 h-4 text-zinc-400 hover:text-zinc-600" />
+            <button phx-click="edit" phx-value-id={tt.id} title="Edit" class="p-2 rounded-md hover:bg-base-200 transition-colors">
+              <.icon name="hero-pencil-square" class="w-4 h-4 text-base-content/50 hover:text-base-content/70" />
             </button>
             <%= if @confirm_delete == tt.id do %>
               <span class="text-xs text-base-content/60">Delete?</span>
-              <button phx-click="delete" phx-value-id={tt.id} class="p-1 text-rose-600 hover:text-rose-800 text-xs font-semibold">Yes</button>
-              <button phx-click="cancel" class="p-1 text-zinc-500 hover:text-zinc-700 text-xs">No</button>
+              <button phx-click="delete" phx-value-id={tt.id} class="p-1 text-error hover:text-error/80 text-xs font-semibold">Yes</button>
+              <button phx-click="cancel" class="p-1 text-base-content/60 hover:text-base-content/80 text-xs">No</button>
             <% else %>
-              <button phx-click="confirm_delete" phx-value-id={tt.id} title="Delete" class="p-2 rounded-md hover:bg-rose-50 transition-colors">
-                <.icon name="hero-trash" class="w-4 h-4 text-zinc-400 hover:text-rose-500" />
+              <button phx-click="confirm_delete" phx-value-id={tt.id} title="Delete" class="p-2 rounded-md hover:bg-error/10 transition-colors">
+                <.icon name="hero-trash" class="w-4 h-4 text-base-content/50 hover:text-error" />
               </button>
             <% end %>
           </div>

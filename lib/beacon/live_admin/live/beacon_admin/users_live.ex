@@ -180,7 +180,7 @@ defmodule Beacon.LiveAdmin.BeaconAdmin.UsersLive do
                 name="user[email]"
                 value={@form_data["email"]}
                 placeholder="user@example.com"
-                class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-primary focus:ring-primary"
                 disabled={@editing != nil}
               />
             </div>
@@ -191,7 +191,7 @@ defmodule Beacon.LiveAdmin.BeaconAdmin.UsersLive do
                 name="user[name]"
                 value={@form_data["name"]}
                 placeholder="Jane Smith"
-                class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                class="w-full rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-primary focus:ring-primary"
               />
             </div>
           </div>
@@ -219,7 +219,7 @@ defmodule Beacon.LiveAdmin.BeaconAdmin.UsersLive do
         </:col>
         <:col :let={user} label="Role">
           <%= if is_owner?(user, @owner) do %>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 ring-1 ring-accent/30">
+            <span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-accent/10 text-accent ring-1 ring-accent/30">
               <.icon name="hero-shield-check-mini" class="w-3.5 h-3.5" />
               Owner
             </span>
@@ -230,27 +230,27 @@ defmodule Beacon.LiveAdmin.BeaconAdmin.UsersLive do
         </:col>
         <:action :let={user}>
           <div class="flex items-center gap-1">
-            <button phx-click="edit" phx-value-id={user.id} title="Edit user" class="p-2 rounded-md hover:bg-zinc-100 transition-colors">
-              <.icon name="hero-pencil-square" class="w-4 h-4 text-zinc-400 hover:text-zinc-600" />
+            <button phx-click="edit" phx-value-id={user.id} title="Edit user" class="p-2 rounded-md hover:bg-base-200 transition-colors">
+              <.icon name="hero-pencil-square" class="w-4 h-4 text-base-content/50 hover:text-base-content/70" />
             </button>
             <%= if @current_is_owner && !is_owner?(user, @owner) do %>
               <%= if @confirm_transfer == user.id do %>
                 <span class="text-xs text-base-content/60">Transfer?</span>
-                <button phx-click="transfer_ownership" phx-value-id={user.id} class="p-1 text-purple-600 hover:text-purple-800 text-xs font-semibold">Yes</button>
-                <button phx-click="cancel" class="p-1 text-zinc-500 hover:text-zinc-700 text-xs">No</button>
+                <button phx-click="transfer_ownership" phx-value-id={user.id} class="p-1 text-accent hover:text-accent/80 text-xs font-semibold">Yes</button>
+                <button phx-click="cancel" class="p-1 text-base-content/60 hover:text-base-content/80 text-xs">No</button>
               <% else %>
-                <button phx-click="confirm_transfer" phx-value-id={user.id} title="Transfer ownership" class="p-2 rounded-md hover:bg-purple-50 transition-colors">
-                  <.icon name="hero-arrow-right-circle" class="w-4 h-4 text-zinc-400 hover:text-purple-500" />
+                <button phx-click="confirm_transfer" phx-value-id={user.id} title="Transfer ownership" class="p-2 rounded-md hover:bg-accent/10 transition-colors">
+                  <.icon name="hero-arrow-right-circle" class="w-4 h-4 text-base-content/50 hover:text-accent" />
                 </button>
               <% end %>
             <% end %>
             <%= if @confirm_delete == user.id do %>
               <span class="text-xs text-base-content/60">Delete?</span>
-              <button phx-click="delete" phx-value-id={user.id} class="p-1 text-rose-600 hover:text-rose-800 text-xs font-semibold">Yes</button>
-              <button phx-click="cancel" class="p-1 text-zinc-500 hover:text-zinc-700 text-xs">No</button>
+              <button phx-click="delete" phx-value-id={user.id} class="p-1 text-error hover:text-error/80 text-xs font-semibold">Yes</button>
+              <button phx-click="cancel" class="p-1 text-base-content/60 hover:text-base-content/80 text-xs">No</button>
             <% else %>
-              <button phx-click="confirm_delete" phx-value-id={user.id} title="Delete user" class="p-2 rounded-md hover:bg-rose-50 transition-colors">
-                <.icon name="hero-trash" class="w-4 h-4 text-zinc-400 hover:text-rose-500" />
+              <button phx-click="confirm_delete" phx-value-id={user.id} title="Delete user" class="p-2 rounded-md hover:bg-error/10 transition-colors">
+                <.icon name="hero-trash" class="w-4 h-4 text-base-content/50 hover:text-error" />
               </button>
             <% end %>
           </div>

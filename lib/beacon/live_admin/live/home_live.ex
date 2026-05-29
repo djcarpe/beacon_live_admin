@@ -82,14 +82,14 @@ defmodule Beacon.LiveAdmin.HomeLive do
                     <%= for section <- sections do %>
                       <.link
                         navigate={Router.beacon_live_admin_path(@socket, site, section.path)}
-                        class="group block p-5 bg-base-100 rounded-xl border border-base-300 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+                        class="group block p-5 bg-base-100 rounded-xl border border-base-300 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                       >
                         <div class="flex items-start gap-4">
-                          <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 flex-shrink-0 group-hover:bg-indigo-100 transition-colors duration-200">
+                          <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 flex-shrink-0 group-hover:bg-primary/10 transition-colors duration-200">
                             <.icon name={section.icon} class="w-5 h-5 text-primary" />
                           </div>
                           <div class="min-w-0">
-                            <h4 class="text-sm font-semibold text-base-content group-hover:text-indigo-600 transition-colors duration-200">
+                            <h4 class="text-sm font-semibold text-base-content group-hover:text-primary transition-colors duration-200">
                               <%= section.title %>
                             </h4>
                             <p class="mt-1 text-sm text-base-content/60 line-clamp-2">
@@ -124,14 +124,14 @@ defmodule Beacon.LiveAdmin.HomeLive do
                 <%= for section <- @platform_sections do %>
                   <.link
                     navigate={Router.beacon_live_admin_path(@socket, section.path)}
-                    class="group block p-5 bg-base-100 rounded-xl border border-base-300 shadow-sm hover:shadow-md hover:border-purple-300 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                    class="group block p-5 bg-base-100 rounded-xl border border-base-300 shadow-sm hover:shadow-md hover:border-accent/40 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                   >
                     <div class="flex items-start gap-4">
-                      <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-accent/10 flex-shrink-0 group-hover:bg-purple-100 transition-colors duration-200">
-                        <.icon name={section.icon} class="w-5 h-5 text-purple-500" />
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-accent/10 flex-shrink-0 group-hover:bg-accent/10 transition-colors duration-200">
+                        <.icon name={section.icon} class="w-5 h-5 text-accent" />
                       </div>
                       <div class="min-w-0">
-                        <h4 class="text-sm font-semibold text-base-content group-hover:text-purple-600 transition-colors duration-200">
+                        <h4 class="text-sm font-semibold text-base-content group-hover:text-accent transition-colors duration-200">
                           <%= section.title %>
                         </h4>
                         <p class="mt-1 text-sm text-base-content/60 line-clamp-2">

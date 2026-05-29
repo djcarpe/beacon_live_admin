@@ -119,7 +119,7 @@ defmodule Beacon.LiveAdmin.VisualEditor.TypographyControl do
         <form phx-change="update_typography" phx-target={@myself} class="space-y-4">
           <div class="grid grid-cols-2 items-center gap-x-2">
             <label class="text-xs">Family</label>
-            <select name="font_family" class="w-full py-0.5 px-2 bg-gray-100 border-gray-100 rounded-md leading-5 text-sm">
+            <select name="font_family" class="w-full py-0.5 px-2 bg-base-200 border-base-300 rounded-md leading-5 text-sm">
               <option :for={{label, value} <- @font_family_options} value={value} selected={@form.params["font_family"] == value}>
                 <%= label %>
               </option>
@@ -128,7 +128,7 @@ defmodule Beacon.LiveAdmin.VisualEditor.TypographyControl do
 
           <div class="grid grid-cols-2 items-center gap-x-2">
             <label class="text-xs">Weight</label>
-            <select name="font_weight" class="w-full py-0.5 px-2 bg-gray-100 border-gray-100 rounded-md leading-5 text-sm">
+            <select name="font_weight" class="w-full py-0.5 px-2 bg-base-200 border-base-300 rounded-md leading-5 text-sm">
               <option :for={{label, value} <- @font_weight_options} value={value} selected={@form.params["font_weight"] == value}>
                 <%= label %>
               </option>

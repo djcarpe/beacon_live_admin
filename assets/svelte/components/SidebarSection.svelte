@@ -76,7 +76,7 @@
   }
 </script>
 
-<section class="p-4 border-b border-b-gray-100 border-solid">
+<section class="p-4 border-b border-b-base-300 border-solid">
   <header class="flex items-center text-sm mb-2 font-medium">
     <button
       type="button"
@@ -85,7 +85,7 @@
       aria-expanded={expanded}
     >
       <span>
-        <span class="hover:text-blue-700 active:text-blue-900"><slot name="heading" /></span>
+        <span class="hover:text-primary active:text-primary"><slot name="heading" /></span>
         {#if !disableDelete}
           <span
             class="ml-4 inline-block cursor-pointer"
@@ -103,7 +103,7 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          class="w-5 h-5 stroke-slate-500 fill-slate-500 group-hover:stroke-current group-hover:fill-current"
+          class="w-5 h-5 stroke-base-content/70 fill-base-content/70 group-hover:stroke-current group-hover:fill-current"
         >
           <path
             fill-rule="evenodd"
@@ -119,7 +119,7 @@
     <slot name="input">
       <input
         type="text"
-        class="w-full py-1 px-2 bg-gray-100 border-gray-100 rounded-md leading-6 text-sm"
+        class="w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm"
         {placeholder}
         value={internalValue}
         on:keydown={handleKeydown}
@@ -133,7 +133,7 @@
         {#if large}
           <!-- <CodeEditor value={internalValue} on:change={(e) => dispatch('textChange', e.detail)}/> -->
           <textarea
-            class="w-full py-1 px-2 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm"
+            class="w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm"
             {placeholder}
             value={internalValue}
             {disabled}
@@ -143,7 +143,7 @@
         {:else}
           <input
             type="text"
-            class="w-full py-1 px-2 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm"
+            class="w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm"
             {placeholder}
             value={internalValue}
             on:keydown={handleKeydown}
@@ -165,7 +165,7 @@
               <div class="flex items-center justify-between">
                 <span><code>&lt;{astNode.tag}&gt;</code></span>
                 <button
-                  class="flex items-center justify-center gap-x-0.5 px-2 py-1 bg-cyan-300 font-bold text-xs uppercase tracking-wide rounded transition-colors hover:bg-cyan-900 active:bg-cyan-700 hover:text-white"
+                  class="flex items-center justify-center gap-x-0.5 px-2 py-1 bg-accent font-bold text-xs uppercase tracking-wide rounded transition-colors hover:bg-accent active:bg-accent hover:text-accent-content"
                   on:click={() => select(astNode)}
                 >
                   Edit <span class="sr-only">{astNode.tag} element</span>
@@ -181,7 +181,7 @@
               </div>
               <div class="mt-2 grid grid-cols-2 gap-x-1">
                 <button
-                  class="flex items-center justify-center gap-x-0.5 px-1.5 py-1 bg-cyan-800 font-bold text-xs uppercase tracking-wide rounded hover:bg-cyan-950 active:bg-cyan-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white"
+                  class="flex items-center justify-center gap-x-0.5 px-1.5 py-1 bg-accent font-bold text-xs uppercase tracking-wide rounded hover:bg-accent active:bg-accent disabled:bg-base-300 disabled:cursor-not-allowed text-accent-content"
                   disabled={idx === 0}
                   on:click={() => moveAstElement(-1, astNode)}
                 >
@@ -195,7 +195,7 @@
                   </svg>
                 </button>
                 <button
-                  class="flex items-center justify-center gap-x-0.5 px-1.5 py-1 bg-cyan-800 font-bold text-xs uppercase tracking-wide rounded hover:bg-cyan-950 active:bg-cyan-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white"
+                  class="flex items-center justify-center gap-x-0.5 px-1.5 py-1 bg-accent font-bold text-xs uppercase tracking-wide rounded hover:bg-accent active:bg-accent disabled:bg-base-300 disabled:cursor-not-allowed text-accent-content"
                   disabled={idx === astNodes.length - 1}
                   on:click={() => moveAstElement(1, astNode)}
                 >
@@ -212,7 +212,7 @@
             </div>
           {:else if large}
             <textarea
-              class="w-full py-1 px-2 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm"
+              class="w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm"
               {placeholder}
               value={astNode}
               on:keydown={handleKeydown}
@@ -221,7 +221,7 @@
           {:else}
             <input
               type="text"
-              class="w-full py-1 px-2 mt-5 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm"
+              class="w-full py-1 px-2 mt-5 bg-base-200 border-base-300 rounded-md leading-6 text-sm"
               {placeholder}
               value={astNode}
               on:keydown={handleKeydown}

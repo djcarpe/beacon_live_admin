@@ -74,7 +74,7 @@ defmodule Beacon.LiveAdmin.MeasurementLive do
       SEO Measurement
       <:actions>
         <div class="flex items-center gap-3">
-          <select phx-change="set_days" name="days" class="rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+          <select phx-change="set_days" name="days" class="rounded-lg border-base-300 bg-base-200 text-sm shadow-sm focus:border-primary focus:ring-primary">
             <option value="7" selected={@days == 7}>7 days</option>
             <option value="30" selected={@days == 30}>30 days</option>
             <option value="90" selected={@days == 90}>90 days</option>
@@ -98,7 +98,7 @@ defmodule Beacon.LiveAdmin.MeasurementLive do
     <% else %>
       <.main_content class="mb-8">
         <div class="py-8 text-center">
-          <.icon name="hero-chart-bar" class="w-10 h-10 text-zinc-300  mx-auto mb-3" />
+          <.icon name="hero-chart-bar" class="w-10 h-10 text-base-content/40 mx-auto mb-3" />
           <p class="text-sm text-base-content/60">No snapshots yet. Click "Take Snapshot" to capture current metrics.</p>
         </div>
       </.main_content>

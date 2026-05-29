@@ -11,7 +11,7 @@ defmodule Beacon.LiveAdmin.VisualEditor.IdControl do
     <div id={@id}>
       <.live_component module={ControlSection} id={@id <> "-section"} label="ID">
         <.form :let={f} for={@form} id={@id <> "-form"} phx-target={@myself} phx-submit="save" phx-change="validate">
-          <.input field={f[:value]} placeholder="ID" class="w-full py-1 px-2 bg-gray-100 border-gray-100 rounded-md leading-6 text-sm" />
+          <.input field={f[:value]} placeholder="ID" class="w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm" />
         </.form>
       </.live_component>
     </div>

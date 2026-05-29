@@ -11,7 +11,7 @@
 <button type="button" class="absolute p-2 top-2 right-9 group" on:click={selectParentNode}>
   <span class="sr-only">Up one level</span>
   <span
-    class="absolute opacity-0 invisible right-9 min-w-[100px] bg-amber-100 py-1 px-1.5 rounded text-xs text-medium transition group-hover:opacity-100 group-hover:visible"
+    class="absolute opacity-0 invisible right-9 min-w-[100px] bg-warning py-1 px-1.5 rounded text-xs text-medium transition group-hover:opacity-100 group-hover:visible"
     >Up one level</span
   >
   <svg
@@ -20,7 +20,7 @@
     viewBox="0 0 24 24"
     stroke-width="1.5"
     stroke="currentColor"
-    class="w-6 h-6 hover:text-blue-700 active:text-blue-900"
+    class="w-6 h-6 hover:text-primary active:text-primary"
   >
     <path
       stroke-linecap="round"

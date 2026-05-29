@@ -37,4 +37,4 @@
   })
 </script>
 
-<div bind:this={editorContainer} class="w-52 h-24 py-0.5 px-0.5 bg-gray-100"></div>
+<div bind:this={editorContainer} class="w-52 h-24 py-0.5 px-0.5 bg-base-200"></div>

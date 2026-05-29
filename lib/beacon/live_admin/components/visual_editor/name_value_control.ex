@@ -12,11 +12,11 @@ defmodule Beacon.LiveAdmin.VisualEditor.NameValueControl do
       <.live_component module={ControlSection} id={@id <> "-section"} label="Name Value">
         <:header>
           <button :if={!@attribute.editing} type="button" phx-target={@myself} phx-click="edit">
-            <.icon name="hero-pencil-square" class="w-5 h-5 text-blue-500" />
+            <.icon name="hero-pencil-square" class="w-5 h-5 text-primary" />
           </button>
 
           <button type="button" phx-target={@myself} phx-click="remove">
-            <.icon name="hero-trash" class="w-5 h-5 text-red-500" />
+            <.icon name="hero-trash" class="w-5 h-5 text-error" />
           </button>
         </:header>
 
@@ -24,13 +24,13 @@ defmodule Beacon.LiveAdmin.VisualEditor.NameValueControl do
           <.input
             field={f[:name]}
             placeholder="Name"
-            class={"w-full mb-2 py-1 px-2 bg-gray-100 border-gray-100 rounded-md leading-6 text-sm #{if !@attribute.editing, do: "cursor-not-allowed"}"}
+            class={"w-full mb-2 py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm #{if !@attribute.editing, do: "cursor-not-allowed"}"}
             disabled={!@attribute.editing}
           />
           <.input
             field={f[:value]}
             placeholder="Value"
-            class={"w-full py-1 px-2 bg-gray-100 border-gray-100 rounded-md leading-6 text-sm #{if !@attribute.editing, do: "cursor-not-allowed"}"}
+            class={"w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm #{if !@attribute.editing, do: "cursor-not-allowed"}"}
             disabled={!@attribute.editing}
           />
 

@@ -149,7 +149,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
 
     cond do
       pct >= 80 -> "text-success"
-      pct >= 40 -> "text-yellow-600"
+      pct >= 40 -> "text-warning"
       true -> "text-error"
     end
   end
@@ -170,7 +170,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
     cond do
       len == 0 -> "text-base-content/50"
       len <= limit * 0.9 -> "text-success"
-      len <= limit -> "text-yellow-600"
+      len <= limit -> "text-warning"
       true -> "text-error"
     end
   end
@@ -233,7 +233,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
                 <textarea
                   name="seo[meta_description]"
                   rows="3"
-                  class="w-full rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                  class="w-full rounded-md border-base-300 shadow-sm focus:border-primary focus:ring-primary text-sm"
                   placeholder="Concise description of this page for search engines..."
                 ><%= @form_data["meta_description"] %></textarea>
                 <div class={"text-xs mt-1 #{char_count_class(@form_data["meta_description"], 160)}"}>
@@ -243,7 +243,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
 
               <div>
                 <label class="block text-sm font-medium text-base-content/80 mb-1">Robots</label>
-                <select name="seo[robots]" class="rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                <select name="seo[robots]" class="rounded-md border-base-300 shadow-sm focus:border-primary focus:ring-primary text-sm">
                   <option value="index, follow" selected={@form_data["robots"] == "index, follow"}>Index, Follow (default)</option>
                   <option value="noindex, follow" selected={@form_data["robots"] == "noindex, follow"}>No Index, Follow</option>
                   <option value="index, nofollow" selected={@form_data["robots"] == "index, nofollow"}>Index, No Follow</option>
@@ -253,7 +253,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
 
               <div>
                 <label class="block text-sm font-medium text-base-content/80 mb-1">Collection</label>
-                <select phx-change="set_collection" name="collection_id" class="rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                <select phx-change="set_collection" name="collection_id" class="rounded-md border-base-300 shadow-sm focus:border-primary focus:ring-primary text-sm">
                   <option value="">None</option>
                   <%= for tt <- @collections do %>
                     <option value={tt.id} selected={@page.collection_id == tt.id}><%= tt.name %></option>
@@ -273,7 +273,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
                   type="text"
                   name="seo[og_title]"
                   value={@form_data["og_title"]}
-                  class="w-full rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                  class="w-full rounded-md border-base-300 shadow-sm focus:border-primary focus:ring-primary text-sm"
                   placeholder={"Falls back to page title: #{@page.title}"}
                 />
                 <div class={"text-xs mt-1 #{char_count_class(@form_data["og_title"], 60)}"}>
@@ -286,7 +286,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
                 <textarea
                   name="seo[og_description]"
                   rows="2"
-                  class="w-full rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                  class="w-full rounded-md border-base-300 shadow-sm focus:border-primary focus:ring-primary text-sm"
                   placeholder="Falls back to meta description"
                 ><%= @form_data["og_description"] %></textarea>
                 <div class={"text-xs mt-1 #{char_count_class(@form_data["og_description"], 160)}"}>
@@ -300,7 +300,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
                   type="text"
                   name="seo[og_image]"
                   value={@form_data["og_image"]}
-                  class="w-full rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                  class="w-full rounded-md border-base-300 shadow-sm focus:border-primary focus:ring-primary text-sm"
                   placeholder="https://example.com/image.jpg (recommended: 1200x630)"
                 />
               </div>
@@ -324,7 +324,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
 
               <div>
                 <label class="block text-sm font-medium text-base-content/80 mb-1">Twitter Card Type</label>
-                <select name="seo[twitter_card]" class="rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                <select name="seo[twitter_card]" class="rounded-md border-base-300 shadow-sm focus:border-primary focus:ring-primary text-sm">
                   <option value="summary_large_image" selected={@form_data["twitter_card"] == "summary_large_image"}>Summary Large Image</option>
                   <option value="summary" selected={@form_data["twitter_card"] == "summary"}>Summary</option>
                 </select>
@@ -342,7 +342,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
                   type="text"
                   name="seo[canonical_url]"
                   value={@form_data["canonical_url"]}
-                  class="w-full rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                  class="w-full rounded-md border-base-300 shadow-sm focus:border-primary focus:ring-primary text-sm"
                   placeholder="Auto-generated from page path if left empty"
                 />
               </div>

@@ -14097,7 +14097,7 @@ ${indent}in ${name}`).join("")}
   mark_module_start();
   Backdrop[FILENAME] = "svelte/components/Backdrop.svelte";
   var backdropVisible = writable(false);
-  var root_1 = add_locations(template(`<div class="bg-black/50 absolute inset-0 z-30" data-testid="backdrop"></div>`), Backdrop[FILENAME], [[7, 2]]);
+  var root_1 = add_locations(template(`<div class="bg-base-300/50 absolute inset-0 z-30" data-testid="backdrop"></div>`), Backdrop[FILENAME], [[7, 2]]);
   function Backdrop($$anchor, $$props) {
     check_target(new.target);
     push($$props, false, Backdrop);
@@ -14131,7 +14131,7 @@ ${indent}in ${name}`).join("")}
   });
   mark_module_start();
   BrowserFrame[FILENAME] = "svelte/components/BrowserFrame.svelte";
-  var root = add_locations(template(`<div class="flex-1 flex flex-col" data-testid="fake-browser"><div class="bg-base-200 border-b border-base-300 border-solid rounded-t-xl h-12 px-3.5 flex" data-testid="address-bar"><div class="py-2"><span class="inline-block h-2 w-2 ml-2 rounded-full bg-red-800"></span> <span class="inline-block h-2 w-2 ml-2 rounded-full bg-amber-400"></span> <span class="inline-block h-2 w-2 ml-2 rounded-full bg-lime-600"></span></div> <div class="py-3"></div></div> <!></div>`), BrowserFrame[FILENAME], [
+  var root = add_locations(template(`<div class="flex-1 flex flex-col" data-testid="fake-browser"><div class="bg-base-200 border-b border-base-300 border-solid rounded-t-xl h-12 px-3.5 flex" data-testid="address-bar"><div class="py-2"><span class="inline-block h-2 w-2 ml-2 rounded-full bg-error"></span> <span class="inline-block h-2 w-2 ml-2 rounded-full bg-warning"></span> <span class="inline-block h-2 w-2 ml-2 rounded-full bg-success"></span></div> <div class="py-3"></div></div> <!></div>`), BrowserFrame[FILENAME], [
     [
       1,
       0,
@@ -14670,7 +14670,7 @@ ${indent}in ${name}`).join("")}
   // svelte/components/CodeEditor.svelte
   mark_module_start();
   CodeEditor[FILENAME] = "svelte/components/CodeEditor.svelte";
-  var root2 = add_locations(template(`<div class="w-52 h-24 py-0.5 px-0.5 bg-gray-100"></div>`), CodeEditor[FILENAME], [[34, 0]]);
+  var root2 = add_locations(template(`<div class="w-52 h-24 py-0.5 px-0.5 bg-base-200"></div>`), CodeEditor[FILENAME], [[34, 0]]);
   function CodeEditor($$anchor, $$props) {
     check_target(new.target);
     push($$props, false, CodeEditor);
@@ -14753,7 +14753,7 @@ ${indent}in ${name}`).join("")}
   var root_2 = add_locations(template(`<li class="mb-1 px-4" data-testid="nav-item"><h3 class="text-xs font-bold uppercase"> </h3></li>`), ComponentsSidebar[FILENAME], [[76, 10, [[77, 12]]]]);
   var root_3 = add_locations(template(`<li class="p-2 pl-6 hover:bg-base-200 hover:cursor-pointer" data-testid="nav-item"><div> </div></li>`), ComponentsSidebar[FILENAME], [[81, 10, [[87, 12]]]]);
   var root_12 = add_locations(template(`<!> <!>`, 1), ComponentsSidebar[FILENAME], []);
-  var root_5 = add_locations(template(`<div draggable="true" class="pt-6" data-testid="component-preview-card"><p class="mb-1 text-xs font-bold uppercase tracking-wider"> </p> <img class="w-full h-auto rounded ring-offset-2 ring-blue-500 transition hover:cursor-grab hover:ring-2"></div>`), ComponentsSidebar[FILENAME], [
+  var root_5 = add_locations(template(`<div draggable="true" class="pt-6" data-testid="component-preview-card"><p class="mb-1 text-xs font-bold uppercase tracking-wider"> </p> <img class="w-full h-auto rounded ring-offset-2 ring-primary transition hover:cursor-grab hover:ring-2"></div>`), ComponentsSidebar[FILENAME], [
     [108, 10, [[115, 12], [117, 12]]]
   ]);
   var root_6 = add_locations(template(`<div class="bg-base-300/60 absolute inset-0 z-50 svelte-uvq63b" id="backdrop" data-testid="backdrop"></div>`), ComponentsSidebar[FILENAME], [[130, 2]]);
@@ -15110,7 +15110,7 @@ ${indent}in ${name}`).join("")}
   // svelte/components/GoToParentButton.svelte
   mark_module_start();
   GoToParentButton[FILENAME] = "svelte/components/GoToParentButton.svelte";
-  var root4 = add_locations(template(`<button type="button" class="absolute p-2 top-2 right-9 group"><span class="sr-only">Up one level</span> <span class="absolute opacity-0 invisible right-9 min-w-[100px] bg-amber-100 py-1 px-1.5 rounded text-xs text-medium transition group-hover:opacity-100 group-hover:visible">Up one level</span> <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hover:text-blue-700 active:text-blue-900"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"></path></svg></button>`), GoToParentButton[FILENAME], [
+  var root4 = add_locations(template(`<button type="button" class="absolute p-2 top-2 right-9 group"><span class="sr-only">Up one level</span> <span class="absolute opacity-0 invisible right-9 min-w-[100px] bg-warning py-1 px-1.5 rounded text-xs text-medium transition group-hover:opacity-100 group-hover:visible">Up one level</span> <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hover:text-primary active:text-primary"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"></path></svg></button>`), GoToParentButton[FILENAME], [
     [
       9,
       0,
@@ -15401,7 +15401,7 @@ ${indent}in ${name}`).join("")}
     }
   }
   var root_22 = add_locations(template(`<div class="absolute transition-all" data-testid="drag-placeholder"></div>`), DragMenuOption[FILENAME], [[306, 4]]);
-  var root_13 = add_locations(template(`<!> <button class="rounded-full w-6 h-6 flex justify-center items-center absolute bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200 active:bg-blue-800 transform"><span></span></button>`, 1), DragMenuOption[FILENAME], [[312, 2, [[320, 4]]]]);
+  var root_13 = add_locations(template(`<!> <button class="rounded-full w-6 h-6 flex justify-center items-center absolute bg-primary text-primary-content hover:bg-primary/90 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary active:bg-primary transform"><span></span></button>`, 1), DragMenuOption[FILENAME], [[312, 2, [[320, 4]]]]);
   function DragMenuOption($$anchor, $$props) {
     check_target(new.target);
     push($$props, false, DragMenuOption);
@@ -15688,7 +15688,7 @@ ${indent}in ${name}`).join("")}
         {
           var consequent = ($$anchor3) => {
             var div = root_22();
-            template_effect(() => set_style(div, `background-color:aqua; opacity: 0.5; ${get(placeholderStyle) ?? ""}`));
+            template_effect(() => set_style(div, `background-color:oklch(var(--a)); opacity: 0.5; ${get(placeholderStyle) ?? ""}`));
             append($$anchor3, div);
           };
           if_block(node_2, ($$render) => {
@@ -16318,7 +16318,7 @@ ${indent}in ${name}`).join("")}
             reset(div_2);
             reset(div_1);
             template_effect(() => {
-              set_class(div_1, 1, `bg-white rounded-b-xl relative overflow-hidden flex-1 ${get(isDraggingOver) && "border-dashed border-blue-500 border-2"}`);
+              set_class(div_1, 1, `bg-base-100 rounded-b-xl relative overflow-hidden flex-1 ${get(isDraggingOver) && "border-dashed border-primary border-2"}`);
               set_attribute(div_2, "data-selected", strict_equals($selectedAstElementId(), "root"));
             });
             event("drop", div_1, preventDefault(handleDragDrop));
@@ -26128,8 +26128,8 @@ ${indent}in ${name}`).join("")}
   var root_32 = add_locations(template(`<div class="contents"></div>`), PageWrapper[FILENAME], [[75, 6]]);
   var root7 = add_locations(template(`<!> <span></span> <div data-theme="beacon-dark"></div>`, 1), PageWrapper[FILENAME], [[69, 0], [71, 0]]);
   var $$css4 = {
-    hash: "svelte-9t6pvg",
-    code: '\n  [data-selected="true"], [data-selected-parent="true"] {\n    outline-color: #06b6d4;\n    outline-width: 1px;\n    outline-style: solid;\n  }\n  [data-selected="true"].contents > *, [data-selected-parent="true"].contents > * {\n    outline-color: #06b6d4;\n    outline-width: 1px;\n    outline-style: solid;\n  }\n  /* TODO: Apply this styles to [data-selected-parent="true"] once dragging of the parent element is allowed */\n  [data-highlighted="true"] {\n    outline-color: #06b6d4;\n    outline-width: 2px;\n    outline-style: dashed;\n  }\n\n  :before, :after {\n    pointer-events: none;\n  }\n\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUGFnZVdyYXBwZXIuc3ZlbHRlIiwibWFwcGluZ3MiOiI7QUF5RkEsRUFBVSxxREFBc0QsQ0FBQztBQUNqRSxJQUFJLHNCQUFzQjtBQUMxQixJQUFJLGtCQUFrQjtBQUN0QixJQUFJLG9CQUFvQjtBQUN4QjtBQUNBLEVBQVUsK0VBQWdGLENBQUM7QUFDM0YsSUFBSSxzQkFBc0I7QUFDMUIsSUFBSSxrQkFBa0I7QUFDdEIsSUFBSSxvQkFBb0I7QUFDeEI7QUFDQTtBQUNBLEVBQVUseUJBQTBCLENBQUM7QUFDckMsSUFBSSxzQkFBc0I7QUFDMUIsSUFBSSxrQkFBa0I7QUFDdEIsSUFBSSxxQkFBcUI7QUFDekI7O0FBRUEsRUFBVSxlQUFnQixDQUFDO0FBQzNCLElBQUksb0JBQW9CO0FBQ3hCIiwibmFtZXMiOltdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJQYWdlV3JhcHBlci5zdmVsdGUiXX0= */'
+    hash: "svelte-1ohkp4o",
+    code: '\n  [data-selected="true"], [data-selected-parent="true"] {\n    outline-color: oklch(var(--a));\n    outline-width: 1px;\n    outline-style: solid;\n  }\n  [data-selected="true"].contents > *, [data-selected-parent="true"].contents > * {\n    outline-color: oklch(var(--a));\n    outline-width: 1px;\n    outline-style: solid;\n  }\n  /* TODO: Apply this styles to [data-selected-parent="true"] once dragging of the parent element is allowed */\n  [data-highlighted="true"] {\n    outline-color: oklch(var(--a));\n    outline-width: 2px;\n    outline-style: dashed;\n  }\n\n  :before, :after {\n    pointer-events: none;\n  }\n\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUGFnZVdyYXBwZXIuc3ZlbHRlIiwibWFwcGluZ3MiOiI7QUF5RkEsRUFBVSxxREFBc0QsQ0FBQztBQUNqRSxJQUFJLDhCQUE4QjtBQUNsQyxJQUFJLGtCQUFrQjtBQUN0QixJQUFJLG9CQUFvQjtBQUN4QjtBQUNBLEVBQVUsK0VBQWdGLENBQUM7QUFDM0YsSUFBSSw4QkFBOEI7QUFDbEMsSUFBSSxrQkFBa0I7QUFDdEIsSUFBSSxvQkFBb0I7QUFDeEI7QUFDQTtBQUNBLEVBQVUseUJBQTBCLENBQUM7QUFDckMsSUFBSSw4QkFBOEI7QUFDbEMsSUFBSSxrQkFBa0I7QUFDdEIsSUFBSSxxQkFBcUI7QUFDekI7O0FBRUEsRUFBVSxlQUFnQixDQUFDO0FBQzNCLElBQUksb0JBQW9CO0FBQ3hCIiwibmFtZXMiOltdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJQYWdlV3JhcHBlci5zdmVsdGUiXX0= */'
   };
   function PageWrapper($$anchor, $$props) {
     check_target(new.target);
@@ -26247,7 +26247,7 @@ ${indent}in ${name}`).join("")}
   });
   mark_module_start();
   Pill[FILENAME] = "svelte/components/Pill.svelte";
-  var root8 = add_locations(template(`<div class="inline-flex items-center rounded-full bg-slate-700 text-white text-xs px-3 pr-0 m-1 leading-4"><!> <button class="p-2 rounded-full inline-block bg-slate-700 text-white hover:text-blue-400 active:text-blue-500" type="button"><span class="sr-only">Delete class: <!></span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path></svg></button></div>`), Pill[FILENAME], [
+  var root8 = add_locations(template(`<div class="inline-flex items-center rounded-full bg-base-300 text-base-content text-xs px-3 pr-0 m-1 leading-4"><!> <button class="p-2 rounded-full inline-block bg-base-300 text-base-content hover:text-primary active:text-primary" type="button"><span class="sr-only">Delete class: <!></span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path></svg></button></div>`), Pill[FILENAME], [
     [
       5,
       0,
@@ -26290,7 +26290,7 @@ ${indent}in ${name}`).join("")}
   });
   mark_module_start();
   ResetSelectionButton[FILENAME] = "svelte/components/ResetSelectionButton.svelte";
-  var root9 = add_locations(template(`<button type="button" class="absolute p-2 top-2 right-1"><span class="sr-only">Close</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 hover:text-blue-700 active:text-blue-900"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd"></path></svg></button>`), ResetSelectionButton[FILENAME], [
+  var root9 = add_locations(template(`<button type="button" class="absolute p-2 top-2 right-1"><span class="sr-only">Close</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 hover:text-primary active:text-primary"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd"></path></svg></button>`), ResetSelectionButton[FILENAME], [
     [
       4,
       0,
@@ -26317,7 +26317,7 @@ ${indent}in ${name}`).join("")}
   });
   mark_module_start();
   SelectedElementFloatingMenu[FILENAME] = "svelte/components/SelectedElementFloatingMenu.svelte";
-  var root_24 = add_locations(template(`<button class="absolute top-0 -m-3 w-6 h-6 rounded-full flex justify-center items-center bg-red-500 text-white hover:bg-red-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200 active:bg-red-800" aria-label="Delete component" data-testid="element-delete-button"><span class="hero-trash"></span></button>`), SelectedElementFloatingMenu[FILENAME], [[41, 6, [[48, 8]]]]);
+  var root_24 = add_locations(template(`<button class="absolute top-0 -m-3 w-6 h-6 rounded-full flex justify-center items-center bg-error text-error-content hover:bg-error focus:outline-none focus-visible:ring-4 focus-visible:ring-primary active:bg-error" aria-label="Delete component" data-testid="element-delete-button"><span class="hero-trash"></span></button>`), SelectedElementFloatingMenu[FILENAME], [[41, 6, [[48, 8]]]]);
   var root_15 = add_locations(template(`<div class="selected-element-menu absolute"><!></div> <!> <!>`, 1), SelectedElementFloatingMenu[FILENAME], [[35, 2]]);
   function SelectedElementFloatingMenu($$anchor, $$props) {
     check_target(new.target);
@@ -26423,13 +26423,13 @@ ${indent}in ${name}`).join("")}
   mark_module_start();
   SidebarSection[FILENAME] = "svelte/components/SidebarSection.svelte";
   var root_16 = add_locations(template(`<span class="ml-4 inline-block cursor-pointer" title="Delete attribute" role="button" tabindex="0"><span class="hero-trash text-red hover:text-red"></span></span>`), SidebarSection[FILENAME], [[85, 10, [[92, 13]]]]);
-  var root_33 = add_locations(template(`<input type="text" class="w-full py-1 px-2 bg-gray-100 border-gray-100 rounded-md leading-6 text-sm">`), SidebarSection[FILENAME], [[115, 6]]);
+  var root_33 = add_locations(template(`<input type="text" class="w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm">`), SidebarSection[FILENAME], [[115, 6]]);
   var root_25 = add_locations(template(`<!> <div class="pt-3"><!></div>`, 1), SidebarSection[FILENAME], [[124, 4]]);
-  var root_82 = add_locations(template(`<textarea class="w-full py-1 px-2 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm"></textarea>`), SidebarSection[FILENAME], [[130, 10]]);
-  var root_9 = add_locations(template(`<input type="text" class="w-full py-1 px-2 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm">`), SidebarSection[FILENAME], [[139, 10]]);
+  var root_82 = add_locations(template(`<textarea class="w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm"></textarea>`), SidebarSection[FILENAME], [[130, 10]]);
+  var root_9 = add_locations(template(`<input type="text" class="w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm">`), SidebarSection[FILENAME], [[139, 10]]);
   var root_10 = add_locations(template(`<div class="pt-3"><!></div>`), SidebarSection[FILENAME], [[149, 10]]);
   var root_7 = add_locations(template(`<!> <!>`, 1), SidebarSection[FILENAME], []);
-  var root_142 = add_locations(template(`<div class="mt-5"><div class="flex items-center justify-between"><span><code> </code></span> <button class="flex items-center justify-center gap-x-0.5 px-2 py-1 bg-cyan-300 font-bold text-xs uppercase tracking-wide rounded transition-colors hover:bg-cyan-900 active:bg-cyan-700 hover:text-white">Edit <span class="sr-only"> </span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3"><path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z"></path><path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z"></path></svg></button></div> <div class="mt-2 grid grid-cols-2 gap-x-1"><button class="flex items-center justify-center gap-x-0.5 px-1.5 py-1 bg-cyan-800 font-bold text-xs uppercase tracking-wide rounded hover:bg-cyan-950 active:bg-cyan-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white"><span>Move <span class="sr-only"> </span> up</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3"><path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd"></path></svg></button> <button class="flex items-center justify-center gap-x-0.5 px-1.5 py-1 bg-cyan-800 font-bold text-xs uppercase tracking-wide rounded hover:bg-cyan-950 active:bg-cyan-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white"><span>Move <span class="sr-only"> </span> down</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3"><path fill-rule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v16.19l6.22-6.22a.75.75 0 1 1 1.06 1.06l-7.5 7.5a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 1 1 1.06-1.06l6.22 6.22V3a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"></path></svg></button></div></div>`), SidebarSection[FILENAME], [
+  var root_142 = add_locations(template(`<div class="mt-5"><div class="flex items-center justify-between"><span><code> </code></span> <button class="flex items-center justify-center gap-x-0.5 px-2 py-1 bg-accent font-bold text-xs uppercase tracking-wide rounded transition-colors hover:bg-accent active:bg-accent hover:text-accent-content">Edit <span class="sr-only"> </span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3"><path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z"></path><path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z"></path></svg></button></div> <div class="mt-2 grid grid-cols-2 gap-x-1"><button class="flex items-center justify-center gap-x-0.5 px-1.5 py-1 bg-accent font-bold text-xs uppercase tracking-wide rounded hover:bg-accent active:bg-accent disabled:bg-base-300 disabled:cursor-not-allowed text-accent-content"><span>Move <span class="sr-only"> </span> up</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3"><path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd"></path></svg></button> <button class="flex items-center justify-center gap-x-0.5 px-1.5 py-1 bg-accent font-bold text-xs uppercase tracking-wide rounded hover:bg-accent active:bg-accent disabled:bg-base-300 disabled:cursor-not-allowed text-accent-content"><span>Move <span class="sr-only"> </span> down</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3"><path fill-rule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v16.19l6.22-6.22a.75.75 0 1 1 1.06 1.06l-7.5 7.5a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 1 1 1.06-1.06l6.22 6.22V3a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"></path></svg></button></div></div>`), SidebarSection[FILENAME], [
     [
       155,
       12,
@@ -26474,9 +26474,9 @@ ${indent}in ${name}`).join("")}
       ]
     ]
   ]);
-  var root_162 = add_locations(template(`<textarea class="w-full py-1 px-2 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm"></textarea>`), SidebarSection[FILENAME], [[209, 12]]);
-  var root_17 = add_locations(template(`<input type="text" class="w-full py-1 px-2 mt-5 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm">`), SidebarSection[FILENAME], [[217, 12]]);
-  var root10 = add_locations(template(`<section class="p-4 border-b border-b-gray-100 border-solid"><header class="flex items-center text-sm mb-2 font-medium"><button type="button" class="w-full flex items-center justify-between gap-x-1 p-1 font-semibold group"><span><span class="hover:text-blue-700 active:text-blue-900"><!></span> <!></span> <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 stroke-slate-500 fill-slate-500 group-hover:stroke-current group-hover:fill-current"><path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 0 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd"></path></svg></span></button></header> <!></section>`), SidebarSection[FILENAME], [
+  var root_162 = add_locations(template(`<textarea class="w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm"></textarea>`), SidebarSection[FILENAME], [[209, 12]]);
+  var root_17 = add_locations(template(`<input type="text" class="w-full py-1 px-2 mt-5 bg-base-200 border-base-300 rounded-md leading-6 text-sm">`), SidebarSection[FILENAME], [[217, 12]]);
+  var root10 = add_locations(template(`<section class="p-4 border-b border-b-base-300 border-solid"><header class="flex items-center text-sm mb-2 font-medium"><button type="button" class="w-full flex items-center justify-between gap-x-1 p-1 font-semibold group"><span><span class="hover:text-primary active:text-primary"><!></span> <!></span> <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 stroke-base-content/70 fill-base-content/70 group-hover:stroke-current group-hover:fill-current"><path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 0 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd"></path></svg></span></button></header> <!></section>`), SidebarSection[FILENAME], [
     [
       74,
       0,
@@ -27812,16 +27812,16 @@ ${indent}in ${name}`).join("")}
       }
       navigator.clipboard.writeText(txt).then(() => {
         el.innerText = "Copied to clipboard";
-        el.classList.remove("invisible", "text-red-500", "opacity-0");
-        el.classList.add("text-green-500", "opacity-100", "-translate-y-2");
+        el.classList.remove("invisible", "text-error", "opacity-0");
+        el.classList.add("text-success", "opacity-100", "-translate-y-2");
         setTimeout(function() {
-          el.classList.remove("text-green-500", "opacity-100", "-translate-y-2");
-          el.classList.add("invisible", "text-red-500", "opacity-0");
+          el.classList.remove("text-success", "opacity-100", "-translate-y-2");
+          el.classList.add("invisible", "text-error", "opacity-0");
         }, 2e3);
       }).catch(() => {
         el.innerText = "Could not copy";
-        el.classList.remove("invisible", "text-green-500", "opacity-0");
-        el.classList.add("text-red-500", "opacity-100", "-translate-y-2");
+        el.classList.remove("invisible", "text-success", "opacity-0");
+        el.classList.add("text-error", "opacity-100", "-translate-y-2");
       });
     } else {
       alert("Sorry, your browser does not support clipboard copy.");

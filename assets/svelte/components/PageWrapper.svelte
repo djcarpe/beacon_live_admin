@@ -88,18 +88,18 @@
 
 <style>
   :global([data-selected="true"], [data-selected-parent="true"]) {
-    outline-color: #06b6d4;
+    outline-color: oklch(var(--a));
     outline-width: 1px;
     outline-style: solid;
   }
   :global([data-selected="true"].contents > *, [data-selected-parent="true"].contents > *) {
-    outline-color: #06b6d4;
+    outline-color: oklch(var(--a));
     outline-width: 1px;
     outline-style: solid;
   }
   /* TODO: Apply this styles to [data-selected-parent="true"] once dragging of the parent element is allowed */
   :global([data-highlighted="true"]) {
-    outline-color: #06b6d4;
+    outline-color: oklch(var(--a));
     outline-width: 2px;
     outline-style: dashed;
   }

@@ -9,12 +9,12 @@ defmodule Beacon.LiveAdmin.VisualEditor.ClassControl do
     ~H"""
     <div id={@id}>
       <.live_component module={ControlSection} id={@id <> "-section"} label="Classes">
-        <input type="text" class="w-full py-1 px-2 bg-gray-100 border-gray-100 rounded-md leading-6 text-sm" id={"#{@id}-input"} phx-hook="VisualEditorClassInput" data-target={@id} />
+        <input type="text" class="w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm" id={"#{@id}-input"} phx-hook="VisualEditorClassInput" data-target={@id} />
         <div class="pt-3">
-          <div :for={css_class <- @classes} class="inline-flex items-center rounded-full bg-slate-700 text-white text-xs px-3 pr-0 m-1 leading-4">
+          <div :for={css_class <- @classes} class="inline-flex items-center rounded-full bg-base-300 text-base-content text-xs px-3 pr-0 m-1 leading-4">
             <%= css_class %>
             <button
-              class="p-2 rounded-full inline-block bg-slate-700 text-white hover:text-blue-400 active:text-blue-500"
+              class="p-2 rounded-full inline-block bg-base-300 text-base-content hover:text-primary active:text-primary"
               type="button"
               phx-click="delete_class"
               phx-value-class={css_class}

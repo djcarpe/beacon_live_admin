@@ -148,7 +148,7 @@ defmodule Beacon.LiveAdmin.LayoutEditorLive.FormComponent do
       <div class="grid items-start lg:h-[calc(100vh_-_144px)] grid-cols-1 mx-auto mt-4 gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         <div class="p-4 bg-base-100 col-span-full lg:col-span-1 rounded-[1.25rem] lg:rounded-t-[1.25rem] lg:rounded-b-none lg:h-full">
           <.form :let={f} for={@form} id="layout-form" class="space-y-8" phx-target={@myself} phx-change="validate" phx-submit="save">
-            <legend class="text-sm font-bold tracking-widest text-[#445668] uppercase">Layout Settings</legend>
+            <legend class="text-sm font-bold tracking-widest text-base-content/70 uppercase">Layout Settings</legend>
             <.input field={f[:title]} type="text" label="Title" />
             <input type="hidden" name="layout[template]" id="layout-form_template" value={Phoenix.HTML.Form.input_value(f, :template)} />
           </.form>

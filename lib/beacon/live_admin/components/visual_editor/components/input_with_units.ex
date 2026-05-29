@@ -17,7 +17,7 @@ defmodule Beacon.LiveAdmin.VisualEditor.Components.InputWithUnits do
       |> assign(:is_custom_unit?, is_nil(assigns.value_unit) or Enum.member?(assigns.units, assigns.value_unit))
 
     ~H"""
-    <div class="relative w-full flex bg-gray-100 border rounded focus-within:ring-2 focus-within:ring-blue-500">
+    <div class="relative w-full flex bg-base-200 border rounded focus-within:ring-2 focus-within:ring-primary">
       <input
         id={@name <> "-value-input"}
         type="text"
@@ -27,7 +27,7 @@ defmodule Beacon.LiveAdmin.VisualEditor.Components.InputWithUnits do
         phx-hook="PreventEmptyChange"
         class={[
           "w-full px-1 text-sm text-left outline-none focus:outline-none bg-transparent border-none text-xs focus:ring-0",
-          !@is_custom_unit? && "text-gray-500",
+          !@is_custom_unit? && "text-base-content/70",
           @size == "sm" && "py-0.5 leading-5",
           @size == "base" && "py-1 leading-6"
         ]}

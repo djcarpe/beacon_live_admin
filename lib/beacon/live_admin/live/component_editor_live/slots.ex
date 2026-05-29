@@ -215,7 +215,7 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.Slots do
                   aria-label="Edit Slot attribute"
                   class="flex items-center justify-center w-10 h-10 group"
                 >
-                  <.icon name="hero-pencil-square text-[#61758A] hover:text-[#304254]" />
+                  <.icon name="hero-pencil-square text-base-content/60 hover:text-base-content" />
                 </.link>
               </:action>
 
@@ -227,7 +227,7 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.Slots do
                   class="flex items-center justify-center w-10 h-10"
                   data-confirm="The Slot attribute will be deleted. Are you sure?"
                 >
-                  <.icon name="hero-trash text-[#F23630] hover:text-[#AE182D]" />
+                  <.icon name="hero-trash text-error hover:text-error" />
                 </.link>
               </:action>
             </.table>

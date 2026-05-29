@@ -191,7 +191,7 @@ defmodule Beacon.LiveAdmin.SEOAuditLive do
                 <td class="py-4 pr-4 text-right">
                   <.link
                     patch={beacon_live_admin_path(@socket, @beacon_page.site, "/pages/#{page.id}/seo")}
-                    class="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-indigo-800 transition-colors"
+                    class="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
                   >
                     Fix <.icon name="hero-arrow-right-mini" class="w-3.5 h-3.5" />
                   </.link>

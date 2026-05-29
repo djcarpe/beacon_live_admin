@@ -6,5 +6,5 @@
 </script>
 
 {#if $backdropVisible}
-  <div class="bg-black/50 absolute inset-0 z-30" transition:fade data-testid="backdrop"></div>
+  <div class="bg-base-300/50 absolute inset-0 z-30" transition:fade data-testid="backdrop"></div>
 {/if}

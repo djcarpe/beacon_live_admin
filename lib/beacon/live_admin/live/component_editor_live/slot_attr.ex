@@ -209,7 +209,7 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.SlotAttr do
         <.input field={f[:type]} type="select" options={types_to_options()} label="Type" class="text-sm p-1 m-2 focus:ring-2" />
         <.input :if={f[:type].value == "struct"} field={f[:struct_name]} type="text" phx-debounce="100" placeholder="MyApp.Users.User" label="Struct Name" class="text-sm p-1 m-2 focus:ring-2" />
 
-        <legend class="text-sm font-bold tracking-widest text-[#445668] uppercase">Options</legend>
+        <legend class="text-sm font-bold tracking-widest text-base-content/70 uppercase">Options</legend>
         <.input field={f[:opts_required]} type="select" options={["false", "true"]} value={opts_required_value(f)} label="Required" class="text-sm p-1 m-2 focus:ring-2" />
         <.input field={f[:opts_default]} type="text" phx-debounce="100" value={opts_default_value(f)} label="Default" class="text-sm p-1 m-2 focus:ring-2" />
         <.input

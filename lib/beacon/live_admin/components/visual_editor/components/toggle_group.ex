@@ -35,9 +35,9 @@ defmodule Beacon.LiveAdmin.VisualEditor.Components.ToggleGroup do
           class={[
             "text-center px-1.5 py-1 text-sm cursor-pointer flex-1",
             "first:rounded-l last:rounded-r",
-            "border-y border-r border-gray-300 first:border-l",
-            @selected == option.value && "bg-blue-500 text-white relative z-10",
-            @selected != option.value && "bg-gray-100 hover:bg-gray-200"
+            "border-y border-r border-base-300 first:border-l",
+            @selected == option.value && "bg-primary text-primary-content relative z-10",
+            @selected != option.value && "bg-base-200 hover:bg-base-300"
           ]}
         >
           <input type="radio" name={@name} value={option.value} class="hidden" checked={@selected == option.value} />

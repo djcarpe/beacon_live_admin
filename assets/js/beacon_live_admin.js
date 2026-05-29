@@ -131,21 +131,21 @@ window.addEventListener("beacon_admin:clipcopy", (event) => {
       .then(() => {
         el.innerText = "Copied to clipboard"
         // Make it visible
-        el.classList.remove("invisible", "text-red-500", "opacity-0")
+        el.classList.remove("invisible", "text-error", "opacity-0")
         // Fade in and translate upwards
-        el.classList.add("text-green-500", "opacity-100", "-translate-y-2")
+        el.classList.add("text-success", "opacity-100", "-translate-y-2")
 
         setTimeout(function () {
-          el.classList.remove("text-green-500", "opacity-100", "-translate-y-2")
-          el.classList.add("invisible", "text-red-500", "opacity-0")
+          el.classList.remove("text-success", "opacity-100", "-translate-y-2")
+          el.classList.add("invisible", "text-error", "opacity-0")
         }, 2000)
       })
       .catch(() => {
         el.innerText = "Could not copy"
         // Make it visible
-        el.classList.remove("invisible", "text-green-500", "opacity-0")
+        el.classList.remove("invisible", "text-success", "opacity-0")
         // Fade in and translate upwards
-        el.classList.add("text-red-500", "opacity-100", "-translate-y-2")
+        el.classList.add("text-error", "opacity-100", "-translate-y-2")
       })
   } else {
     alert("Sorry, your browser does not support clipboard copy.")

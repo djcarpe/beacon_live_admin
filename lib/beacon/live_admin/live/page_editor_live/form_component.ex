@@ -353,7 +353,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.FormComponent do
       <.modal :if={@show_modal == :unpublish_confirm} id="unpublish-confirm-modal" on_cancel={JS.push("close_modal", target: @myself)} show>
         <:title>Unpublish Page</:title>
         <div class="mt-2">
-          <p class="text-sm text-gray-500">Are you sure you want to unpublish this page?  Requests to this path will show your site's 404 Error Page.</p>
+          <p class="text-sm text-base-content/60">Are you sure you want to unpublish this page?  Requests to this path will show your site's 404 Error Page.</p>
         </div>
         <div class="py-4">
           <.button

@@ -38,17 +38,17 @@ defmodule Beacon.LiveAdmin.LinkHealthLive do
 
     <%!-- Stat Cards (clickable tabs) --%>
     <div class="grid grid-cols-3 gap-3 mb-6 -mt-2">
-      <div phx-click="tab" phx-value-tab="orphans" class={"cursor-pointer transition-all duration-200 rounded-xl border p-4 text-center #{if @tab == "orphans", do: "bg-amber-50 border-amber-300 shadow-sm", else: "bg-base-100 border-base-300 hover:border-amber-200"}"}>
+      <div phx-click="tab" phx-value-tab="orphans" class={"cursor-pointer transition-all duration-200 rounded-xl border p-4 text-center #{if @tab == "orphans", do: "bg-warning/10 border-warning/40 shadow-sm", else: "bg-base-100 border-base-300 hover:border-warning/30"}"}>
         <div class={"text-2xl font-bold tabular-nums #{if @tab == "orphans", do: "text-warning", else: "text-base-content"}"}><%= length(@orphans) %></div>
         <div class="text-[11px] font-medium text-base-content/60 uppercase tracking-wide mt-0.5">Orphan Pages</div>
         <div class="text-[10px] text-base-content/40 mt-0.5">No inbound links</div>
       </div>
-      <div phx-click="tab" phx-value-tab="broken" class={"cursor-pointer transition-all duration-200 rounded-xl border p-4 text-center #{if @tab == "broken", do: "bg-rose-50 border-rose-300 shadow-sm", else: "bg-base-100 border-base-300 hover:border-rose-200"}"}>
+      <div phx-click="tab" phx-value-tab="broken" class={"cursor-pointer transition-all duration-200 rounded-xl border p-4 text-center #{if @tab == "broken", do: "bg-error/10 border-error/40 shadow-sm", else: "bg-base-100 border-base-300 hover:border-error/30"}"}>
         <div class={"text-2xl font-bold tabular-nums #{if @tab == "broken", do: "text-error", else: "text-base-content"}"}><%= length(@broken_links) %></div>
         <div class="text-[11px] font-medium text-base-content/60 uppercase tracking-wide mt-0.5">Broken Links</div>
         <div class="text-[10px] text-base-content/40 mt-0.5">Target not found</div>
       </div>
-      <div phx-click="tab" phx-value-tab="stats" class={"cursor-pointer transition-all duration-200 rounded-xl border p-4 text-center #{if @tab == "stats", do: "bg-sky-50 border-sky-300 shadow-sm", else: "bg-base-100 border-base-300 hover:border-sky-200"}"}>
+      <div phx-click="tab" phx-value-tab="stats" class={"cursor-pointer transition-all duration-200 rounded-xl border p-4 text-center #{if @tab == "stats", do: "bg-info/10 border-info/40 shadow-sm", else: "bg-base-100 border-base-300 hover:border-info/30"}"}>
         <div class={"text-2xl font-bold tabular-nums #{if @tab == "stats", do: "text-info", else: "text-base-content"}"}><%= length(@link_stats) %></div>
         <div class="text-[11px] font-medium text-base-content/60 uppercase tracking-wide mt-0.5">Pages Analyzed</div>
         <div class="text-[10px] text-base-content/40 mt-0.5">Link counts</div>
@@ -68,14 +68,14 @@ defmodule Beacon.LiveAdmin.LinkHealthLive do
           <:action :let={page}>
             <.link
               patch={beacon_live_admin_path(@socket, @beacon_page.site, "/pages/#{page.id}")}
-              class="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-indigo-800 transition-colors"
+              class="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
             >
               Edit <.icon name="hero-arrow-right-mini" class="w-3.5 h-3.5" />
             </.link>
           </:action>
         </.table>
         <div :if={@orphans == []} class="py-8 text-center">
-          <.icon name="hero-check-circle" class="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+          <.icon name="hero-check-circle" class="w-8 h-8 text-success mx-auto mb-2" />
           <p class="text-sm text-success font-medium">No orphan pages found</p>
         </div>
       </.main_content>
@@ -95,7 +95,7 @@ defmodule Beacon.LiveAdmin.LinkHealthLive do
           </:col>
         </.table>
         <div :if={@broken_links == []} class="py-8 text-center">
-          <.icon name="hero-check-circle" class="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+          <.icon name="hero-check-circle" class="w-8 h-8 text-success mx-auto mb-2" />
           <p class="text-sm text-success font-medium">No broken links found</p>
         </div>
       </.main_content>
@@ -118,7 +118,7 @@ defmodule Beacon.LiveAdmin.LinkHealthLive do
           </:col>
         </.table>
         <div :if={@link_stats == []} class="py-8 text-center">
-          <.icon name="hero-link" class="w-8 h-8 text-zinc-300  mx-auto mb-2" />
+          <.icon name="hero-link" class="w-8 h-8 text-base-content/40 mx-auto mb-2" />
           <p class="text-sm text-base-content/60">No link data available. Publish pages to generate link graph.</p>
         </div>
       </.main_content>

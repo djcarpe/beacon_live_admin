@@ -48,7 +48,7 @@ defmodule Beacon.LiveAdmin.Preview do
           <span class="hero-arrow-top-right-on-square w-3 h-3"></span>
         </a>
       </div>
-      <div class="border border-base-300 rounded-lg overflow-hidden bg-white relative">
+      <div class="border border-base-300 rounded-lg overflow-hidden bg-base-100 relative">
         <iframe
           id="preview-iframe"
           src={if(@tab == "published" && @live_url, do: @live_url, else: @preview_url)}

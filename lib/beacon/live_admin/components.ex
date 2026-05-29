@@ -47,7 +47,7 @@ defmodule Beacon.LiveAdmin.Components do
 
     ~H"""
     <.error :if={@message}><%= @message %></.error>
-    <code :if={@compilation_error} class="mt-3 text-sm text-rose-600 phx-no-feedback:hidden">
+    <code :if={@compilation_error} class="mt-3 text-sm text-error phx-no-feedback:hidden">
       <pre><%= @compilation_error %></pre>
     </code>
     """
