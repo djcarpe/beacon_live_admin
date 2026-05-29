@@ -20,13 +20,26 @@
 .select,
 .textarea {
   border: 1px solid oklch(var(--b3));
-  background-color: oklch(var(--b1));
+  /* base-200 so fields read as inset against base-100 cards/sidebar/drawer */
+  background-color: oklch(var(--b2));
   color: oklch(var(--bc));
+}
+.input::placeholder,
+.textarea::placeholder {
+  color: oklch(var(--bc) / 0.4);
 }
 .input:focus,
 .input:focus-within,
 .select:focus,
+.select:focus-within,
 .textarea:focus {
   outline: 2px solid oklch(var(--p));
   outline-offset: -1px;
+  border-color: oklch(var(--p));
+}
+/* Checkboxes / radios / toggles need a visible edge on the dark mesa base */
+.checkbox,
+.radio,
+.toggle {
+  border: 1px solid oklch(var(--b3));
 }

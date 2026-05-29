@@ -187,6 +187,7 @@ defmodule Beacon.LiveAdmin.PreviewController do
 
   defp wrap_html(site, title, body) do
     wasm_hash = Beacon.LiveAdmin.AssetsController.current_hash(:wasm)
+    css_hash = Beacon.LiveAdmin.AssetsController.current_hash(:css)
     escaped_title = Phoenix.HTML.html_escape(title) |> Phoenix.HTML.safe_to_string()
     theme_json = if site, do: load_theme_json(site)
     custom_css = if site, do: load_custom_css(site)
@@ -195,11 +196,17 @@ defmodule Beacon.LiveAdmin.PreviewController do
 
     """
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="en" data-theme="beacon-dark">
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>#{escaped_title}</title>
+      <!-- Sojourner fork: load the admin's daisyUI + mesa theme bundle so daisyUI
+           component classes (card/badge/btn/alert/table) render in the preview.
+           The WASM Tailwind compiler below only generates utility classes; daisyUI
+           components and the mesa theme variables come from this stylesheet. -->
+      <link rel="stylesheet" href="/__beacon_live_admin__/assets/css-#{css_hash}">
+      <style>html[data-theme]{ background-color: oklch(var(--b1)); color: oklch(var(--bc)); }</style>
       <style>
         /* Preview indicator */
         body::before {
