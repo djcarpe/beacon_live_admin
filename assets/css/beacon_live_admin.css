@@ -10,3 +10,23 @@
   min-height: 0;
   overflow: hidden;
 }
+
+/* Sojourner fork: admin form controls use bare .input/.select/.textarea (no
+   -bordered), whose DaisyUI v4 default border is transparent — invisible on the
+   MESA base. Force a base-300 border + base-100 field surface in both themes.
+   DaisyUI v4 emits OKLCH channel vars: --b1 = base-100, --b3 = base-300,
+   --bc = base-content, --p = primary. */
+.input,
+.select,
+.textarea {
+  border: 1px solid oklch(var(--b3));
+  background-color: oklch(var(--b1));
+  color: oklch(var(--bc));
+}
+.input:focus,
+.input:focus-within,
+.select:focus,
+.textarea:focus {
+  outline: 2px solid oklch(var(--p));
+  outline-offset: -1px;
+}
