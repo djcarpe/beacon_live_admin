@@ -116,11 +116,58 @@ defmodule Beacon.LiveAdmin.PreviewController do
       config = Beacon.Config.fetch!(site)
 
       if config.tailwind_config && File.exists?(config.tailwind_config) do
-        Beacon.CSS.ThemeParser.parse_file(config.tailwind_config)
+        config.tailwind_config
+        |> Beacon.CSS.ThemeParser.parse_file()
+        |> inject_mesa_colors()
       end
     rescue
       _ -> nil
     end
+  end
+
+  # Sojourner fork: the site's bundled tailwind config exposes an empty
+  # `colors` map and no daisyUI, so the WASM preview compiler has no
+  # definition for semantic classes like `bg-success` / `bg-primary` —
+  # they render with no color. Merge the mesa palette (dark variant, to
+  # match the operational kiosk pages) into the theme `colors` so the
+  # compiler emits those utilities with the correct mesa values.
+  # Source of truth: assets/css/app.css [data-theme=mesa] in rivianvw/sojourner.
+  defp inject_mesa_colors(theme_json) when is_binary(theme_json) do
+    case Jason.decode(theme_json) do
+      {:ok, %{} = map} ->
+        colors = Map.merge(Map.get(map, "colors") || %{}, mesa_colors())
+        map |> Map.put("colors", colors) |> Jason.encode!()
+
+      _ ->
+        theme_json
+    end
+  end
+
+  defp inject_mesa_colors(other), do: other
+
+  defp mesa_colors do
+    %{
+      "primary" => "#2a9c8e",
+      "primary-content" => "#d2f5ed",
+      "secondary" => "#37ad9e",
+      "secondary-content" => "#050505",
+      "accent" => "#b8fa65",
+      "accent-content" => "#050505",
+      "neutral" => "#232323",
+      "neutral-content" => "#dfdfdf",
+      "base-100" => "#050505",
+      "base-200" => "#111111",
+      "base-300" => "#1c1c1c",
+      "base-content" => "#dfdfdf",
+      "info" => "#337cff",
+      "info-content" => "#dfdfdf",
+      "success" => "#37a754",
+      "success-content" => "#050505",
+      "warning" => "#f08c2b",
+      "warning-content" => "#050505",
+      "error" => "#ed5246",
+      "error-content" => "#dfdfdf"
+    }
   end
 
   # Load the site's custom stylesheets
