@@ -182,6 +182,15 @@ defmodule Beacon.LiveAdmin.PreviewController do
         var THEME_JSON = #{theme_json_js};
         var CUSTOM_CSS = #{custom_css_js};
 
+        var __revealed = false;
+        function revealBody() {
+          if (__revealed) return;
+          __revealed = true;
+          document.body.style.opacity = '1';
+        }
+        // No-blank guarantee: reveal even if WASM compilation never succeeds.
+        setTimeout(revealBody, 1500);
+
         function writeStr(wasm, s) {
           var bytes = encoder.encode(s);
           var ptr = wasm.alloc(bytes.length);
@@ -201,12 +210,14 @@ defmodule Beacon.LiveAdmin.PreviewController do
         function compile(wasm, pluginCss) {
           if (!wasm.memory || !wasm.alloc || !wasm.compile || !wasm.free) {
             console.error('[Beacon Preview] WASM missing exports:', Object.keys(wasm));
+            revealBody();
             return;
           }
 
           var candidates = extractCandidates();
           if (!candidates.length) {
             console.warn('[Beacon Preview] No CSS class candidates found in page');
+            revealBody();
             return;
           }
 
@@ -232,6 +243,7 @@ defmodule Beacon.LiveAdmin.PreviewController do
 
           if (result === 0n) {
             console.warn('[Beacon Preview] WASM compile returned empty result');
+            revealBody();
             return;
           }
 
@@ -243,7 +255,7 @@ defmodule Beacon.LiveAdmin.PreviewController do
           var sheet = new CSSStyleSheet();
           sheet.replaceSync(css);
           document.adoptedStyleSheets = [sheet];
-          document.body.style.opacity = '1';
+          revealBody();
         }
 
         fetch('/__beacon_live_admin__/assets/wasm-#{wasm_hash}')
@@ -260,6 +272,7 @@ defmodule Beacon.LiveAdmin.PreviewController do
           })
           .catch(function(err) {
             console.error('[Beacon Preview] CSS compilation failed:', err);
+            revealBody();
           });
       })();
       </script>
