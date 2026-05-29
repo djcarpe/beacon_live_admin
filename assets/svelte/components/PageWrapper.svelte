@@ -14,9 +14,15 @@
   let wrapper: HTMLElement
   let styleWrapper: HTMLElement
   let contentWrapper: HTMLElement
+  let chromeCssHref = ""
   let twConfig = $tailwindConfig
   let configPromise = import(twConfig)
   onMount(async () => {
+    // Mirror the admin's daisyUI + mesa bundle into this shadow root so daisyUI
+    // component classes (card/badge/btn/table/...) and the mesa theme variables
+    // render inside the isolated canvas, matching the rest of the admin.
+    const adminCss = document.querySelector('link[href*="/__beacon_live_admin__/assets/css-"]')
+    if (adminCss) chromeCssHref = adminCss.getAttribute("href") || ""
     const { default: tailwindConfig } = await configPromise
     const tailwind = createTailwindcss({ tailwindConfig })
 
@@ -64,9 +70,10 @@
   }
 </script>
 
+{#if chromeCssHref}<link rel="stylesheet" href={chromeCssHref} />{/if}
 <span bind:this={styleWrapper}></span>
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div bind:this={wrapper} on:click={preventLinkNavigation} on:drop={handleDragDrop} on:keydown={handleKeydown}>
+<div bind:this={wrapper} data-theme="beacon-dark" on:click={preventLinkNavigation} on:drop={handleDragDrop} on:keydown={handleKeydown}>
   {#each $layoutAst as layoutAstNode}
     <LayoutAstNode node={layoutAstNode}>
       <!-- This seemingly useless wrapper is here just so we are sure that the layout and the page don't share the same parent, which screws the position calculations -->

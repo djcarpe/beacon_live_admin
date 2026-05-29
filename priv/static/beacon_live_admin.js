@@ -26124,11 +26124,12 @@ ${indent}in ${name}`).join("")}
   var import_html_entities = __toESM(require_lib());
   mark_module_start();
   PageWrapper[FILENAME] = "svelte/components/PageWrapper.svelte";
-  var root_24 = add_locations(template(`<div class="contents"></div>`), PageWrapper[FILENAME], [[67, 6]]);
-  var root7 = add_locations(template(`<span></span> <div></div>`, 1), PageWrapper[FILENAME], [[61, 0], [63, 0]]);
+  var root_14 = add_locations(template(`<link rel="stylesheet">`), PageWrapper[FILENAME], [[68, 19]]);
+  var root_32 = add_locations(template(`<div class="contents"></div>`), PageWrapper[FILENAME], [[75, 6]]);
+  var root7 = add_locations(template(`<!> <span></span> <div data-theme="beacon-dark"></div>`, 1), PageWrapper[FILENAME], [[69, 0], [71, 0]]);
   var $$css4 = {
     hash: "svelte-9t6pvg",
-    code: '\n  [data-selected="true"], [data-selected-parent="true"] {\n    outline-color: #06b6d4;\n    outline-width: 1px;\n    outline-style: solid;\n  }\n  [data-selected="true"].contents > *, [data-selected-parent="true"].contents > * {\n    outline-color: #06b6d4;\n    outline-width: 1px;\n    outline-style: solid;\n  }\n  /* TODO: Apply this styles to [data-selected-parent="true"] once dragging of the parent element is allowed */\n  [data-highlighted="true"] {\n    outline-color: #06b6d4;\n    outline-width: 2px;\n    outline-style: dashed;\n  }\n\n  :before, :after {\n    pointer-events: none;\n  }\n\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUGFnZVdyYXBwZXIuc3ZlbHRlIiwibWFwcGluZ3MiOiI7QUFrRkEsRUFBVSxxREFBc0QsQ0FBQztBQUNqRSxJQUFJLHNCQUFzQjtBQUMxQixJQUFJLGtCQUFrQjtBQUN0QixJQUFJLG9CQUFvQjtBQUN4QjtBQUNBLEVBQVUsK0VBQWdGLENBQUM7QUFDM0YsSUFBSSxzQkFBc0I7QUFDMUIsSUFBSSxrQkFBa0I7QUFDdEIsSUFBSSxvQkFBb0I7QUFDeEI7QUFDQTtBQUNBLEVBQVUseUJBQTBCLENBQUM7QUFDckMsSUFBSSxzQkFBc0I7QUFDMUIsSUFBSSxrQkFBa0I7QUFDdEIsSUFBSSxxQkFBcUI7QUFDekI7O0FBRUEsRUFBVSxlQUFnQixDQUFDO0FBQzNCLElBQUksb0JBQW9CO0FBQ3hCIiwibmFtZXMiOltdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJQYWdlV3JhcHBlci5zdmVsdGUiXX0= */'
+    code: '\n  [data-selected="true"], [data-selected-parent="true"] {\n    outline-color: #06b6d4;\n    outline-width: 1px;\n    outline-style: solid;\n  }\n  [data-selected="true"].contents > *, [data-selected-parent="true"].contents > * {\n    outline-color: #06b6d4;\n    outline-width: 1px;\n    outline-style: solid;\n  }\n  /* TODO: Apply this styles to [data-selected-parent="true"] once dragging of the parent element is allowed */\n  [data-highlighted="true"] {\n    outline-color: #06b6d4;\n    outline-width: 2px;\n    outline-style: dashed;\n  }\n\n  :before, :after {\n    pointer-events: none;\n  }\n\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUGFnZVdyYXBwZXIuc3ZlbHRlIiwibWFwcGluZ3MiOiI7QUF5RkEsRUFBVSxxREFBc0QsQ0FBQztBQUNqRSxJQUFJLHNCQUFzQjtBQUMxQixJQUFJLGtCQUFrQjtBQUN0QixJQUFJLG9CQUFvQjtBQUN4QjtBQUNBLEVBQVUsK0VBQWdGLENBQUM7QUFDM0YsSUFBSSxzQkFBc0I7QUFDMUIsSUFBSSxrQkFBa0I7QUFDdEIsSUFBSSxvQkFBb0I7QUFDeEI7QUFDQTtBQUNBLEVBQVUseUJBQTBCLENBQUM7QUFDckMsSUFBSSxzQkFBc0I7QUFDMUIsSUFBSSxrQkFBa0I7QUFDdEIsSUFBSSxxQkFBcUI7QUFDekI7O0FBRUEsRUFBVSxlQUFnQixDQUFDO0FBQzNCLElBQUksb0JBQW9CO0FBQ3hCIiwibmFtZXMiOltdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJQYWdlV3JhcHBlci5zdmVsdGUiXX0= */'
   };
   function PageWrapper($$anchor, $$props) {
     check_target(new.target);
@@ -26142,9 +26143,12 @@ ${indent}in ${name}`).join("")}
     let wrapper = mutable_source();
     let styleWrapper = mutable_source();
     let contentWrapper = mutable_source();
+    let chromeCssHref = mutable_source("");
     let twConfig = $tailwindConfig();
     let configPromise = import(twConfig);
     onMount(async () => {
+      const adminCss = document.querySelector('link[href*="/__beacon_live_admin__/assets/css-"]');
+      if (adminCss) set(chromeCssHref, adminCss.getAttribute("href") || "");
       const { default: tailwindConfig2 } = await configPromise;
       const tailwind = createTailwindcss({ tailwindConfig: tailwindConfig2 });
       const reloadStylesheet = async () => {
@@ -26184,7 +26188,18 @@ ${indent}in ${name}`).join("")}
     }
     init();
     var fragment = root7();
-    var span = first_child(fragment);
+    var node = first_child(fragment);
+    {
+      var consequent = ($$anchor2) => {
+        var link2 = root_14();
+        template_effect(() => set_attribute(link2, "href", get(chromeCssHref)));
+        append($$anchor2, link2);
+      };
+      if_block(node, ($$render) => {
+        if (get(chromeCssHref)) $$render(consequent);
+      });
+    }
+    var span = sibling(node, 2);
     bind_this(span, ($$value) => set(styleWrapper, $$value), () => get(styleWrapper));
     var div = sibling(span, 2);
     each(div, 5, $layoutAst, index, ($$anchor2, layoutAstNode) => {
@@ -26193,7 +26208,7 @@ ${indent}in ${name}`).join("")}
           return get(layoutAstNode);
         },
         children: wrap_snippet(PageWrapper, ($$anchor3, $$slotProps) => {
-          var div_1 = root_24();
+          var div_1 = root_32();
           each(div_1, 5, $pageAst, index, ($$anchor4, astNode, index4) => {
             const expression = derived_safe_equal(() => String(index4));
             PageAstNode($$anchor4, {
@@ -26302,8 +26317,8 @@ ${indent}in ${name}`).join("")}
   });
   mark_module_start();
   SelectedElementFloatingMenu[FILENAME] = "svelte/components/SelectedElementFloatingMenu.svelte";
-  var root_25 = add_locations(template(`<button class="absolute top-0 -m-3 w-6 h-6 rounded-full flex justify-center items-center bg-red-500 text-white hover:bg-red-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200 active:bg-red-800" aria-label="Delete component" data-testid="element-delete-button"><span class="hero-trash"></span></button>`), SelectedElementFloatingMenu[FILENAME], [[41, 6, [[48, 8]]]]);
-  var root_14 = add_locations(template(`<div class="selected-element-menu absolute"><!></div> <!> <!>`, 1), SelectedElementFloatingMenu[FILENAME], [[35, 2]]);
+  var root_24 = add_locations(template(`<button class="absolute top-0 -m-3 w-6 h-6 rounded-full flex justify-center items-center bg-red-500 text-white hover:bg-red-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200 active:bg-red-800" aria-label="Delete component" data-testid="element-delete-button"><span class="hero-trash"></span></button>`), SelectedElementFloatingMenu[FILENAME], [[41, 6, [[48, 8]]]]);
+  var root_15 = add_locations(template(`<div class="selected-element-menu absolute"><!></div> <!> <!>`, 1), SelectedElementFloatingMenu[FILENAME], [[35, 2]]);
   function SelectedElementFloatingMenu($$anchor, $$props) {
     check_target(new.target);
     push($$props, false, SelectedElementFloatingMenu);
@@ -26349,12 +26364,12 @@ ${indent}in ${name}`).join("")}
     var node = first_child(fragment);
     {
       var consequent_2 = ($$anchor2) => {
-        var fragment_1 = root_14();
+        var fragment_1 = root_15();
         var div = first_child(fragment_1);
         var node_1 = child(div);
         {
           var consequent = ($$anchor3) => {
-            var button = root_25();
+            var button = root_24();
             template_effect(() => set_style(button, `left: ${get(menuPosition).width}px;`));
             event("click", button, deleteComponent);
             append($$anchor3, button);
@@ -26407,9 +26422,9 @@ ${indent}in ${name}`).join("")}
   });
   mark_module_start();
   SidebarSection[FILENAME] = "svelte/components/SidebarSection.svelte";
-  var root_15 = add_locations(template(`<span class="ml-4 inline-block cursor-pointer" title="Delete attribute" role="button" tabindex="0"><span class="hero-trash text-red hover:text-red"></span></span>`), SidebarSection[FILENAME], [[85, 10, [[92, 13]]]]);
-  var root_32 = add_locations(template(`<input type="text" class="w-full py-1 px-2 bg-gray-100 border-gray-100 rounded-md leading-6 text-sm">`), SidebarSection[FILENAME], [[115, 6]]);
-  var root_26 = add_locations(template(`<!> <div class="pt-3"><!></div>`, 1), SidebarSection[FILENAME], [[124, 4]]);
+  var root_16 = add_locations(template(`<span class="ml-4 inline-block cursor-pointer" title="Delete attribute" role="button" tabindex="0"><span class="hero-trash text-red hover:text-red"></span></span>`), SidebarSection[FILENAME], [[85, 10, [[92, 13]]]]);
+  var root_33 = add_locations(template(`<input type="text" class="w-full py-1 px-2 bg-gray-100 border-gray-100 rounded-md leading-6 text-sm">`), SidebarSection[FILENAME], [[115, 6]]);
+  var root_25 = add_locations(template(`<!> <div class="pt-3"><!></div>`, 1), SidebarSection[FILENAME], [[124, 4]]);
   var root_82 = add_locations(template(`<textarea class="w-full py-1 px-2 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm"></textarea>`), SidebarSection[FILENAME], [[130, 10]]);
   var root_9 = add_locations(template(`<input type="text" class="w-full py-1 px-2 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm">`), SidebarSection[FILENAME], [[139, 10]]);
   var root_10 = add_locations(template(`<div class="pt-3"><!></div>`), SidebarSection[FILENAME], [[149, 10]]);
@@ -26459,7 +26474,7 @@ ${indent}in ${name}`).join("")}
       ]
     ]
   ]);
-  var root_16 = add_locations(template(`<textarea class="w-full py-1 px-2 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm"></textarea>`), SidebarSection[FILENAME], [[209, 12]]);
+  var root_162 = add_locations(template(`<textarea class="w-full py-1 px-2 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm"></textarea>`), SidebarSection[FILENAME], [[209, 12]]);
   var root_17 = add_locations(template(`<input type="text" class="w-full py-1 px-2 mt-5 bg-slate-100 border-slate-100 rounded-md leading-6 text-sm">`), SidebarSection[FILENAME], [[217, 12]]);
   var root10 = add_locations(template(`<section class="p-4 border-b border-b-gray-100 border-solid"><header class="flex items-center text-sm mb-2 font-medium"><button type="button" class="w-full flex items-center justify-between gap-x-1 p-1 font-semibold group"><span><span class="hover:text-blue-700 active:text-blue-900"><!></span> <!></span> <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 stroke-slate-500 fill-slate-500 group-hover:stroke-current group-hover:fill-current"><path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 0 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd"></path></svg></span></button></header> <!></section>`), SidebarSection[FILENAME], [
     [
@@ -26581,7 +26596,7 @@ ${indent}in ${name}`).join("")}
     var node_1 = sibling(span_1, 2);
     {
       var consequent = ($$anchor2) => {
-        var span_2 = root_15();
+        var span_2 = root_16();
         event("click", span_2, stopPropagation(deleteAttribute));
         event("keydown", span_2, (e) => strict_equals(e.key, "Enter") && deleteAttribute());
         append($$anchor2, span_2);
@@ -26597,10 +26612,10 @@ ${indent}in ${name}`).join("")}
     var node_2 = sibling(header, 2);
     {
       var consequent_1 = ($$anchor2) => {
-        var fragment = root_26();
+        var fragment = root_25();
         var node_3 = first_child(fragment);
         slot(node_3, $$props, "input", {}, ($$anchor3) => {
-          var input = root_32();
+          var input = root_33();
           remove_input_defaults(input);
           template_effect(() => {
             set_attribute(input, "placeholder", placeholder());
@@ -26735,7 +26750,7 @@ ${indent}in ${name}`).join("")}
                           var alternate_3 = ($$anchor8, $$elseif3) => {
                             {
                               var consequent_6 = ($$anchor9) => {
-                                var textarea_1 = root_16();
+                                var textarea_1 = root_162();
                                 remove_textarea_child(textarea_1);
                                 template_effect(() => {
                                   set_attribute(textarea_1, "placeholder", placeholder());

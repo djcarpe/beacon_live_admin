@@ -572,10 +572,23 @@ defmodule Beacon.LiveAdmin.PageEditorLive.FormComponent do
   defp encode_layout(_, _), do: []
 
   defp encode_component(site, component, page_assigns) when is_atom(site) and is_map(component) do
-    template = component[:example] || ""
+    # Component examples are stored in legacy HEEx function-component syntax
+    # (`<.name ... />`), which Beacon's post-HEEx renderer cannot resolve — it
+    # raises UndefinedFunctionError (`:name/1 undefined local`) and the whole
+    # drop fails. Rewrite to the new component-reference tag (`<name ... />`) so
+    # insertion produces a valid reference the runtime can render, and guard the
+    # per-node render so a failed component preview never crashes the editor.
+    template =
+      (component[:example] || "")
+      |> String.replace("</.", "</")
+      |> String.replace("<.", "<")
 
     Beacon.LiveAdmin.VisualEditor.HEEx.JSONEncoder.maybe_encode(template, fn node ->
-      Beacon.LiveAdmin.Client.HEEx.render(site, node, page_assigns)
+      try do
+        Beacon.LiveAdmin.Client.HEEx.render(site, node, page_assigns)
+      rescue
+        _ -> node
+      end
     end)
   end
 
