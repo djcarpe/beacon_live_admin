@@ -275,8 +275,12 @@ defmodule Beacon.LiveAdmin.VisualEditor.HEEx.JSONEncoder do
       end)
 
     cond do
-      # start with '.' or a capital letter, we consider it a component call
-      String.match?(tag, ~r/^[A-Z]|\./) -> add_rendered_html.()
+      # A component call is a tag starting with '.' or a capital letter (legacy
+      # HEEx function components) OR a snake_case / hyphenated tag (Beacon's
+      # post-HEEx component references, e.g. `alert_banner`). All of these need
+      # render_node_fun to produce expanded `rendered_html` for the canvas;
+      # plain HTML tags (div, p, h1, ...) render themselves and are left alone.
+      String.match?(tag, ~r/^[A-Z]|[._-]/) -> add_rendered_html.()
       tag == "svg" -> add_rendered_html.()
       has_eex_in_attrs? -> add_rendered_html.()
       :else -> entry
