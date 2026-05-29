@@ -328,12 +328,12 @@ defmodule Beacon.LiveAdmin.PageEditorLive.FormComponent do
       <.modal :if={@show_modal == :publish_confirm} id="publish-confirm-modal" on_cancel={JS.push("close_modal", target: @myself)} show>
         <:title>Publish Page</:title>
         <div class="mt-2">
-          <p class="text-sm text-gray-500">Are you sure you want to publish this page and make it public? Any unsaved changes on this page will also be saved and published.</p>
+          <p class="text-sm text-base-content/60">Are you sure you want to publish this page and make it public? Any unsaved changes on this page will also be saved and published.</p>
         </div>
         <div class="py-4">
           <button
             type="button"
-            class="inline-flex justify-center w-full px-3 py-2 mt-3 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+            class="inline-flex justify-center w-full px-3 py-2 mt-3 text-sm font-semibold text-base-content bg-base-100 rounded-md shadow-sm ring-1 ring-inset ring-base-300 hover:bg-base-200 sm:mt-0 sm:w-auto"
             phx-click={JS.push("close_modal", target: @myself)}
           >
             Cancel
@@ -341,7 +341,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.FormComponent do
           <button
             type="submit"
             form="page-form"
-            class="inline-flex justify-center w-full px-3 py-2 text-sm font-semibold text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-500 sm:w-auto"
+            class="inline-flex justify-center w-full px-3 py-2 text-sm font-semibold text-primary-content bg-primary rounded-md shadow-sm hover:bg-primary/90 sm:w-auto"
             name="save"
             value="publish"
           >
@@ -523,7 +523,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.FormComponent do
 
           <%!-- Preview pane --%>
           <div class={[
-            "flex-1 min-w-0 min-h-0 rounded-xl overflow-hidden border border-base-300 bg-white",
+            "flex-1 min-w-0 min-h-0 rounded-xl overflow-hidden border border-base-300 bg-base-100",
             if(@workspace_layout == "editor", do: "hidden")
           ]}>
             <iframe

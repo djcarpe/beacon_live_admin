@@ -102,7 +102,7 @@ defmodule Beacon.LiveAdmin.LayoutEditorLive.FormComponent do
       <.header>
         <%= layout_name(@form.source) %>
 
-        <div class="text-sm text-gray-500">
+        <div class="text-sm text-base-content/60">
           <.link patch={beacon_live_admin_path(@socket, @site, "/layouts/#{@beacon_layout.id}/revisions")}>
             <span :if={@status == :created}>
               <.icon name="hero-document-plus-solid" class="w-5 h-5" /> <%= display_status(@status) %>
@@ -121,21 +121,21 @@ defmodule Beacon.LiveAdmin.LayoutEditorLive.FormComponent do
       </.header>
 
       <.modal id="publish-confirm-modal">
-        <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Publish Layout</h3>
+        <h3 class="text-base font-semibold leading-6 text-base-content" id="modal-title">Publish Layout</h3>
         <div class="mt-2">
-          <p class="text-sm text-gray-500">Are you sure you want to publish this layout and make it public? Please make sure all changes were saved before publishing it.</p>
+          <p class="text-sm text-base-content/60">Are you sure you want to publish this layout and make it public? Please make sure all changes were saved before publishing it.</p>
         </div>
         <div class="py-4">
           <button
             type="button"
-            class="inline-flex justify-center w-full px-3 py-2 mt-3 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+            class="inline-flex justify-center w-full px-3 py-2 mt-3 text-sm font-semibold text-base-content bg-base-100 rounded-md shadow-sm ring-1 ring-inset ring-base-300 hover:bg-base-200 sm:mt-0 sm:w-auto"
             phx-click={JS.exec("data-cancel", to: "#publish-confirm-modal")}
           >
             Cancel
           </button>
           <button
             type="button"
-            class="inline-flex justify-center w-full px-3 py-2 text-sm font-semibold text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-500 sm:w-auto"
+            class="inline-flex justify-center w-full px-3 py-2 text-sm font-semibold text-primary-content bg-primary rounded-md shadow-sm hover:bg-primary/90 sm:w-auto"
             phx-click="publish"
             phx-value-id={@beacon_layout.id}
             phx-target={@myself}
@@ -146,7 +146,7 @@ defmodule Beacon.LiveAdmin.LayoutEditorLive.FormComponent do
       </.modal>
 
       <div class="grid items-start lg:h-[calc(100vh_-_144px)] grid-cols-1 mx-auto mt-4 gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-        <div class="p-4 bg-white col-span-full lg:col-span-1 rounded-[1.25rem] lg:rounded-t-[1.25rem] lg:rounded-b-none lg:h-full">
+        <div class="p-4 bg-base-100 col-span-full lg:col-span-1 rounded-[1.25rem] lg:rounded-t-[1.25rem] lg:rounded-b-none lg:h-full">
           <.form :let={f} for={@form} id="layout-form" class="space-y-8" phx-target={@myself} phx-change="validate" phx-submit="save">
             <legend class="text-sm font-bold tracking-widest text-[#445668] uppercase">Layout Settings</legend>
             <.input field={f[:title]} type="text" label="Title" />

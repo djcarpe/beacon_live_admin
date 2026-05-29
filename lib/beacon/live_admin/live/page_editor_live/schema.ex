@@ -115,8 +115,8 @@ defmodule Beacon.LiveAdmin.PageEditorLive.Schema do
 
       <div class="w-full mt-4 space-y-8">
         <div class="flex items-center gap-3">
-          <label class="text-sm font-medium text-gray-500">Insert Template:</label>
-          <button :for={type <- ["Article", "FAQPage", "Product", "HowTo"]} phx-click="insert_template" phx-value-type={type} class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-indigo-700 bg-indigo-50 rounded-md hover:bg-indigo-100 transition-colors">
+          <label class="text-sm font-medium text-base-content/60">Insert Template:</label>
+          <button :for={type <- ["Article", "FAQPage", "Product", "HowTo"]} phx-click="insert_template" phx-value-type={type} class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-primary bg-primary/10 rounded-md hover:bg-primary/20 transition-colors">
             <%= type %>
           </button>
         </div>

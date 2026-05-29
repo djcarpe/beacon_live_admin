@@ -176,7 +176,7 @@ defmodule Beacon.LiveAdmin.SiteSettingsEditorLive.Index do
               <.button phx-disable-with="Saving..." class="btn-primary ml-auto">Save Changes</.button>
             </.form>
 
-            <div :if={@selected.description} class="mt-4 text-sm text-slate-600">
+            <div :if={@selected.description} class="mt-4 text-sm text-base-content/70">
               <span class="font-medium">Description:</span> <%= @selected.description %>
             </div>
 

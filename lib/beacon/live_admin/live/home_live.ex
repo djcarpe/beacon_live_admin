@@ -52,7 +52,7 @@ defmodule Beacon.LiveAdmin.HomeLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="w-full min-h-screen bg-gray-50 ">
+    <div class="w-full min-h-screen bg-base-200 ">
       <header class="px-6 pt-8 lg:px-8">
         <div class="max-w-screen-xl mx-auto">
           <h1 class="text-2xl font-semibold text-base-content">Welcome!</h1>

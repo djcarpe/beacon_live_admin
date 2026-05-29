@@ -277,7 +277,7 @@ defmodule Beacon.LiveAdmin.GraphQLEndpointEditorLive.Index do
               </div>
             </.form>
 
-            <div class="mt-6 p-4 bg-gray-50 bg-base-100 rounded-lg">
+            <div class="mt-6 p-4 bg-base-200 rounded-lg">
               <div class="flex items-center justify-between mb-3">
                 <h3 class="text-sm font-semibold text-base-content/80">Schema</h3>
                 <.button type="button" phx-click="introspect" class="btn-ghost btn-xs">

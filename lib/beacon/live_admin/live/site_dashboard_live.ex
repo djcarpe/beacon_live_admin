@@ -166,8 +166,8 @@ defmodule Beacon.LiveAdmin.SiteDashboardLive do
               patch={beacon_live_admin_path(@socket, @site_name, section.path)}
               class="group flex items-start gap-3.5 p-4 bg-base-100 rounded-xl border border-base-300 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
             >
-              <div class="flex items-center justify-center w-9 h-9 rounded-lg bg-slate-100 bg-base-200 flex-shrink-0 group-hover:bg-indigo-50 transition-colors duration-200">
-                <.icon name={section.icon} class="w-4.5 h-4.5 text-slate-500  group-hover:text-indigo-500 transition-colors duration-200" />
+              <div class="flex items-center justify-center w-9 h-9 rounded-lg bg-base-200 flex-shrink-0 group-hover:bg-indigo-50 transition-colors duration-200">
+                <.icon name={section.icon} class="w-4.5 h-4.5 text-base-content/60  group-hover:text-indigo-500 transition-colors duration-200" />
               </div>
               <div class="min-w-0 pt-0.5">
                 <h4 class="text-sm font-semibold text-base-content group-hover:text-indigo-600 transition-colors"><%= section.title %></h4>

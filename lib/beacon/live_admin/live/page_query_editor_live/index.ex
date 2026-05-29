@@ -160,14 +160,14 @@ defmodule Beacon.LiveAdmin.PageQueryEditorLive.Index do
               <div class="p-4 bg-base-100 border border-base-300 rounded-lg">
                 <div class="flex items-start justify-between">
                   <div class="flex items-center gap-3">
-                    <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-indigo-100 text-primary text-xs font-bold">
+                    <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
                       <%= index + 1 %>
                     </span>
                     <div>
                       <div class="flex items-center gap-2">
                         <span class="text-sm font-semibold text-base-content font-mono">@<%= query.result_alias %></span>
-                        <span class="text-xs px-2 py-0.5 rounded bg-gray-100 bg-base-200 text-base-content/70"><%= query.endpoint_name %></span>
-                        <span :if={query.depends_on} class="text-xs px-2 py-0.5 rounded bg-amber-100 text-warning">depends on: <%= query.depends_on %></span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-base-200 text-base-content/70"><%= query.endpoint_name %></span>
+                        <span :if={query.depends_on} class="text-xs px-2 py-0.5 rounded bg-warning/10 text-warning">depends on: <%= query.depends_on %></span>
                       </div>
                       <div class="mt-1 text-xs text-base-content/60">
                         Variables: <%= variable_binding_summary(query.variable_bindings) %>
@@ -175,7 +175,7 @@ defmodule Beacon.LiveAdmin.PageQueryEditorLive.Index do
                     </div>
                   </div>
                   <button type="button" phx-click="delete" phx-value-id={query.id}
-                    class="text-gray-400 hover:text-red-500 transition-colors">
+                    class="text-base-content/50 hover:text-error transition-colors">
                     <.icon name="hero-x-mark" class="w-4 h-4" />
                   </button>
                 </div>

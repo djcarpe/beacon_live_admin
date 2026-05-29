@@ -92,20 +92,20 @@ defmodule Beacon.LiveAdmin.SEOAuditLive do
   defp score_bg({earned, total}) do
     pct = earned / max(total, 1) * 100
     cond do
-      pct >= 80 -> "bg-emerald-50/50"
-      pct >= 40 -> "bg-amber-50/50"
-      true -> "bg-rose-50/50"
+      pct >= 80 -> "bg-success/10"
+      pct >= 40 -> "bg-warning/10"
+      true -> "bg-error/10"
     end
   end
 
   defp issue_badge_class(issue) do
     cond do
       String.contains?(issue, "Missing") or String.contains?(issue, "No ") ->
-        "bg-rose-50 text-rose-700 ring-rose-200"
+        "bg-error/10 text-error ring-error/30"
       String.contains?(issue, "too long") ->
-        "bg-amber-50 text-amber-700 ring-amber-200"
+        "bg-warning/10 text-warning ring-warning/30"
       true ->
-        "bg-zinc-100 text-zinc-600 ring-zinc-200 bg-base-200 "
+        "bg-base-200 text-base-content/70 ring-base-300"
     end
   end
 
@@ -169,7 +169,7 @@ defmodule Beacon.LiveAdmin.SEOAuditLive do
               <th class="relative p-0 pb-4"><span class="sr-only">Actions</span></th>
             </tr>
           </thead>
-          <tbody class="relative text-sm leading-6 divide-y divide-zinc-100 text-slate-800 ">
+          <tbody class="relative text-sm leading-6 divide-y divide-base-300 text-base-content ">
             <%= for %{page: page, score: score, issues: issues} <- @audited_pages do %>
               <tr class={"group #{score_bg(score)}"}>
                 <td class="py-4 pl-4 pr-6">

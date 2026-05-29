@@ -33,7 +33,7 @@ defmodule Beacon.LiveAdmin.LayoutEditorLive.Revisions do
         <%= @page_title %>
       </.header>
       <.main_content class="h-auto">
-        <ol class="relative mt-4 ml-4 border-l border-gray-200">
+        <ol class="relative mt-4 ml-4 border-l border-base-300">
           <%= for event <- @events do %>
             <.revision event={event} />
           <% end %>
@@ -50,25 +50,25 @@ defmodule Beacon.LiveAdmin.LayoutEditorLive.Revisions do
   def revision(assigns) do
     ~H"""
     <li class="mb-10 ml-8 group">
-      <div class="absolute flex items-center justify-center block w-10 h-10 bg-white rounded-full shadow-md -left-5 ">
-        <div class="absolute flex items-center justify-center block w-6 h-6 bg-blue-100 rounded-full">
-          <.icon :if={@event.event == :published} name="hero-eye-solid" class="w-4 h-4 text-blue-800" />
-          <.icon :if={@event.event == :created} name="hero-document-plus-solid" class="w-4 h-4 text-blue-800" />
+      <div class="absolute flex items-center justify-center block w-10 h-10 bg-base-100 rounded-full shadow-md -left-5 ">
+        <div class="absolute flex items-center justify-center block w-6 h-6 bg-primary/10 rounded-full">
+          <.icon :if={@event.event == :published} name="hero-eye-solid" class="w-4 h-4 text-primary" />
+          <.icon :if={@event.event == :created} name="hero-document-plus-solid" class="w-4 h-4 text-primary" />
         </div>
       </div>
 
-      <h3 class="flex items-center pt-2 mb-1 text-lg font-semibold text-gray-900">
-        <%= Phoenix.Naming.humanize(@event.event) %> <span class="ml-2 text-sm text-gray-500"><%= format_datetime(@event.inserted_at) %></span>
-        <span class="hidden group-first:block bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Latest</span>
+      <h3 class="flex items-center pt-2 mb-1 text-lg font-semibold text-base-content">
+        <%= Phoenix.Naming.humanize(@event.event) %> <span class="ml-2 text-sm text-base-content/60"><%= format_datetime(@event.inserted_at) %></span>
+        <span class="hidden group-first:block bg-primary/10 text-primary text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Latest</span>
       </h3>
 
       <ol :if={@event.snapshot} class="space-y-4">
         <li>
-          <h4 class="text-gray-600">Title</h4>
+          <h4 class="text-base-content/70">Title</h4>
           <%= @event.snapshot.layout.title %>
         </li>
         <li>
-          <h4 class="text-gray-600">Template</h4>
+          <h4 class="text-base-content/70">Template</h4>
           <div class="w-full mt-2">
             <div class="py-6 rounded-[1.25rem] bg-[#0D1829] [&_.monaco-editor-background]:!bg-[#0D1829] [&_.margin]:!bg-[#0D1829]">
               <LiveMonacoEditor.code_editor
@@ -81,11 +81,11 @@ defmodule Beacon.LiveAdmin.LayoutEditorLive.Revisions do
           </div>
         </li>
         <li>
-          <h4 class="text-gray-600">Meta Tags</h4>
+          <h4 class="text-base-content/70">Meta Tags</h4>
           <.meta_tags_table layout={@event.snapshot.layout} />
         </li>
         <li>
-          <h4 class="text-gray-600">Resource Links</h4>
+          <h4 class="text-base-content/70">Resource Links</h4>
           <.resource_links_table layout={@event.snapshot.layout} />
         </li>
       </ol>

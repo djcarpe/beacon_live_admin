@@ -50,12 +50,15 @@ defmodule Beacon.LiveAdmin.InfoHandlerEditorLive.Index do
 
   def handle_event("save_new", params, socket) do
     %{beacon_page: %{site: site}} = socket.assigns
-    %{"info_handler" => %{"msg" => msg}} = params
+    %{"info_handler" => info_handler_params} = params
+    msg = Map.get(info_handler_params, "msg", "")
+    topic = Map.get(info_handler_params, "topic")
 
     attrs = %{
       "msg" => msg,
       "site" => site,
-      "code" => "{:noreply, socket}"
+      "code" => "{:noreply, socket}",
+      "topic" => topic
     }
 
     socket =
@@ -225,6 +228,11 @@ defmodule Beacon.LiveAdmin.InfoHandlerEditorLive.Index do
           <:title>New Info Handler</:title>
           <.form :let={f} for={@create_form} id="create-form" phx-submit="save_new" class="px-4">
             <.input field={f[:msg]} type="text" label="Msg argument for new handle_info callback:" />
+            <.input
+              field={f[:topic]}
+              type="text"
+              label="PubSub topic (optional) — the LV will auto-subscribe to this topic on mount:"
+            />
             <.button class="btn-primary mt-4">Save</.button>
           </.form>
         </.modal>
@@ -245,12 +253,16 @@ defmodule Beacon.LiveAdmin.InfoHandlerEditorLive.Index do
               <:col :let={info_handler} label="msg">
                 <%= Map.fetch!(info_handler, :msg) %>
               </:col>
+              <:col :let={info_handler} label="topic">
+                <%= Map.get(info_handler, :topic) || "—" %>
+              </:col>
             </.table>
           </div>
 
           <div :if={@form} class="w-full col-span-2">
-            <.form :let={f} for={@form} id="info-handler-form" class="flex items-end gap-4" phx-change="validate" phx-submit="save_changes">
+            <.form :let={f} for={@form} id="info-handler-form" class="flex items-end gap-4 flex-wrap" phx-change="validate" phx-submit="save_changes">
               <.input label="Message Argument" field={f[:msg]} type="text" />
+              <.input label="PubSub Topic (optional)" field={f[:topic]} type="text" />
               <.input type="hidden" field={f[:code]} name="info_handler[code]" id="info_handler-form_code" value={Phoenix.HTML.Form.input_value(f, :code)} />
 
               <.button phx-disable-with="Saving..." class="btn-primary ml-auto">Save Changes</.button>

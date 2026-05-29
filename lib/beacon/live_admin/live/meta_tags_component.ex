@@ -116,7 +116,7 @@ defmodule Beacon.LiveAdmin.MetaTagsComponent do
         </div>
 
         <div class="mt-8 overflow-x-auto">
-          <.form for={%{}} as={:meta_tags} id="meta-tags-form" class="divide-y divide-gray-100" phx-target={@myself} phx-submit="save">
+          <.form for={%{}} as={:meta_tags} id="meta-tags-form" class="divide-y divide-base-300" phx-target={@myself} phx-submit="save">
             <%= for {meta_tag, i} <- Enum.with_index(@meta_tags) do %>
               <div class="grid items-end grid-flow-col gap-2 py-5 ">
                 <%= for attribute <- @attributes do %>
@@ -143,7 +143,7 @@ defmodule Beacon.LiveAdmin.MetaTagsComponent do
                     title="delete"
                     data-confirm="Are you sure?"
                   >
-                    <span aria-hidden="true" class="text-red-500 hover:text-red-700 hero-trash"></span>
+                    <span aria-hidden="true" class="text-error hover:text-error/80 hero-trash"></span>
                   </button>
                 </div>
               </div>

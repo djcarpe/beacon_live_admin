@@ -389,9 +389,9 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
       </.header>
 
       <div class="grid items-start lg:h-[calc(100vh_-_144px)] grid-cols-1 mx-auto mt-4 gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-        <div class="p-4 bg-white col-span-full lg:col-span-1 rounded-[1.25rem] lg:rounded-t-[1.25rem] lg:rounded-b-none lg:h-full">
+        <div class="p-4 bg-base-100 col-span-full lg:col-span-1 rounded-[1.25rem] lg:rounded-t-[1.25rem] lg:rounded-b-none lg:h-full">
           <.form :let={f} for={@form} id="component-form" class="space-y-8" phx-target={@myself} phx-change="validate" phx-submit="save">
-            <legend class="text-sm font-bold tracking-widest text-[#445668] uppercase">Component settings</legend>
+            <legend class="text-sm font-bold tracking-widest text-base-content/70 uppercase">Component settings</legend>
             <.input field={f[:name]} phx-debounce="100" type="text" label="Name" />
             <.input field={f[:category]} type="select" options={categories_to_options(@site)} label="Category" />
             <.error :for={msg <- Enum.map(f[:attrs].errors, &translate_error(&1))}><%= msg %></.error>
@@ -496,7 +496,7 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
           <.input field={f[:type]} type="select" options={types_to_options()} label="Type" class="text-sm p-1 m-2 focus:ring-2" />
           <.input :if={f[:type].value == "struct"} field={f[:struct_name]} type="text" phx-debounce="100" placeholder="MyApp.Users.User" label="Struct Name" class="text-sm p-1 m-2 focus:ring-2" />
 
-          <legend class="text-sm font-bold tracking-widest text-[#445668] uppercase">Options</legend>
+          <legend class="text-sm font-bold tracking-widest text-base-content/70 uppercase">Options</legend>
           <.input field={f[:opts_required]} type="select" options={["false", "true"]} value={opts_required_value(f)} label="Required" class="text-sm p-1 m-2 focus:ring-2" />
           <.input field={f[:opts_default]} type="text" phx-debounce="100" value={opts_default_value(f)} label="Default" class="text-sm p-1 m-2 focus:ring-2" />
           <.input

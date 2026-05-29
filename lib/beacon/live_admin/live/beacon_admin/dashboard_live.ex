@@ -74,7 +74,7 @@ defmodule Beacon.LiveAdmin.BeaconAdmin.DashboardLive do
       <.main_content>
         <div class="flex items-center gap-3 px-1 py-2">
           <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-            <.icon name="hero-users" class="w-5 h-5 text-purple-500" />
+            <.icon name="hero-users" class="w-5 h-5 text-accent" />
           </div>
           <div>
             <div class="text-2xl font-bold text-base-content"><%= @user_count %></div>
@@ -124,8 +124,8 @@ defmodule Beacon.LiveAdmin.BeaconAdmin.DashboardLive do
           patch={Beacon.LiveAdmin.Router.beacon_live_admin_path(@socket, link.path)}
           class="group flex items-start gap-3.5 p-4 bg-base-100 rounded-xl border border-base-300 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
         >
-          <div class="flex items-center justify-center w-9 h-9 rounded-lg bg-slate-100 bg-base-200 flex-shrink-0 group-hover:bg-indigo-50 transition-colors duration-200">
-            <.icon name={link.icon} class="w-4.5 h-4.5 text-slate-500  group-hover:text-indigo-500 transition-colors duration-200" />
+          <div class="flex items-center justify-center w-9 h-9 rounded-lg bg-base-200 flex-shrink-0 group-hover:bg-indigo-50 transition-colors duration-200">
+            <.icon name={link.icon} class="w-4.5 h-4.5 text-base-content/60  group-hover:text-indigo-500 transition-colors duration-200" />
           </div>
           <div class="min-w-0 pt-0.5">
             <h4 class="text-sm font-semibold text-base-content group-hover:text-indigo-600 transition-colors"><%= link.title %></h4>

@@ -164,7 +164,7 @@ defmodule Beacon.LiveAdmin.ActionBuilderLive.Index do
                 <div class="space-y-1">
                   <%= for action <- actions do %>
                     <button type="button" phx-click="add_action" phx-value-type={action.type}
-                      class="w-full flex items-center gap-2 px-3 py-2 text-sm bg-base-100 hover:bg-indigo-50 border border-base-300 rounded-lg transition-colors text-left">
+                      class="w-full flex items-center gap-2 px-3 py-2 text-sm bg-base-100 hover:bg-primary/10 border border-base-300 rounded-lg transition-colors text-left">
                       <span class="font-medium text-base-content"><%= action.label %></span>
                       <span class="text-xs text-base-content/40 ml-auto"><%= action.desc %></span>
                     </button>
@@ -181,7 +181,7 @@ defmodule Beacon.LiveAdmin.ActionBuilderLive.Index do
             </h3>
 
             <%= if @validation_result do %>
-              <div class={"p-3 rounded-lg text-sm #{case @validation_result do {:ok, _} -> "bg-success/10 text-green-700"; {:error, _} -> "bg-error/10 text-red-700" end}"}>
+              <div class={"p-3 rounded-lg text-sm #{case @validation_result do {:ok, _} -> "bg-success/10 text-success"; {:error, _} -> "bg-error/10 text-error" end}"}>
                 <%= case @validation_result do %>
                   <% {:ok, msg} -> %><%= msg %>
                   <% {:error, errors} -> %>
@@ -195,7 +195,7 @@ defmodule Beacon.LiveAdmin.ActionBuilderLive.Index do
             <% end %>
 
             <%= if @steps == [] do %>
-              <div class="text-center py-12 border-2 border-dashed border-gray-300  rounded-lg">
+              <div class="text-center py-12 border-2 border-dashed border-base-300 rounded-lg">
                 <p class="text-base-content/60">Click an action from the palette to add steps</p>
               </div>
             <% else %>
@@ -204,15 +204,15 @@ defmodule Beacon.LiveAdmin.ActionBuilderLive.Index do
                   <div class="flex items-start gap-2 p-3 bg-base-100 border border-base-300 rounded-lg group">
                     <div class="flex flex-col gap-1 flex-shrink-0">
                       <button type="button" phx-click="move_up" phx-value-index={index}
-                        class="text-gray-300 hover:text-gray-600 transition-colors disabled:opacity-30"
+                        class="text-base-content/40 hover:text-base-content/70 transition-colors disabled:opacity-30"
                         disabled={index == 0}>
                         <.icon name="hero-chevron-up-mini" class="w-4 h-4" />
                       </button>
-                      <span class="w-6 h-6 flex items-center justify-center rounded-full bg-indigo-100 text-primary text-xs font-bold">
+                      <span class="w-6 h-6 flex items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
                         <%= index + 1 %>
                       </span>
                       <button type="button" phx-click="move_down" phx-value-index={index}
-                        class="text-gray-300 hover:text-gray-600 transition-colors disabled:opacity-30"
+                        class="text-base-content/40 hover:text-base-content/70 transition-colors disabled:opacity-30"
                         disabled={index == length(@steps) - 1}>
                         <.icon name="hero-chevron-down-mini" class="w-4 h-4" />
                       </button>
@@ -230,14 +230,14 @@ defmodule Beacon.LiveAdmin.ActionBuilderLive.Index do
                               placeholder={field}
                               phx-blur="update_field"
                               phx-value-index={index}
-                              class="text-xs px-2 py-1.5 border border-gray-300  rounded bg-base-200 text-base-content w-40"
+                              class="text-xs px-2 py-1.5 border border-base-300 rounded bg-base-200 text-base-content w-40"
                             />
                           </div>
                         <% end %>
                       </div>
                     </div>
                     <button type="button" phx-click="remove_action" phx-value-index={index}
-                      class="flex-shrink-0 opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-all">
+                      class="flex-shrink-0 opacity-0 group-hover:opacity-100 text-base-content/50 hover:text-error transition-all">
                       <.icon name="hero-x-mark" class="w-4 h-4" />
                     </button>
                   </div>

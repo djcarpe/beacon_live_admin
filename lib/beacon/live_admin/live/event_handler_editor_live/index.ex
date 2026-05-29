@@ -369,7 +369,7 @@ defmodule Beacon.LiveAdmin.EventHandlerEditorLive.Index do
             <.table id="event-handlers" rows={@event_handlers} row_click={fn row -> "select-#{row.id}" end}>
               <:col :let={event_handler} label="Name"><%= Map.fetch!(event_handler, :name) %></:col>
               <:col :let={event_handler} label="Format">
-                <span class={"px-2 py-0.5 text-xs rounded-full #{if event_handler.format == :actions, do: "bg-indigo-100 text-indigo-700", else: "bg-gray-100 text-gray-600 bg-base-100 "}"}>
+                <span class={"px-2 py-0.5 text-xs rounded-full #{if event_handler.format == :actions, do: "bg-primary/10 text-primary", else: "bg-base-200 text-base-content/70"}"}>
                   <%= event_handler.format %>
                 </span>
               </:col>
@@ -387,7 +387,7 @@ defmodule Beacon.LiveAdmin.EventHandlerEditorLive.Index do
             <div class="mt-4 flex items-center gap-4">
               <span class="text-sm font-medium text-base-content/80">Format:</span>
               <button type="button" phx-click="toggle_format"
-                class={"px-3 py-1.5 text-sm rounded-lg border transition-colors #{if selected_format(@selected) == :elixir, do: "bg-gray-100 border-gray-300 bg-base-100 ", else: "bg-indigo-50 border-indigo-300 text-indigo-700"}"}>
+                class={"px-3 py-1.5 text-sm rounded-lg border transition-colors #{if selected_format(@selected) == :elixir, do: "bg-base-200 border-base-300 text-base-content/80", else: "bg-primary/10 border-primary/30 text-primary"}"}>
                 <%= if selected_format(@selected) == :elixir, do: "Elixir Code", else: "Actions (Declarative)" %>
                 <span class="ml-1 text-xs opacity-60">click to switch</span>
               </button>
@@ -419,7 +419,7 @@ defmodule Beacon.LiveAdmin.EventHandlerEditorLive.Index do
                 <div class="space-y-2">
                   <%= for {step, index} <- Enum.with_index((@selected.actions || %{"steps" => []})["steps"] || []) do %>
                     <div class="flex items-start gap-2 p-3 bg-base-100 border border-base-300 rounded-lg">
-                      <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-indigo-100 text-primary text-xs font-bold">
+                      <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
                         <%= index + 1 %>
                       </span>
                       <div class="flex-1 min-w-0">
@@ -438,13 +438,13 @@ defmodule Beacon.LiveAdmin.EventHandlerEditorLive.Index do
                               placeholder={field}
                               phx-blur="update_action"
                               phx-value-index={index}
-                              class="text-xs px-2 py-1 border border-gray-300  rounded bg-base-200 text-base-content"
+                              class="text-xs px-2 py-1 border border-base-300 rounded bg-base-200 text-base-content"
                             />
                           <% end %>
                         </div>
                       </div>
                       <button type="button" phx-click="remove_action" phx-value-index={index}
-                        class="flex-shrink-0 text-gray-400 hover:text-red-500 transition-colors">
+                        class="flex-shrink-0 text-base-content/50 hover:text-error transition-colors">
                         <.icon name="hero-x-mark" class="w-4 h-4" />
                       </button>
                     </div>
@@ -460,7 +460,7 @@ defmodule Beacon.LiveAdmin.EventHandlerEditorLive.Index do
                         <div class="flex flex-wrap gap-1 mt-1">
                           <%= for action <- actions do %>
                             <button type="button" phx-click="add_action" phx-value-type={action.type}
-                              class="px-2 py-1 text-xs bg-gray-100 bg-base-100 hover:bg-indigo-100 text-base-content/80 rounded transition-colors">
+                              class="px-2 py-1 text-xs bg-base-200 hover:bg-primary/10 text-base-content/80 rounded transition-colors">
                               <%= action.label %>
                             </button>
                           <% end %>

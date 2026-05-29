@@ -120,7 +120,7 @@ defmodule Beacon.LiveAdmin.LayoutEditorLive.ResourceLinks do
         </div>
 
         <div class="mt-8 overflow-x-auto">
-          <.form for={%{}} as={:resource_links} id="resource-links-form" class="divide-y divide-gray-100" phx-submit="save">
+          <.form for={%{}} as={:resource_links} id="resource-links-form" class="divide-y divide-base-300" phx-submit="save">
             <%= for {resource_link, i} <- Enum.with_index(@resource_links) do %>
               <div class="grid items-end grid-flow-col gap-2 py-5 ">
                 <%= for attribute <- @attributes do %>
@@ -138,7 +138,7 @@ defmodule Beacon.LiveAdmin.LayoutEditorLive.ResourceLinks do
                 <% end %>
                 <div class="justify-self-end">
                   <button type="button" class="flex items-center justify-center w-10 h-10" phx-click="delete" phx-value-index={i} aria-label="Delete" title="delete" data-confirm="Are you sure?">
-                    <span aria-hidden="true" class="text-red-500 hover:text-red-700 hero-trash"></span>
+                    <span aria-hidden="true" class="text-error hover:text-error/80 hero-trash"></span>
                   </button>
                 </div>
               </div>

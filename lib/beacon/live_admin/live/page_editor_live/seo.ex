@@ -148,9 +148,9 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
     pct = earned / total * 100
 
     cond do
-      pct >= 80 -> "text-green-600"
+      pct >= 80 -> "text-success"
       pct >= 40 -> "text-yellow-600"
-      true -> "text-red-600"
+      true -> "text-error"
     end
   end
 
@@ -168,10 +168,10 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
     len = String.length(value || "")
 
     cond do
-      len == 0 -> "text-gray-400"
-      len <= limit * 0.9 -> "text-green-600"
+      len == 0 -> "text-base-content/50"
+      len <= limit * 0.9 -> "text-success"
       len <= limit -> "text-yellow-600"
-      true -> "text-red-600"
+      true -> "text-error"
     end
   end
 
@@ -201,7 +201,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
       <div class="mx-auto max-w-4xl py-6 px-4">
         <%!-- SEO Score --%>
         <div class="mb-8 flex items-center gap-3">
-          <span class="text-sm font-medium text-gray-500 uppercase tracking-wide">SEO Score</span>
+          <span class="text-sm font-medium text-base-content/60 uppercase tracking-wide">SEO Score</span>
           <span class={"text-lg font-bold #{@score_color}"}><%= @score_label %></span>
         </div>
 
@@ -210,15 +210,15 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
 
           <%!-- SERP Preview --%>
           <section>
-            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">Search Preview</h3>
-            <div class="bg-white border border-gray-200 rounded-lg p-4 max-w-xl">
-              <div class="text-blue-700 text-xl font-normal leading-tight truncate">
+            <h3 class="text-sm font-medium text-base-content/60 uppercase tracking-wide mb-3">Search Preview</h3>
+            <div class="bg-base-100 border border-base-300 rounded-lg p-4 max-w-xl">
+              <div class="text-primary text-xl font-normal leading-tight truncate">
                 <%= serp_title(@page, @form_data) |> String.slice(0..59) %>
               </div>
-              <div class="text-green-700 text-sm mt-1 truncate">
+              <div class="text-success text-sm mt-1 truncate">
                 <%= serp_url(@page) %>
               </div>
-              <div class="text-gray-600 text-sm mt-1 line-clamp-2">
+              <div class="text-base-content/70 text-sm mt-1 line-clamp-2">
                 <%= serp_description(@form_data) |> String.slice(0..159) %>
               </div>
             </div>
@@ -226,14 +226,14 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
 
           <%!-- Search Appearance --%>
           <section>
-            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">Search Appearance</h3>
+            <h3 class="text-sm font-medium text-base-content/60 uppercase tracking-wide mb-3">Search Appearance</h3>
             <div class="space-y-4">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Meta Description</label>
+                <label class="block text-sm font-medium text-base-content/80 mb-1">Meta Description</label>
                 <textarea
                   name="seo[meta_description]"
                   rows="3"
-                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                  class="w-full rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
                   placeholder="Concise description of this page for search engines..."
                 ><%= @form_data["meta_description"] %></textarea>
                 <div class={"text-xs mt-1 #{char_count_class(@form_data["meta_description"], 160)}"}>
@@ -242,8 +242,8 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Robots</label>
-                <select name="seo[robots]" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                <label class="block text-sm font-medium text-base-content/80 mb-1">Robots</label>
+                <select name="seo[robots]" class="rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
                   <option value="index, follow" selected={@form_data["robots"] == "index, follow"}>Index, Follow (default)</option>
                   <option value="noindex, follow" selected={@form_data["robots"] == "noindex, follow"}>No Index, Follow</option>
                   <option value="index, nofollow" selected={@form_data["robots"] == "index, nofollow"}>Index, No Follow</option>
@@ -252,8 +252,8 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Collection</label>
-                <select phx-change="set_collection" name="collection_id" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                <label class="block text-sm font-medium text-base-content/80 mb-1">Collection</label>
+                <select phx-change="set_collection" name="collection_id" class="rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
                   <option value="">None</option>
                   <%= for tt <- @collections do %>
                     <option value={tt.id} selected={@page.collection_id == tt.id}><%= tt.name %></option>
@@ -265,15 +265,15 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
 
           <%!-- Social Sharing --%>
           <section>
-            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">Social Sharing</h3>
+            <h3 class="text-sm font-medium text-base-content/60 uppercase tracking-wide mb-3">Social Sharing</h3>
             <div class="space-y-4">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">OG Title</label>
+                <label class="block text-sm font-medium text-base-content/80 mb-1">OG Title</label>
                 <input
                   type="text"
                   name="seo[og_title]"
                   value={@form_data["og_title"]}
-                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                  class="w-full rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
                   placeholder={"Falls back to page title: #{@page.title}"}
                 />
                 <div class={"text-xs mt-1 #{char_count_class(@form_data["og_title"], 60)}"}>
@@ -282,11 +282,11 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">OG Description</label>
+                <label class="block text-sm font-medium text-base-content/80 mb-1">OG Description</label>
                 <textarea
                   name="seo[og_description]"
                   rows="2"
-                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                  class="w-full rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
                   placeholder="Falls back to meta description"
                 ><%= @form_data["og_description"] %></textarea>
                 <div class={"text-xs mt-1 #{char_count_class(@form_data["og_description"], 160)}"}>
@@ -295,12 +295,12 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">OG Image URL</label>
+                <label class="block text-sm font-medium text-base-content/80 mb-1">OG Image URL</label>
                 <input
                   type="text"
                   name="seo[og_image]"
                   value={@form_data["og_image"]}
-                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                  class="w-full rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
                   placeholder="https://example.com/image.jpg (recommended: 1200x630)"
                 />
               </div>
@@ -308,23 +308,23 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
               <%!-- Social Preview --%>
               <div :if={@form_data["og_image"] != ""} class="flex gap-4">
                 <div class="flex-1">
-                  <p class="text-xs text-gray-500 mb-2">Facebook / LinkedIn Preview</p>
-                  <div class="border border-gray-200 rounded-lg overflow-hidden max-w-sm">
-                    <div :if={@form_data["og_image"] != ""} class="aspect-[1.91/1] bg-gray-100">
+                  <p class="text-xs text-base-content/60 mb-2">Facebook / LinkedIn Preview</p>
+                  <div class="border border-base-300 rounded-lg overflow-hidden max-w-sm">
+                    <div :if={@form_data["og_image"] != ""} class="aspect-[1.91/1] bg-base-200">
                       <img src={@form_data["og_image"]} class="w-full h-full object-cover" alt="" />
                     </div>
                     <div class="p-3">
-                      <div class="text-xs text-gray-500 uppercase"><%= serp_url(@page) %></div>
-                      <div class="text-sm font-bold text-gray-900 mt-1 truncate"><%= serp_title(@page, @form_data) %></div>
-                      <div class="text-xs text-gray-500 mt-1 line-clamp-2"><%= serp_description(@form_data) %></div>
+                      <div class="text-xs text-base-content/60 uppercase"><%= serp_url(@page) %></div>
+                      <div class="text-sm font-bold text-base-content mt-1 truncate"><%= serp_title(@page, @form_data) %></div>
+                      <div class="text-xs text-base-content/60 mt-1 line-clamp-2"><%= serp_description(@form_data) %></div>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Twitter Card Type</label>
-                <select name="seo[twitter_card]" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                <label class="block text-sm font-medium text-base-content/80 mb-1">Twitter Card Type</label>
+                <select name="seo[twitter_card]" class="rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
                   <option value="summary_large_image" selected={@form_data["twitter_card"] == "summary_large_image"}>Summary Large Image</option>
                   <option value="summary" selected={@form_data["twitter_card"] == "summary"}>Summary</option>
                 </select>
@@ -334,15 +334,15 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
 
           <%!-- Advanced --%>
           <section>
-            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">Advanced</h3>
+            <h3 class="text-sm font-medium text-base-content/60 uppercase tracking-wide mb-3">Advanced</h3>
             <div class="space-y-4">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Canonical URL</label>
+                <label class="block text-sm font-medium text-base-content/80 mb-1">Canonical URL</label>
                 <input
                   type="text"
                   name="seo[canonical_url]"
                   value={@form_data["canonical_url"]}
-                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                  class="w-full rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
                   placeholder="Auto-generated from page path if left empty"
                 />
               </div>
@@ -351,12 +351,12 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
 
           <%!-- Content Freshness --%>
           <section>
-            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">Content Freshness</h3>
+            <h3 class="text-sm font-medium text-base-content/60 uppercase tracking-wide mb-3">Content Freshness</h3>
             <div class="space-y-3">
-              <div class="flex items-center justify-between bg-gray-50 rounded-lg p-4">
+              <div class="flex items-center justify-between bg-base-200 rounded-lg p-4">
                 <div>
-                  <p class="text-sm font-medium text-gray-700">Last Substantially Updated</p>
-                  <p class="text-sm text-gray-500">
+                  <p class="text-sm font-medium text-base-content/80">Last Substantially Updated</p>
+                  <p class="text-sm text-base-content/60">
                     <%= if @date_modified do %>
                       <%= Calendar.strftime(@date_modified, "%B %d, %Y at %I:%M %p UTC") %>
                     <% else %>
@@ -364,7 +364,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
                     <% end %>
                   </p>
                 </div>
-                <button type="button" phx-click="mark_updated" class="px-3 py-1.5 bg-green-600 text-white text-xs font-medium rounded-md hover:bg-green-700">
+                <button type="button" phx-click="mark_updated" class="px-3 py-1.5 bg-success text-success-content text-xs font-medium rounded-md hover:bg-success/90">
                   Mark as Updated
                 </button>
               </div>
@@ -374,27 +374,27 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
           <%!-- Collection Fields --%>
           <%= if @current_collection do %>
             <section>
-              <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
+              <h3 class="text-sm font-medium text-base-content/60 uppercase tracking-wide mb-3">
                 <%= @current_collection.name %> Fields
               </h3>
-              <div class="space-y-4 bg-gray-50 rounded-lg p-4">
+              <div class="space-y-4 bg-base-200 rounded-lg p-4">
                 <%= for field_def <- @current_collection.field_definitions || [] do %>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                    <label class="block text-sm font-medium text-base-content/80 mb-1">
                       <%= field_def["label"] || field_def["name"] %>
                       <%= if field_def["required"], do: "*" %>
                     </label>
                     <%= case field_def["type"] do %>
                       <% "text" -> %>
-                        <textarea name={"seo[fields][#{field_def["name"]}]"} rows="3" class="w-full rounded-md border-gray-300 text-sm"><%= @page_fields[field_def["name"]] %></textarea>
+                        <textarea name={"seo[fields][#{field_def["name"]}]"} rows="3" class="w-full rounded-md border-base-300 text-sm"><%= @page_fields[field_def["name"]] %></textarea>
                       <% "boolean" -> %>
-                        <input type="checkbox" name={"seo[fields][#{field_def["name"]}]"} value="true" checked={@page_fields[field_def["name"]] == true or @page_fields[field_def["name"]] == "true"} class="rounded border-gray-300" />
+                        <input type="checkbox" name={"seo[fields][#{field_def["name"]}]"} value="true" checked={@page_fields[field_def["name"]] == true or @page_fields[field_def["name"]] == "true"} class="rounded border-base-300" />
                       <% "datetime" -> %>
-                        <input type="datetime-local" name={"seo[fields][#{field_def["name"]}]"} value={@page_fields[field_def["name"]]} class="rounded-md border-gray-300 text-sm" />
+                        <input type="datetime-local" name={"seo[fields][#{field_def["name"]}]"} value={@page_fields[field_def["name"]]} class="rounded-md border-base-300 text-sm" />
                       <% "integer" -> %>
-                        <input type="number" name={"seo[fields][#{field_def["name"]}]"} value={@page_fields[field_def["name"]]} class="w-full rounded-md border-gray-300 text-sm" />
+                        <input type="number" name={"seo[fields][#{field_def["name"]}]"} value={@page_fields[field_def["name"]]} class="w-full rounded-md border-base-300 text-sm" />
                       <% _ -> %>
-                        <input type="text" name={"seo[fields][#{field_def["name"]}]"} value={@page_fields[field_def["name"]]} class="w-full rounded-md border-gray-300 text-sm" />
+                        <input type="text" name={"seo[fields][#{field_def["name"]}]"} value={@page_fields[field_def["name"]]} class="w-full rounded-md border-base-300 text-sm" />
                     <% end %>
                   </div>
                 <% end %>
@@ -403,7 +403,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.SEO do
           <% end %>
 
           <div class="flex justify-end pt-4 border-t">
-            <button type="submit" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            <button type="submit" class="inline-flex items-center px-4 py-2 bg-primary border border-transparent rounded-md font-semibold text-xs text-primary-content uppercase tracking-widest hover:bg-primary/90 focus:bg-primary/90 active:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition ease-in-out duration-150">
               Save SEO Settings
             </button>
           </div>

@@ -79,7 +79,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.Index do
             <.link navigate={beacon_live_admin_path(@socket, @beacon_page.site, "/pages/#{page.id}")}>Show</.link>
           </div>
           <.link patch={beacon_live_admin_path(@socket, @beacon_page.site, "/pages/#{page.id}")} title="Edit page" aria-label="Edit page" class="flex items-center justify-center w-10 h-10 group">
-            <.icon name="hero-pencil-square text-slate-400 hover:text-slate-600" />
+            <.icon name="hero-pencil-square text-base-content/50 hover:text-base-content/70" />
           </.link>
         </:action>
       </.table>
@@ -100,9 +100,9 @@ defmodule Beacon.LiveAdmin.PageEditorLive.Index do
   defp display_status(:published), do: "Published"
   defp display_status(_), do: "Draft"
 
-  defp status_class(:published), do: "bg-emerald-50 text-emerald-700"
-  defp status_class(_), do: "bg-slate-100 text-slate-600"
+  defp status_class(:published), do: "bg-success/10 text-success"
+  defp status_class(_), do: "bg-base-200 text-base-content/70"
 
-  defp status_dot_class(:published), do: "bg-emerald-500"
-  defp status_dot_class(_), do: "bg-slate-400"
+  defp status_dot_class(:published), do: "bg-success"
+  defp status_dot_class(_), do: "bg-base-300"
 end

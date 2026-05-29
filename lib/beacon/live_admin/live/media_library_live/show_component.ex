@@ -36,10 +36,10 @@ defmodule Beacon.LiveAdmin.MediaLibraryLive.ShowComponent do
         <%= for {{key, url}, index} <- @urls do %>
           <li class="flex m-8">
             <div class="w-full">
-              <label class="block text-sm font-semibold leading-6 text-zinc-800 capitalize">
+              <label class="block text-sm font-semibold leading-6 text-base-content capitalize">
                 <%= key %>
               </label>
-              <input type="text" id={"url-#{index}"} value={url} readonly class="flex mt-2 w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6" />
+              <input type="text" id={"url-#{index}"} value={url} readonly class="flex mt-2 w-full rounded-lg text-base-content focus:ring-0 sm:text-sm sm:leading-6" />
             </div>
             <div class="flex">
               <button phx-click={JS.dispatch("beacon_admin:clipcopy", to: "#url-#{index}")}>
@@ -48,7 +48,7 @@ defmodule Beacon.LiveAdmin.MediaLibraryLive.ShowComponent do
             </div>
             <div
               id={"url-#{index}-copy-to-clipboard-result"}
-              class="absolute right-0 -top-10 whitespace-nowrap text-green-500 text-sm font-medium p-3 shadow-md rounded-lg bg-white transition-all duration-300 opacity-0 invisible"
+              class="absolute right-0 -top-10 whitespace-nowrap text-success text-sm font-medium p-3 shadow-md rounded-lg bg-base-100 transition-all duration-300 opacity-0 invisible"
               phx-update="ignore"
             >
               Copied to clipboard

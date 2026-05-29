@@ -60,7 +60,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.Revisions do
       </.header>
 
       <.main_content class="h-auto">
-        <ol class="relative mt-4 ml-4 border-l border-gray-200">
+        <ol class="relative mt-4 ml-4 border-l border-base-300">
           <%= for event <- @events do %>
             <.revision event={event} />
           <% end %>
@@ -90,36 +90,36 @@ defmodule Beacon.LiveAdmin.PageEditorLive.Revisions do
   def revision(assigns) do
     ~H"""
     <li class="mb-10 ml-8 group">
-      <div class="absolute flex items-center justify-center block w-10 h-10 bg-white rounded-full shadow-md -left-5 ">
-        <div class="absolute flex items-center justify-center block w-6 h-6 bg-blue-100 rounded-full">
-          <.icon :if={@event.event == :published} name="hero-eye-solid" class="w-4 h-4 text-blue-800" />
-          <.icon :if={@event.event == :created} name="hero-document-plus-solid" class="w-4 h-4 text-blue-800" />
+      <div class="absolute flex items-center justify-center block w-10 h-10 bg-base-100 rounded-full shadow-md -left-5 ">
+        <div class="absolute flex items-center justify-center block w-6 h-6 bg-primary/10 rounded-full">
+          <.icon :if={@event.event == :published} name="hero-eye-solid" class="w-4 h-4 text-primary" />
+          <.icon :if={@event.event == :created} name="hero-document-plus-solid" class="w-4 h-4 text-primary" />
         </div>
       </div>
-      <h3 class="flex items-center pt-2 mb-1 text-lg font-semibold text-gray-900">
-        <%= Phoenix.Naming.humanize(@event.event) %> <span class="ml-2 text-sm text-gray-500"><%= format_datetime(@event.inserted_at) %></span>
-        <span class="hidden group-first:block bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Latest</span>
+      <h3 class="flex items-center pt-2 mb-1 text-lg font-semibold text-base-content">
+        <%= Phoenix.Naming.humanize(@event.event) %> <span class="ml-2 text-sm text-base-content/60"><%= format_datetime(@event.inserted_at) %></span>
+        <span class="hidden group-first:block bg-primary/10 text-primary text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Latest</span>
       </h3>
 
       <ol :if={@event.snapshot} class="space-y-4">
         <li>
-          <h4 class="text-gray-600 text-bold">Path</h4>
+          <h4 class="text-base-content/70 text-bold">Path</h4>
           <%= @event.snapshot.page.path %>
         </li>
         <li>
-          <h4 class="text-gray-600">Title</h4>
+          <h4 class="text-base-content/70">Title</h4>
           <%= @event.snapshot.page.title %>
         </li>
         <li>
-          <h4 class="text-gray-600">Description</h4>
+          <h4 class="text-base-content/70">Description</h4>
           <%= @event.snapshot.page.description %>
         </li>
         <li>
-          <h4 class="text-gray-600">Format</h4>
+          <h4 class="text-base-content/70">Format</h4>
           <%= @event.snapshot.page.format %>
         </li>
         <li>
-          <h4 class="text-gray-600">Template</h4>
+          <h4 class="text-base-content/70">Template</h4>
           <div class="w-full mt-2">
             <div class="py-6 rounded-[1.25rem] bg-[#0D1829] [&_.monaco-editor-background]:!bg-[#0D1829] [&_.margin]:!bg-[#0D1829]">
               <LiveMonacoEditor.code_editor
@@ -132,7 +132,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.Revisions do
           </div>
         </li>
         <li>
-          <h4 class="text-gray-600">Schema</h4>
+          <h4 class="text-base-content/70">Schema</h4>
           <div class="w-full mt-2">
             <div class="py-6 rounded-[1.25rem] bg-[#0D1829] [&_.monaco-editor-background]:!bg-[#0D1829] [&_.margin]:!bg-[#0D1829]">
               <LiveMonacoEditor.code_editor
@@ -145,15 +145,15 @@ defmodule Beacon.LiveAdmin.PageEditorLive.Revisions do
           </div>
         </li>
         <li>
-          <h4 class="text-gray-600">Meta Tags</h4>
+          <h4 class="text-base-content/70">Meta Tags</h4>
           <%= render_meta_tags(@event.snapshot.page.meta_tags) %>
         </li>
         <li>
-          <h4 class="text-gray-600">Variants</h4>
+          <h4 class="text-base-content/70">Variants</h4>
           <.variants_table variants={variants(@event.snapshot.page)} event_id={@event.id} />
         </li>
         <li>
-          <h4 class="text-gray-600">Event Handlers</h4>
+          <h4 class="text-base-content/70">Event Handlers</h4>
           <.event_handlers_table event_handlers={event_handlers(@event.snapshot.page)} event_id={@event.id} />
         </li>
       </ol>
@@ -174,7 +174,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.Revisions do
         <%= variant.weight %>
       </:col>
       <:col :let={variant} label="template">
-        <.link class="text-blue-600 hover:underline" phx-click={JS.push("show_modal", value: %{event_id: @event_id, variant_id: variant.id})}>
+        <.link class="text-primary hover:underline" phx-click={JS.push("show_modal", value: %{event_id: @event_id, variant_id: variant.id})}>
           Click here
         </.link>
       </:col>
@@ -192,7 +192,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.Revisions do
         <%= event_handler.name %>
       </:col>
       <:col :let={event_handler} label="code">
-        <.link class="text-blue-600 hover:underline" phx-click={JS.push("show_modal", value: %{event_id: @event_id, event_handler_id: event_handler.id})}>
+        <.link class="text-primary hover:underline" phx-click={JS.push("show_modal", value: %{event_id: @event_id, event_handler_id: event_handler.id})}>
           Click here
         </.link>
       </:col>

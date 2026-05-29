@@ -63,12 +63,12 @@ defmodule Beacon.LiveAdmin.MediaLibraryLive.UploadFormComponent do
       </section>
 
       <.form for={%{"site" => @site}} as={:assets} id="asset-form" phx-target={@myself} phx-change="validate" phx-submit="save">
-        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10" phx-drop-target={@uploads.asset.ref}>
+        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-base-content/40 px-6 py-10" phx-drop-target={@uploads.asset.ref}>
           <.live_file_input upload={@uploads.asset} tabindex="0" />
         </div>
         <%= for entry <- @uploads.asset.entries do %>
           <%= for err <- upload_errors(@uploads.asset, entry) do %>
-            <p class="text-red-600">
+            <p class="text-error">
               <%= entry.client_name %>
               <%= Phoenix.Naming.humanize(err) %>
             </p>
@@ -81,7 +81,7 @@ defmodule Beacon.LiveAdmin.MediaLibraryLive.UploadFormComponent do
         <h3>Successfully uploaded</h3>
         <%= for asset <- @uploaded_assets do %>
           <img :if={MediaLibrary.is_image?(@site, asset)} src={MediaLibrary.url_for(@site, asset)} class="mb-8" />
-          <p class="text-green-600"><%= asset.file_name %></p>
+          <p class="text-success"><%= asset.file_name %></p>
         <% end %>
       </div>
     </div>
