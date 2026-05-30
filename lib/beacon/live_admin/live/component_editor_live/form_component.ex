@@ -491,7 +491,7 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
 
           <.button class="btn-neutral mt-4" phx-click={JS.push("show_attr_modal", target: @myself)}>Add new Attribute</.button>
         </div>
-        <div class="col-span-full lg:col-span-2 space-y-6">
+        <div class="col-span-full lg:col-span-2 space-y-6 lg:h-full lg:overflow-y-auto lg:pr-2 lg:pb-8">
           <div>
             <span class="label mb-1">Body</span>
             <%= template_error(@form[:body]) %>
