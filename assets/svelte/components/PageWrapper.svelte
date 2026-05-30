@@ -73,7 +73,7 @@
 {#if chromeCssHref}<link rel="stylesheet" href={chromeCssHref} />{/if}
 <span bind:this={styleWrapper}></span>
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div bind:this={wrapper} data-theme="beacon-dark" on:click={preventLinkNavigation} on:drop={handleDragDrop} on:keydown={handleKeydown}>
+<div bind:this={wrapper} data-theme="mesa-light" on:click={preventLinkNavigation} on:drop={handleDragDrop} on:keydown={handleKeydown}>
   {#each $layoutAst as layoutAstNode}
     <LayoutAstNode node={layoutAstNode}>
       <!-- This seemingly useless wrapper is here just so we are sure that the layout and the page don't share the same parent, which screws the position calculations -->

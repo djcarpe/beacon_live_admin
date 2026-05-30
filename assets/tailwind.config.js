@@ -80,7 +80,7 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        beacon: {
+        mesa: {
           "primary": "#2a9c8e",
           "primary-content": "#ffffff",
           "secondary": "#1c4642",
@@ -108,7 +108,7 @@ module.exports = {
         },
       },
       {
-        "beacon-dark": {
+        "mesa-light": {
           "primary": "#2a9c8e",
           "primary-content": "#d2f5ed",
           "secondary": "#37ad9e",
@@ -136,6 +136,6 @@ module.exports = {
         },
       },
     ],
-    darkTheme: "beacon-dark",
+    darkTheme: "mesa-light",
   },
 }

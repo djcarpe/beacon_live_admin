@@ -26,14 +26,12 @@ defmodule Beacon.LiveAdmin.AssetsController do
       styled = File.read!(Path.join(daisyui_dir, "styled.css"))
       themes = File.read!(Path.join(daisyui_dir, "themes.css"))
 
-      # Sojourner fork: rebind Beacon Admin's daisyUI themes to the
-      # mesa / mesa-light palette so the admin chrome matches the rest
-      # of the host app. The theme names stay `beacon` / `beacon-dark`
-      # so Beacon's own theme-toggle JS keeps working; only the color
-      # values change. Source of truth: assets/css/app.css in
-      # rivianvw/sojourner.
+      # Sojourner fork: the Beacon Admin daisyUI themes are renamed to
+      # `mesa` / `mesa-light` and carry the host app's mesa palette so the
+      # admin chrome matches the rest of the host app. Source of truth:
+      # assets/css/app.css in rivianvw/sojourner.
       beacon_themes = """
-      [data-theme="beacon"] {
+      [data-theme="mesa"] {
         --color-base-100: #ffffff;
         --color-base-200: #f5f5f5;
         --color-base-300: #e5e5e5;
@@ -56,7 +54,7 @@ defmodule Beacon.LiveAdmin.AssetsController do
         --color-error-content: #ffffff;
         color-scheme: light;
       }
-      [data-theme="beacon-dark"] {
+      [data-theme="mesa-light"] {
         --color-base-100: #050505;
         --color-base-200: #111111;
         --color-base-300: #1c1c1c;
