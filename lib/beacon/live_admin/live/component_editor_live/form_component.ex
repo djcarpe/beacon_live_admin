@@ -530,27 +530,22 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
               />
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="col-span-full mt-8">
-        <legend class="text-sm font-bold tracking-widest text-base-content/70 uppercase mb-2">Preview</legend>
-        <p class="text-xs text-base-content/60 mb-4">
-          Live render with mock data. Values are local and not saved. Components using only
-          semantic/daisyUI classes preview faithfully; exotic Tailwind utilities may not.
-        </p>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <form phx-change="preview_change" phx-target={@myself} class="space-y-3 lg:col-span-1" id="component-preview-form">
-            <div :if={@preview_fields == []} class="text-sm text-base-content/60">
-              No attributes declared and no template bindings detected.
-            </div>
-            <div :for={field <- @preview_fields}>
-              <label class="label text-sm" for={"preview-#{field.name}"}><%= field.name %></label>
-              <%= preview_input(assigns, field) %>
-            </div>
-          </form>
-
-          <div class="lg:col-span-2">
+          <div>
+            <span class="label mb-1">Preview</span>
+            <p class="text-xs text-base-content/60 mb-3">
+              Live render with mock data — local only, not saved. Semantic/daisyUI classes
+              preview faithfully; exotic Tailwind utilities may not.
+            </p>
+            <form phx-change="preview_change" phx-target={@myself} class="space-y-3 mb-4" id="component-preview-form">
+              <div :if={@preview_fields == []} class="text-sm text-base-content/60">
+                No attributes declared and no template bindings detected.
+              </div>
+              <div :for={field <- @preview_fields}>
+                <label class="label text-sm" for={"preview-#{field.name}"}><%= field.name %></label>
+                <%= preview_input(assigns, field) %>
+              </div>
+            </form>
             <div :if={@preview_error} class="alert alert-error text-sm mb-2"><%= @preview_error %></div>
             <div class="border border-base-300 rounded-[1.25rem] p-4 bg-base-100 min-h-24">
               <%= Phoenix.HTML.raw(@preview_html || "") %>
