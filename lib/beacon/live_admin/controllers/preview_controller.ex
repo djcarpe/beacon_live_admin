@@ -330,6 +330,10 @@ defmodule Beacon.LiveAdmin.PreviewController do
           });
       })();
       </script>
+      <!-- Sojourner: render Plotly chart components (phx-hook divs) in the static
+           preview, where there is no LiveView runtime to mount the real hook. -->
+      <script src="/assets/vendor/plotly.min.js"></script>
+      <script src="/assets/chart-preview.js"></script>
     </body>
     </html>
     """

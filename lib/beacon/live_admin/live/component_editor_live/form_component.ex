@@ -278,14 +278,12 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
         {:error, msg} -> {nil, msg}
       end
 
-    js_hook? = is_binary(html) and String.contains?(html, "phx-hook")
-
     assign(socket,
       preview_fields: fields,
       preview_values: values,
       preview_html: html,
       preview_error: error,
-      preview_js_hook: js_hook?
+      preview_srcdoc: preview_srcdoc(html)
     )
   end
 
@@ -550,13 +548,14 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
               </div>
             </form>
             <div :if={@preview_error} class="alert alert-error text-sm mb-2"><%= @preview_error %></div>
-            <div :if={@preview_js_hook} class="text-xs text-warning mb-2">
-              This component renders through a JavaScript hook (e.g. a chart) and only draws on the
-              live page — the inline preview shows its markup but can't run the hook's JS here.
-            </div>
-            <div class="border border-base-300 rounded-[1.25rem] p-4 bg-base-100 min-h-24">
-              <%= Phoenix.HTML.raw(@preview_html || "") %>
-            </div>
+            <iframe
+              srcdoc={@preview_srcdoc}
+              sandbox="allow-scripts"
+              title="Component preview"
+              class="w-full rounded-[1.25rem] border border-base-300 bg-base-100"
+              style="height: 460px"
+            >
+            </iframe>
           </div>
         </div>
       </div>
@@ -649,6 +648,30 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
 
   defp json_display(value) when is_binary(value), do: value
   defp json_display(value), do: Jason.encode!(value)
+
+  # Render the preview output inside a sandboxed iframe that loads the real site
+  # stylesheet (so all Tailwind/daisyUI classes resolve) plus the standalone
+  # Plotly renderer (so JS-hook chart components actually draw). Re-built on each
+  # change; the iframe is sandboxed to scripts only (opaque origin).
+  defp preview_srcdoc(html) do
+    body = html || ""
+
+    """
+    <!DOCTYPE html>
+    <html data-theme="mesa">
+    <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/assets/app.css" />
+    <style>body{margin:0;padding:1rem;background:transparent;}</style>
+    </head>
+    <body>
+    #{body}
+    <script src="/assets/vendor/plotly.min.js"></script>
+    <script src="/assets/chart-preview.js"></script>
+    </body>
+    </html>
+    """
+  end
 
   defp types_to_options do
     ~w(any string atom boolean integer float list map global struct)a
