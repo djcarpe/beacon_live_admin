@@ -542,8 +542,8 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
                 No attributes declared and no template bindings detected.
               </div>
               <div :for={field <- @preview_fields}>
-                <label class="label text-sm" for={"preview-#{field.name}"}><%= field.name %></label>
-                <%= preview_input(assigns, field) %>
+                <label class="block text-sm mb-1 text-base-content/80" for={"preview-#{field.name}"}><%= field.name %></label>
+                <%= preview_input(assigns, field, Map.get(@preview_values, field.name, field.value)) %>
               </div>
             </form>
             <div :if={@preview_error} class="alert alert-error text-sm mb-2"><%= @preview_error %></div>
@@ -591,35 +591,51 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
     Enum.map(Content.component_categories(site), &{Phoenix.Naming.humanize(&1), &1})
   end
 
-  defp preview_input(assigns, field) do
-    assigns = assign(assigns, :field, field)
+  defp preview_input(assigns, field, value) do
+    base =
+      "block w-full h-10 rounded-lg border border-base-300 bg-base-100 text-base-content " <>
+        "px-3 text-sm leading-normal focus:outline-none focus:ring-2 focus:ring-primary/40"
+
+    assigns =
+      assigns
+      |> assign(:field, field)
+      |> assign(:value, value)
+      |> assign(:base, base)
 
     case field.widget do
       :toggle ->
         ~H"""
-        <input type="checkbox" name={@field.name} class="toggle toggle-primary" checked={@field.value in [true, "true"]} value="true" id={"preview-#{@field.name}"} />
+        <input type="hidden" name={@field.name} value="false" />
+        <input
+          type="checkbox"
+          name={@field.name}
+          class="toggle toggle-primary"
+          checked={@value in [true, "true", "on"]}
+          value="true"
+          id={"preview-#{@field.name}"}
+        />
         """
 
       :number ->
         ~H"""
-        <input type="number" name={@field.name} value={to_string(@field.value)} class="input input-bordered input-sm w-full" id={"preview-#{@field.name}"} />
+        <input type="number" name={@field.name} value={to_string(@value)} class={@base} phx-debounce="300" id={"preview-#{@field.name}"} />
         """
 
       :select ->
         ~H"""
-        <select name={@field.name} class="select select-bordered select-sm w-full" id={"preview-#{@field.name}"}>
-          <option :for={opt <- @field.options} value={opt} selected={to_string(@field.value) == opt}><%= opt %></option>
+        <select name={@field.name} class={[@base, "pr-8"]} id={"preview-#{@field.name}"}>
+          <option :for={opt <- @field.options} value={opt} selected={to_string(@value) == opt}><%= opt %></option>
         </select>
         """
 
       :json ->
         ~H"""
-        <textarea name={@field.name} class="textarea textarea-bordered textarea-sm w-full font-mono" rows="3" id={"preview-#{@field.name}"}><%= json_display(@field.value) %></textarea>
+        <textarea name={@field.name} class={[String.replace(@base, "h-10", ""), "h-auto py-2 font-mono"]} rows="3" phx-debounce="300" id={"preview-#{@field.name}"}><%= json_display(@value) %></textarea>
         """
 
       _ ->
         ~H"""
-        <input type="text" name={@field.name} value={to_string(@field.value)} class="input input-bordered input-sm w-full" id={"preview-#{@field.name}"} />
+        <input type="text" name={@field.name} value={to_string(@value)} class={@base} phx-debounce="300" id={"preview-#{@field.name}"} />
         """
     end
   end
