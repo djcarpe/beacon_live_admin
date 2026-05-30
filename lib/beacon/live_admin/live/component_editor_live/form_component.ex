@@ -6,6 +6,7 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
 
   alias Beacon.LiveAdmin.Client.Content
   alias Beacon.Content.ComponentAttr
+  alias Sojourner.Beacon.ComponentPreview
 
   @impl true
   def mount(socket) do
@@ -19,21 +20,22 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
     {:ok,
      socket
      |> assign(assigns)
-     |> assign_form(changeset)}
+     |> assign_form(changeset)
+     |> assign_preview()}
   end
 
   def update(%{template: value}, socket) do
     params = Map.merge(socket.assigns.form.params, %{"template" => value})
     changeset = Content.change_component(socket.assigns.site, socket.assigns.component, params)
 
-    {:ok, assign_form(socket, changeset)}
+    {:ok, socket |> assign_form(changeset) |> assign_preview()}
   end
 
   def update(%{body: value}, socket) do
     params = Map.merge(socket.assigns.form.params, %{"body" => value})
     changeset = Content.change_component(socket.assigns.site, socket.assigns.component, params)
 
-    {:ok, assign_form(socket, changeset)}
+    {:ok, socket |> assign_form(changeset) |> assign_preview()}
   end
 
   def update(%{example: value}, socket) do
@@ -237,8 +239,51 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
     {:noreply, close_attr_modal(socket)}
   end
 
+  def handle_event("preview_change", params, socket) do
+    values = Map.drop(params, ["_target", "_csrf_token"])
+    fields = socket.assigns.preview_fields
+    template = Phoenix.HTML.Form.input_value(socket.assigns.form, :template) || ""
+    body = Phoenix.HTML.Form.input_value(socket.assigns.form, :body) || ""
+
+    {:noreply, render_preview(socket, fields, values, template, body)}
+  end
+
   defp assign_form(socket, changeset) do
     assign(socket, :form, to_form(changeset))
+  end
+
+  defp assign_preview(socket) do
+    form = socket.assigns.form
+    attrs = get_component_attrs_from_form(form)
+    template = Phoenix.HTML.Form.input_value(form, :template) || ""
+    body = Phoenix.HTML.Form.input_value(form, :body) || ""
+
+    fields = ComponentPreview.derive_fields(attrs, template)
+    values = socket.assigns[:preview_values] || %{}
+
+    render_preview(socket, fields, values, template, body)
+  end
+
+  defp render_preview(socket, fields, values, template, body) do
+    assigns_map = ComponentPreview.build_assigns(fields, values)
+
+    {html, error} =
+      case ComponentPreview.render(%{
+             site: socket.assigns.site,
+             template: template,
+             body: body,
+             assigns: assigns_map
+           }) do
+        {:ok, html} -> {html, nil}
+        {:error, msg} -> {nil, msg}
+      end
+
+    assign(socket,
+      preview_fields: fields,
+      preview_values: values,
+      preview_html: html,
+      preview_error: error
+    )
   end
 
   defp build_attr_form(site, attr_or_changeset, params, component_form, action \\ nil) do
@@ -488,6 +533,32 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
         </div>
       </div>
 
+      <div class="col-span-full mt-8">
+        <legend class="text-sm font-bold tracking-widest text-base-content/70 uppercase mb-2">Preview</legend>
+        <p class="text-xs text-base-content/60 mb-4">
+          Live render with mock data. Values are local and not saved. Components using only
+          semantic/daisyUI classes preview faithfully; exotic Tailwind utilities may not.
+        </p>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <form phx-change="preview_change" phx-target={@myself} class="space-y-3 lg:col-span-1" id="component-preview-form">
+            <div :if={@preview_fields == []} class="text-sm text-base-content/60">
+              No attributes declared and no template bindings detected.
+            </div>
+            <div :for={field <- @preview_fields}>
+              <label class="label text-sm" for={"preview-#{field.name}"}><%= field.name %></label>
+              <%= preview_input(assigns, field) %>
+            </div>
+          </form>
+
+          <div class="lg:col-span-2">
+            <div :if={@preview_error} class="alert alert-error text-sm mb-2"><%= @preview_error %></div>
+            <div class="border border-base-300 rounded-[1.25rem] p-4 bg-base-100 min-h-24">
+              <%= Phoenix.HTML.raw(@preview_html || "") %>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <.modal :if={@show_attr_modal} id="attr-modal" on_cancel={JS.push("close_modal", target: @myself)} show>
         <:title><%= @modal_title %></:title>
         <.form :let={f} id="new-path-form" for={@attr_form} phx-change="validate_attr" phx-submit="add_attr" phx-target={@myself} class="space-y-4 text-sm px-4">
@@ -524,6 +595,42 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
   defp categories_to_options(site) do
     Enum.map(Content.component_categories(site), &{Phoenix.Naming.humanize(&1), &1})
   end
+
+  defp preview_input(assigns, field) do
+    assigns = assign(assigns, :field, field)
+
+    case field.widget do
+      :toggle ->
+        ~H"""
+        <input type="checkbox" name={@field.name} class="toggle toggle-primary" checked={@field.value in [true, "true"]} value="true" id={"preview-#{@field.name}"} />
+        """
+
+      :number ->
+        ~H"""
+        <input type="number" name={@field.name} value={to_string(@field.value)} class="input input-bordered input-sm w-full" id={"preview-#{@field.name}"} />
+        """
+
+      :select ->
+        ~H"""
+        <select name={@field.name} class="select select-bordered select-sm w-full" id={"preview-#{@field.name}"}>
+          <option :for={opt <- @field.options} value={opt} selected={to_string(@field.value) == opt}><%= opt %></option>
+        </select>
+        """
+
+      :json ->
+        ~H"""
+        <textarea name={@field.name} class="textarea textarea-bordered textarea-sm w-full font-mono" rows="3" id={"preview-#{@field.name}"}><%= json_display(@field.value) %></textarea>
+        """
+
+      _ ->
+        ~H"""
+        <input type="text" name={@field.name} value={to_string(@field.value)} class="input input-bordered input-sm w-full" id={"preview-#{@field.name}"} />
+        """
+    end
+  end
+
+  defp json_display(value) when is_binary(value), do: value
+  defp json_display(value), do: Jason.encode!(value)
 
   defp types_to_options do
     ~w(any string atom boolean integer float list map global struct)a
