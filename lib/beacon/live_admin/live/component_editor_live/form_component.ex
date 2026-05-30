@@ -278,11 +278,14 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
         {:error, msg} -> {nil, msg}
       end
 
+    js_hook? = is_binary(html) and String.contains?(html, "phx-hook")
+
     assign(socket,
       preview_fields: fields,
       preview_values: values,
       preview_html: html,
-      preview_error: error
+      preview_error: error,
+      preview_js_hook: js_hook?
     )
   end
 
@@ -547,6 +550,10 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
               </div>
             </form>
             <div :if={@preview_error} class="alert alert-error text-sm mb-2"><%= @preview_error %></div>
+            <div :if={@preview_js_hook} class="text-xs text-warning mb-2">
+              This component renders through a JavaScript hook (e.g. a chart) and only draws on the
+              live page — the inline preview shows its markup but can't run the hook's JS here.
+            </div>
             <div class="border border-base-300 rounded-[1.25rem] p-4 bg-base-100 min-h-24">
               <%= Phoenix.HTML.raw(@preview_html || "") %>
             </div>
