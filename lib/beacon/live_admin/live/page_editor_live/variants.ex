@@ -89,7 +89,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.Variants do
 
         {:error, changeset} ->
           changeset = Map.put(changeset, :action, :update)
-          assign_form(changeset)
+          assign_form(socket, changeset)
       end
 
     {:noreply, socket}
