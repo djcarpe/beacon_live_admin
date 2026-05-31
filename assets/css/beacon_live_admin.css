@@ -69,6 +69,17 @@
   border-color: oklch(var(--p));
 }
 
+/* Sojourner fork: daisyUI v4 `.select` is `appearance:none; display:inline-flex`
+   with a fixed height (2-3rem) and `line-height: 2` (and competing rules forcing
+   `line-height: 2rem`), which makes the selected-value text line box as tall as
+   the box — clipping/misaligning the text vertically. Use a normal line-height
+   and center the text so the full value shows. Scoped to the admin themes. */
+[data-theme=mesa] select,
+[data-theme=mesa-light] select {
+  line-height: normal;
+  align-items: center;
+}
+
 /* ============================================================
    Sojourner fork: admin theme normalisation (safety net)
    ------------------------------------------------------------
