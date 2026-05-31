@@ -179,8 +179,8 @@ defmodule Beacon.LiveAdmin.PageEditorLive.New do
                   <span class={"badge badge-xs #{if collection.mode == "managed", do: "badge-primary", else: "badge-secondary"}"}>
                     <%= collection.mode %>
                   </span>
-                  <span :if={collection.fields != []} class="text-[11px] text-base-content/40">
-                    <%= length(collection.fields) %> fields
+                  <span :if={collection.field_definitions != []} class="text-[11px] text-base-content/40">
+                    <%= length(collection.field_definitions) %> fields
                   </span>
                 </div>
               </div>
