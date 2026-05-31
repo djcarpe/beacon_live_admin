@@ -44,6 +44,31 @@
   border: 1px solid oklch(var(--b3));
 }
 
+/* Sojourner fork: most admin templates use bare native <input>/<select>/
+   <textarea> with utility classes (border-base-300, focus:ring-primary) rather
+   than the .input/.select/.textarea daisyUI classes above, so @tailwindcss/forms
+   renders them on a WHITE surface — unreadable on the dark mesa base. Give native
+   text controls the same base-200 surface + base-content text + base-300 border +
+   primary focus as the .input rule. Scoped to the admin themes (like the safety
+   net below) so the host app is untouched. Non-text controls (checkbox/radio/
+   file/buttons/range/color) are intentionally excluded. */
+[data-theme=mesa] :is(textarea, select, input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="number"], input[type="search"], input[type="tel"], input[type="date"], input[type="datetime-local"], input[type="time"], input[type="month"], input[type="week"]),
+[data-theme=mesa-light] :is(textarea, select, input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="number"], input[type="search"], input[type="tel"], input[type="date"], input[type="datetime-local"], input[type="time"], input[type="month"], input[type="week"]) {
+  border: 1px solid oklch(var(--b3));
+  background-color: oklch(var(--b2));
+  color: oklch(var(--bc));
+}
+[data-theme=mesa] :is(input, textarea)::placeholder,
+[data-theme=mesa-light] :is(input, textarea)::placeholder {
+  color: oklch(var(--bc) / 0.4);
+}
+[data-theme=mesa] :is(textarea, select, input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="number"], input[type="search"], input[type="tel"], input[type="date"], input[type="datetime-local"], input[type="time"], input[type="month"], input[type="week"]):focus,
+[data-theme=mesa-light] :is(textarea, select, input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="number"], input[type="search"], input[type="tel"], input[type="date"], input[type="datetime-local"], input[type="time"], input[type="month"], input[type="week"]):focus {
+  outline: 2px solid oklch(var(--p));
+  outline-offset: -1px;
+  border-color: oklch(var(--p));
+}
+
 /* ============================================================
    Sojourner fork: admin theme normalisation (safety net)
    ------------------------------------------------------------
