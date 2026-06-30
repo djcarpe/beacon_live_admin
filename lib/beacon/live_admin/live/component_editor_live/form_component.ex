@@ -6,7 +6,7 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
 
   alias Beacon.LiveAdmin.Client.Content
   alias Beacon.Content.ComponentAttr
-  alias Sojourner.Beacon.ComponentPreview
+  alias Pathfinder.Beacon.ComponentPreview
 
   @impl true
   def mount(socket) do
