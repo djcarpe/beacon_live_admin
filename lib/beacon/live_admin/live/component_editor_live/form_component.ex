@@ -6,7 +6,6 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
 
   alias Beacon.LiveAdmin.Client.Content
   alias Beacon.Content.ComponentAttr
-  alias Pathfinder.Beacon.ComponentPreview
 
   @impl true
   def mount(socket) do
@@ -252,23 +251,33 @@ defmodule Beacon.LiveAdmin.ComponentEditorLive.FormComponent do
     assign(socket, :form, to_form(changeset))
   end
 
+  # The host app supplies the component-preview renderer via config, mirroring
+  # `:auth_provider`. Resolving it at runtime (rather than aliasing an app
+  # module) keeps this dep from compile-time-referencing a module it cannot see
+  # when it compiles ahead of the app — which otherwise warns "module is not
+  # available or is yet to be defined" on every build.
+  defp component_preview do
+    Application.get_env(:beacon_live_admin, :component_preview)
+  end
+
   defp assign_preview(socket) do
     form = socket.assigns.form
     attrs = get_component_attrs_from_form(form)
     template = Phoenix.HTML.Form.input_value(form, :template) || ""
     body = Phoenix.HTML.Form.input_value(form, :body) || ""
 
-    fields = ComponentPreview.derive_fields(attrs, template)
+    fields = component_preview().derive_fields(attrs, template)
     values = socket.assigns[:preview_values] || %{}
 
     render_preview(socket, fields, values, template, body)
   end
 
   defp render_preview(socket, fields, values, template, body) do
-    assigns_map = ComponentPreview.build_assigns(fields, values)
+    preview = component_preview()
+    assigns_map = preview.build_assigns(fields, values)
 
     {html, error} =
-      case ComponentPreview.render(%{
+      case preview.render(%{
              site: socket.assigns.site,
              template: template,
              body: body,
