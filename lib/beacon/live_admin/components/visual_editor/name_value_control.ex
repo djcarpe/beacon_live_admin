@@ -6,6 +6,9 @@ defmodule Beacon.LiveAdmin.VisualEditor.NameValueControl do
   alias Beacon.LiveAdmin.VisualEditor.NameValue
   alias Ecto.Changeset
 
+  # Attributes that hold a single media URL — these get the Media Library picker.
+  @media_attributes ~w(src poster data-src)
+
   def render(assigns) do
     ~H"""
     <div id={@id}>
@@ -33,6 +36,17 @@ defmodule Beacon.LiveAdmin.VisualEditor.NameValueControl do
             class={"w-full py-1 px-2 bg-base-200 border-base-300 rounded-md leading-6 text-sm #{if !@attribute.editing, do: "cursor-not-allowed"}"}
             disabled={!@attribute.editing}
           />
+
+          <select
+            :if={@attribute.editing and media_attribute?(@attribute.name)}
+            name="media_pick"
+            phx-target={@myself}
+            phx-change="pick_media"
+            class="select select-sm select-bordered w-full mt-2 text-sm"
+          >
+            <option value="">Pick from Media Library…</option>
+            <option :for={{file_name, url} <- @media_options} value={url} selected={url == @attribute.value}>{file_name}</option>
+          </select>
 
           <div class="mt-2">
             <.button :if={@attribute.editing} phx-disable-with="Saving..." class="">Save</.button>
@@ -94,6 +108,21 @@ defmodule Beacon.LiveAdmin.VisualEditor.NameValueControl do
     end
   end
 
+  def handle_event("pick_media", %{"media_pick" => url}, socket) when url not in ["", nil] do
+    %{path: path, attribute: attribute} = socket.assigns
+
+    changeset =
+      socket.assigns.form
+      |> Changeset.put_change(:value, url)
+      |> Map.put(:action, :validate)
+
+    socket.assigns.on_element_change.(path, %{updated: %{"attrs" => %{attribute.name => url}}})
+
+    {:noreply, assign_form(socket, changeset)}
+  end
+
+  def handle_event("pick_media", _params, socket), do: {:noreply, socket}
+
   def handle_event("edit", _, socket) do
     send_update(socket.assigns.parent, %{edit_attribute: socket.assigns.attribute})
     {:noreply, socket}
@@ -113,6 +142,8 @@ defmodule Beacon.LiveAdmin.VisualEditor.NameValueControl do
   defp assign_form(socket, changeset) do
     assign(socket, :form, changeset)
   end
+
+  defp media_attribute?(name), do: name in @media_attributes
 end
 
 defmodule Beacon.LiveAdmin.VisualEditor.NameValue do

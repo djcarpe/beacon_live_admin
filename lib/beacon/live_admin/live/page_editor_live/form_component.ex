@@ -376,6 +376,7 @@ defmodule Beacon.LiveAdmin.PageEditorLive.FormComponent do
 
       <.visual_editor
         :if={@editor == "visual"}
+        site={@site}
         template={@template}
         components={@components}
         tailwind_input={@tailwind_input}

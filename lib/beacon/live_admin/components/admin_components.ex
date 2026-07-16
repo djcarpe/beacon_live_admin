@@ -36,6 +36,7 @@ defmodule Beacon.LiveAdmin.AdminComponents do
   @doc """
   Visual Editor for HEEx and HTML templates.
   """
+  attr :site, :atom, required: true, doc: "The Beacon site, used to list Media Library assets"
   attr :template, :string, required: true
   attr :components, :list, doc: "List of available components that can be used in the visual editor"
   attr :tailwind_input, :string,
@@ -59,6 +60,7 @@ defmodule Beacon.LiveAdmin.AdminComponents do
     <.live_component
       module={Beacon.LiveAdmin.VisualEditor.Components.HEExEditor}
       id="heex-visual-editor"
+      site={@site}
       components={@components}
       template={@template}
       tailwind_input={@tailwind_input}

@@ -3,11 +3,13 @@ defmodule Beacon.LiveAdmin.VisualEditor.PropertiesSidebarComponent do
 
   use Beacon.LiveAdmin.Web, :live_component
   alias Beacon.LiveAdmin.VisualEditor
+  alias Beacon.LiveAdmin.Client.MediaLibrary
 
   def update(%{selected_element_path: nil} = assigns, socket) do
     {:ok,
      socket
      |> assign(assigns)
+     |> assign_media_options()
      |> assign(selected_element: nil, other_attributes: [], editing: false)
      |> assign_new(:add_new_attribute, fn -> false end)}
   end
@@ -26,6 +28,7 @@ defmodule Beacon.LiveAdmin.VisualEditor.PropertiesSidebarComponent do
     {:ok,
      socket
      |> assign(assigns)
+     |> assign_media_options()
      |> assign(
        selected_element: selected_element,
        other_attributes: build_other_attributes(selected_element),
@@ -86,6 +89,22 @@ defmodule Beacon.LiveAdmin.VisualEditor.PropertiesSidebarComponent do
 
   defp build_other_attributes(_selected_element), do: []
 
+  # Loaded once per sidebar mount. `[{file_name, url}]` for the media picker in NameValueControl.
+  # Uses the stable `/<site>/__beacon_media__/<file>` path (redirects to a fresh presigned URL
+  # per request) rather than a presigned URL, which would expire ~1h after being embedded.
+  defp assign_media_options(socket) do
+    site = socket.assigns.site
+    assign_new(socket, :media_options, fn -> load_media_options(site) end)
+  end
+
+  defp load_media_options(site) do
+    site
+    |> MediaLibrary.list_assets()
+    |> Enum.map(fn asset -> {asset.file_name, Beacon.RuntimeRenderer.beacon_media_path(site, asset.file_name)} end)
+  rescue
+    _ -> []
+  end
+
   defp update_other_attribute(other_attributes, id, fun) do
     update_in(other_attributes, [Access.filter(fn %{id: attr_id} -> attr_id == id end)], fun)
   end
@@ -123,7 +142,15 @@ defmodule Beacon.LiveAdmin.VisualEditor.PropertiesSidebarComponent do
           <.live_component module={VisualEditor.ClassControl} id="control-class" element={@selected_element} on_element_change={fn path, payload -> element_changed(@heex_editor, path, payload) end} />
 
           <%= for attribute <- @other_attributes do %>
-            <.live_component module={VisualEditor.NameValueControl} id={attribute.id} path={@selected_element["path"]} parent={@myself} attribute={attribute} />
+            <.live_component
+              module={VisualEditor.NameValueControl}
+              id={attribute.id}
+              path={@selected_element["path"]}
+              parent={@myself}
+              attribute={attribute}
+              media_options={@media_options}
+              on_element_change={fn path, payload -> element_changed(@heex_editor, path, payload) end}
+            />
           <% end %>
 
           <div class="p-4">
