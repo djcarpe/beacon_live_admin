@@ -148,6 +148,7 @@ defmodule Beacon.LiveAdmin.VisualEditor.PropertiesSidebarComponent do
               path={@selected_element["path"]}
               parent={@myself}
               attribute={attribute}
+              element_tag={@selected_element["tag"]}
               media_options={@media_options}
               on_element_change={fn path, payload -> element_changed(@heex_editor, path, payload) end}
             />

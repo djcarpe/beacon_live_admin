@@ -6,8 +6,11 @@ defmodule Beacon.LiveAdmin.VisualEditor.NameValueControl do
   alias Beacon.LiveAdmin.VisualEditor.NameValue
   alias Ecto.Changeset
 
-  # Attributes that hold a single media URL — these get the Media Library picker.
-  @media_attributes ~w(src poster data-src)
+  # Attributes that hold a media URL/path — the picker inserts the stable media path.
+  @media_path_attributes ~w(src poster data-src)
+  # Components whose `name` attribute selects a Media Library file by bare filename
+  # (e.g. `media_image`, whose template wraps it as /<site>/__beacon_media__/<name>).
+  @media_name_tags ~w(media_image)
 
   def render(assigns) do
     ~H"""
@@ -38,14 +41,20 @@ defmodule Beacon.LiveAdmin.VisualEditor.NameValueControl do
           />
 
           <select
-            :if={@attribute.editing and media_attribute?(@attribute.name)}
+            :if={@media_mode}
             name="media_pick"
             phx-target={@myself}
             phx-change="pick_media"
             class="select select-sm select-bordered w-full mt-2 text-sm"
           >
             <option value="">Pick from Media Library…</option>
-            <option :for={{file_name, url} <- @media_options} value={url} selected={url == @attribute.value}>{file_name}</option>
+            <option
+              :for={{file_name, path} <- @media_options}
+              value={media_value(@media_mode, file_name, path)}
+              selected={media_value(@media_mode, file_name, path) == @attribute.value}
+            >
+              {file_name}
+            </option>
           </select>
 
           <div class="mt-2">
@@ -65,6 +74,7 @@ defmodule Beacon.LiveAdmin.VisualEditor.NameValueControl do
     {:ok,
      socket
      |> assign(assigns)
+     |> assign(:media_mode, media_picker_mode(attribute.name, assigns[:element_tag]))
      |> assign_form(changeset)}
   end
 
@@ -143,7 +153,18 @@ defmodule Beacon.LiveAdmin.VisualEditor.NameValueControl do
     assign(socket, :form, changeset)
   end
 
-  defp media_attribute?(name), do: name in @media_attributes
+  # nil = no picker. :path = insert the stable media path (plain <img src>, etc.).
+  # :filename = insert the bare file name (media_image's `name` attribute).
+  defp media_picker_mode(name, tag) do
+    cond do
+      name in @media_path_attributes -> :path
+      name == "name" and tag in @media_name_tags -> :filename
+      true -> nil
+    end
+  end
+
+  defp media_value(:filename, file_name, _path), do: file_name
+  defp media_value(_mode, _file_name, path), do: path
 end
 
 defmodule Beacon.LiveAdmin.VisualEditor.NameValue do
